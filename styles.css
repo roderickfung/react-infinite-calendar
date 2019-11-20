@@ -576,7 +576,8 @@
   .Cal__Years__year.Cal__Years__first {
     padding-top: 40px; }
   .Cal__Years__year.Cal__Years__last {
-    padding-bottom: 40px; }
+    padding-bottom: 40px;
+    border-bottom: none; }
 
 /*
  * Range selection styles
