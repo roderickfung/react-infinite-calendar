@@ -84,6 +84,24 @@ storiesOf('Higher Order Components', module)
       Component={withMonthRange(Calendar)}
     />
   ))
+  .add('Month Range selection with 5 selectable months', () => (
+    <InfiniteCalendar
+      selected={{
+        start: subMonths(new Date(), 1),
+        end: addMonths(new Date(), 1),
+      }}
+      display={'years'}
+      displayOptions={{
+        showHeader: false,
+        hideYearsOnSelect: false,
+      }}
+      min={subMonths(new Date(), 2)}
+      max={addMonths(new Date(), 2)}
+      minDate={subMonths(new Date(), 2)}
+      maxDate={addMonths(new Date(), 2)}
+      Component={withMonthRange(Calendar)}
+    />
+  ))
   .add('Multiple date selection', () => {
     return (
       <InfiniteCalendar

@@ -166,6 +166,7 @@ $cellSize: 44px;
   }
   &.last {
     padding-bottom: $spacing;
+    border-bottom: none;
   }
 }
 

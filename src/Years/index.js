@@ -144,7 +144,7 @@ export default class Years extends Component {
     );
     const isYearLess = years.length * rowHeight < height + 50;
     const containerHeight = isYearLess
-      ? years.length * rowHeight
+      ? years.length * rowHeight + 2 * SPACING
       : height + 50;
 
     let scrollOffset = 0;
