@@ -246,7 +246,8 @@ storiesOf('Events', module)
   .add('On Select', () => (
     <InfiniteCalendar
       onSelect={date =>
-        alert(`You selected: ${format(date, 'ddd, MMM Do YYYY')}`)}
+        alert(`You selected: ${format(date, 'ddd, MMM Do YYYY')}`)
+      }
     />
   ))
   .add('On Scroll', () => [
@@ -254,6 +255,7 @@ storiesOf('Events', module)
     <InfiniteCalendar
       key="calendar"
       onScroll={scrollTop =>
-        console.info('onScroll() – Scroll top:', scrollTop)}
+        console.info('onScroll() – Scroll top:', scrollTop)
+      }
     />,
   ]);

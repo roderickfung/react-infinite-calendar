@@ -1,4 +1,4 @@
-import {getSortedDate} from '../../utils'
+import { getSortedDate } from '../../utils';
 
 export const EVENT_TYPE = {
   END: 3,
@@ -6,10 +6,10 @@ export const EVENT_TYPE = {
   START: 1,
 };
 
-export function getSortedSelection({start, end}) {
+export function getSortedSelection({ start, end }) {
   return getSortedDate(start, end);
 }
 
-export function getInitialDate({selected}) {
-  return selected && selected.start || new Date();
+export function getInitialDate({ selected }) {
+  return (selected && selected.start) || new Date();
 }

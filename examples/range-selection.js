@@ -1,9 +1,6 @@
 import React from 'react';
-import {render} from 'react-dom';
-import InfiniteCalendar, {
-  Calendar,
-  withRange,
-} from 'react-infinite-calendar';
+import { render } from 'react-dom';
+import InfiniteCalendar, { Calendar, withRange } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 
 const CalendarWithRange = withRange(Calendar);

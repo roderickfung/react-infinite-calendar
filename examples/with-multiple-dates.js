@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import InfiniteCalendar, {
   Calendar,
   defaultMultipleDateInterpolation,
@@ -8,7 +8,7 @@ import InfiniteCalendar, {
 import 'react-infinite-calendar/styles.css';
 
 const MultipleDatesCalendar = withMultipleDates(Calendar);
-  
+
 render(
   <InfiniteCalendar
     Component={MultipleDatesCalendar}

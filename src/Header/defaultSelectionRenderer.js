@@ -6,16 +6,19 @@ import format from 'date-fns/format';
 import styles from './Header.scss';
 import animation from './Animation.scss';
 
-export default function defaultSelectionRenderer(value, {
-  display,
-  key,
-  locale: {locale},
-  dateFormat,
-  onYearClick,
-  scrollToDate,
-  setDisplay,
-  shouldAnimate,
-}) {
+export default function defaultSelectionRenderer(
+  value,
+  {
+    display,
+    key,
+    locale: { locale },
+    dateFormat,
+    onYearClick,
+    scrollToDate,
+    setDisplay,
+    shouldAnimate,
+  }
+) {
   const date = parse(value);
   const values = date && [
     {
@@ -38,10 +41,11 @@ export default function defaultSelectionRenderer(value, {
         }
       },
       item: 'day',
-      title: display === 'days'
-        ? `Scroll to ${format(date, dateFormat, {locale})}`
-        : null,
-      value: format(date, dateFormat, {locale}),
+      title:
+        display === 'days'
+          ? `Scroll to ${format(date, dateFormat, { locale })}`
+          : null,
+      value: format(date, dateFormat, { locale }),
     },
   ];
 
@@ -49,9 +53,9 @@ export default function defaultSelectionRenderer(value, {
     <div
       key={key}
       className={styles.wrapper}
-      aria-label={format(date, dateFormat + ' YYYY', {locale})}
+      aria-label={format(date, dateFormat + ' YYYY', { locale })}
     >
-      {values.map(({handleClick, item, key, value, active, title}) => {
+      {values.map(({ handleClick, item, key, value, active, title }) => {
         return (
           <div
             key={item}
