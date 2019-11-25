@@ -1,14 +1,19 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import parse from 'date-fns/parse';
+import startOfWeek from 'date-fns/start_of_week';
 import styles from './Day.scss';
 
 export default class Day extends PureComponent {
   handleClick = () => {
-    let { date, isDisabled, onClick } = this.props;
+    let { date, isDisabled, onClick, isWeeklySelection } = this.props;
 
     if (!isDisabled && typeof onClick === 'function') {
-      onClick(parse(date));
+      if (isWeeklySelection) {
+        onClick(parse(startOfWeek(date)));
+      } else {
+        onClick(parse(date));
+      }
     }
   };
 

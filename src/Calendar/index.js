@@ -28,6 +28,7 @@ export const withDefaultProps = defaultProps({
   displayOptions: {},
   HeaderComponent: Header,
   height: 500,
+  isWeeklySelection: false,
   keyboardSupport: true,
   max: new Date(2050, 11, 31),
   maxDate: new Date(2050, 11, 31),
@@ -74,6 +75,7 @@ export default class Calendar extends Component {
       todayHelperRowOffset: PropTypes.number,
     }),
     height: PropTypes.number,
+    isWeeklySelection: PropTypes.bool,
     keyboardSupport: PropTypes.bool,
     locale: PropTypes.shape({
       blank: PropTypes.string,

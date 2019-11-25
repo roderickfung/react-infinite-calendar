@@ -6,6 +6,8 @@ import isBefore from 'date-fns/is_before';
 import enhanceHeader from '../Header/withRange';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
+import startOfWeek from 'date-fns/start_of_week';
+import endOfWeek from 'date-fns/end_of_week';
 import styles from '../Day/Day.scss';
 
 let isTouchDevice = false;
@@ -19,10 +21,15 @@ export const EVENT_TYPE = {
 // Enhance Day component to display selected state based on an array of selected dates
 export const enhanceDay = withPropsOnChange(
   ['selected'],
-  ({ date, selected, theme }) => {
-    const isSelected = date >= selected.start && date <= selected.end;
-    const isStart = date === selected.start;
-    const isEnd = date === selected.end;
+  ({ date, selected, theme, isWeeklySelection }) => {
+    let { start, end } = selected;
+    if (isWeeklySelection) {
+      start = format(startOfWeek(start), 'YYYY-MM-DD');
+      end = format(endOfWeek(end), 'YYYY-MM-DD');
+    }
+    let isSelected = date >= start && date <= end;
+    let isStart = date === start;
+    const isEnd = date === end;
     const isRange = !(isStart && isEnd);
     const style =
       isRange &&
@@ -60,6 +67,7 @@ export const withRange = compose(
       passThrough: {
         ...passThrough,
         Day: {
+          isWeeklySelection: Boolean(props.isWeeklySelection),
           onClick: date => handleSelect(date, { selected, ...props }),
           handlers: {
             onMouseOver:
@@ -74,6 +82,7 @@ export const withRange = compose(
             handleYearSelect(date, { displayKey, selected, ...props }),
         },
         Header: {
+          isWeeklySelection: Boolean(props.isWeeklySelection),
           onYearClick: (date, e, key) => setDisplayKey(key || 'start'),
         },
       },
@@ -91,20 +100,37 @@ function getSortedSelection({ start, end }) {
 
 function handleSelect(
   date,
-  { onSelect, selected, selectionStart, setSelectionStart }
+  { onSelect, selected, selectionStart, setSelectionStart, isWeeklySelection }
 ) {
   if (selectionStart) {
+    let { start, end } = getSortedSelection({
+      start: selectionStart,
+      end: date,
+    });
+
+    if (isWeeklySelection) {
+      start = startOfWeek(start);
+      end = endOfWeek(end);
+    }
+
     onSelect({
       eventType: EVENT_TYPE.END,
-      ...getSortedSelection({
-        start: selectionStart,
-        end: date,
-      }),
+      start,
+      end,
     });
     setSelectionStart(null);
   } else {
-    onSelect({ eventType: EVENT_TYPE.START, start: date, end: date });
-    setSelectionStart(date);
+    if (isWeeklySelection) {
+      onSelect({
+        eventType: EVENT_TYPE.START,
+        start: startOfWeek(date),
+        end: endOfWeek(date),
+      });
+      setSelectionStart(startOfWeek(date));
+    } else {
+      onSelect({ eventType: EVENT_TYPE.START, start: date, end: date });
+      setSelectionStart(date);
+    }
   }
 }
 
