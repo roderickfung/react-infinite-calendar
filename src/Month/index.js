@@ -27,7 +27,6 @@ export default class Month extends PureComponent {
       theme,
       passThrough,
     } = this.props;
-    const { isWeeklySelection } = passThrough.Day;
     const currentYear = today.getFullYear();
     const year = monthDate.getFullYear();
     const month = monthDate.getMonth();
@@ -44,7 +43,7 @@ export default class Month extends PureComponent {
     let _maxDate = format(maxDate, 'YYYY-MM-DD');
 
     // disable partial weeks for weekly selection
-    if (isWeeklySelection) {
+    if (passThrough.Day && passThrough.Day.isWeeklySelection) {
       const weekStartOfMin = startOfWeek(minDate);
       if (!isSameDay(minDate, weekStartOfMin)) {
         _minDate = format(addWeeks(weekStartOfMin, 1), 'YYYY-MM-DD');
