@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/start_of_week';
+import endOfWeek from 'date-fns/end_of_week';
+import isSameWeek from 'date-fns/is_same_week';
+import isSameDay from 'date-fns/is_same_day';
 import styles from './Day.scss';
 
 export default class Day extends PureComponent {
@@ -14,6 +17,22 @@ export default class Day extends PureComponent {
       } else {
         onClick(parse(date));
       }
+    }
+  };
+
+  handleMouseEnter = () => {
+    let { date, isDisabled, isWeeklySelection, onMouseEnter } = this.props;
+
+    if (!isDisabled && isWeeklySelection) {
+      onMouseEnter(date);
+    }
+  };
+
+  handleMouseLeave = () => {
+    let { date, isDisabled, isWeeklySelection, onMouseLeave } = this.props;
+
+    if (!isDisabled && isWeeklySelection) {
+      onMouseLeave(date);
     }
   };
 
@@ -53,14 +72,20 @@ export default class Day extends PureComponent {
       date,
       day,
       handlers,
+      hoveredDate,
       isDisabled,
       isHighlighted,
       isToday,
       isSelected,
+      isWeeklySelection,
       monthShort,
       theme: { selectionColor, todayColor },
       year,
     } = this.props;
+
+    const isStartOfWeek = isSameDay(date, startOfWeek(date));
+    const isEndOfWeek = isSameDay(date, endOfWeek(date));
+    const isHovered = isWeeklySelection && isSameWeek(date, hoveredDate);
     let color;
 
     if (isSelected) {
@@ -83,10 +108,15 @@ export default class Day extends PureComponent {
             [styles.selected]: isSelected,
             [styles.disabled]: isDisabled,
             [styles.enabled]: !isDisabled,
+            [styles.hovered]: isHovered && !isSelected,
+            [styles.startOfWeek]: isStartOfWeek,
+            [styles.endOfWeek]: isEndOfWeek,
           },
           className
         )}
         onClick={this.handleClick}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
         data-date={date}
         {...handlers}
       >

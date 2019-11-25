@@ -57,18 +57,30 @@ export const withRange = compose(
   withState('scrollDate', 'setScrollDate', getInitialDate),
   withState('displayKey', 'setDisplayKey', getInitialDate),
   withState('selectionStart', 'setSelectionStart', null),
+  withState('hoveredDate', 'setHoveredDate'),
   withImmutableProps(({ DayComponent, HeaderComponent, YearsComponent }) => ({
     DayComponent: enhanceDay(DayComponent),
     HeaderComponent: enhanceHeader(HeaderComponent),
   })),
   withProps(
-    ({ displayKey, passThrough, selected, setDisplayKey, ...props }) => ({
+    ({
+      displayKey,
+      passThrough,
+      selected,
+      setDisplayKey,
+      hoveredDate,
+      setHoveredDate,
+      ...props
+    }) => ({
       /* eslint-disable sort-keys */
       passThrough: {
         ...passThrough,
         Day: {
+          hoveredDate: hoveredDate,
           isWeeklySelection: Boolean(props.isWeeklySelection),
           onClick: date => handleSelect(date, { selected, ...props }),
+          onMouseEnter: setHoveredDate,
+          onMouseLeave: () => setHoveredDate(undefined),
           handlers: {
             onMouseOver:
               !isTouchDevice && props.selectionStart

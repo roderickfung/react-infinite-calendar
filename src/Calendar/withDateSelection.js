@@ -55,28 +55,34 @@ export const withDateSelection = compose(
       YearsComponent: enhanceYear(YearsComponent),
     })
   ),
+  withState('hoveredDate', 'setHoveredDate'),
   withState(
     'scrollDate',
     'setScrollDate',
     props => props.selected || new Date()
   ),
-  withProps(({ onSelect, setScrollDate, ...props }) => {
-    const selected = sanitizeDate(props.selected, props);
+  withProps(
+    ({ onSelect, setScrollDate, hoveredDate, setHoveredDate, ...props }) => {
+      const selected = sanitizeDate(props.selected, props);
 
-    return {
-      passThrough: {
-        Day: {
-          isWeeklySelection: Boolean(props.isWeeklySelection),
-          onClick: onSelect,
+      return {
+        passThrough: {
+          Day: {
+            hoveredDate: hoveredDate,
+            isWeeklySelection: Boolean(props.isWeeklySelection),
+            onClick: onSelect,
+            onMouseEnter: setHoveredDate,
+            onMouseLeave: () => setHoveredDate(undefined),
+          },
+          Years: {
+            onSelect: year =>
+              handleYearSelect(year, { onSelect, selected, setScrollDate }),
+          },
         },
-        Years: {
-          onSelect: year =>
-            handleYearSelect(year, { onSelect, selected, setScrollDate }),
-        },
-      },
-      selected: selected && format(selected, 'YYYY-MM-DD'),
-    };
-  })
+        selected: selected && format(selected, 'YYYY-MM-DD'),
+      };
+    }
+  )
 );
 
 function handleYearSelect(date, { setScrollDate, selected, onSelect }) {
