@@ -2,10 +2,10 @@ import min from 'date-fns/min';
 import max from 'date-fns/max';
 import startOfMonth from 'date-fns/start_of_month';
 import endOfMonth from 'date-fns/end_of_month';
-import {compose, withProps, withState} from 'recompose';
-import {withDefaultProps} from './';
-import {withImmutableProps} from '../utils';
-import {EVENT_TYPE, getInitialDate, getSortedSelection} from './Range';
+import { compose, withProps, withState } from 'recompose';
+import { withDefaultProps } from './';
+import { withImmutableProps } from '../utils';
+import { EVENT_TYPE, getInitialDate, getSortedSelection } from './Range';
 
 let isTouchDevice = false;
 
@@ -13,21 +13,20 @@ export const withMonthRange = compose(
   withDefaultProps,
   withState('scrollDate', 'setScrollDate', getInitialDate),
   withState('selectionStart', 'setSelectionStart', null),
-  withImmutableProps(({
-    YearsComponent,
-  }) => ({
+  withImmutableProps(({ YearsComponent }) => ({
     YearsComponent: YearsComponent,
   })),
-  withProps(({passThrough, selected, ...props}) => ({
+  withProps(({ passThrough, selected, ...props }) => ({
     /* eslint-disable sort-keys */
     passThrough: {
       ...passThrough,
       Years: {
-        onSelect: (date) => handleSelect(date, {selected, ...props}),
+        onSelect: date => handleSelect(date, { selected, ...props }),
         handlers: {
-          onMouseOver: !isTouchDevice && props.selectionStart
-            ? (e) => handleMouseOver(e, {selected, ...props})
-            : null,
+          onMouseOver:
+            !isTouchDevice && props.selectionStart
+              ? e => handleMouseOver(e, { selected, ...props })
+              : null,
         },
       },
     },
@@ -35,10 +34,22 @@ export const withMonthRange = compose(
       start: selected && selected.start,
       end: selected && selected.end,
     },
-  })),
+  }))
 );
 
-function handleSelect(date, {onSelect, selected, selectionStart, setSelectionStart, min, max, minDate, maxDate}) {
+function handleSelect(
+  date,
+  {
+    onSelect,
+    selected,
+    selectionStart,
+    setSelectionStart,
+    min,
+    max,
+    minDate,
+    maxDate,
+  }
+) {
   if (selectionStart) {
     onSelect({
       eventType: EVENT_TYPE.END,
@@ -68,10 +79,12 @@ function handleSelect(date, {onSelect, selected, selectionStart, setSelectionSta
   }
 }
 
-function handleMouseOver(e, {onSelect, selectionStart}) {
+function handleMouseOver(e, { onSelect, selectionStart }) {
   e.stopPropagation();
   const month = e.target.getAttribute('data-month');
-  if (!month) { return; }
+  if (!month) {
+    return;
+  }
   onSelect({
     eventType: EVENT_TYPE.HOVER,
     ...getMonthRangeDate({
@@ -81,8 +94,15 @@ function handleMouseOver(e, {onSelect, selectionStart}) {
   });
 }
 
-function getMonthRangeDate({start, end, minSelected, maxSelected, minScrolled, maxScrolled}) {
-  const sortedDate = getSortedSelection({start, end});
+function getMonthRangeDate({
+  start,
+  end,
+  minSelected,
+  maxSelected,
+  minScrolled,
+  maxScrolled,
+}) {
+  const sortedDate = getSortedSelection({ start, end });
   const compareStartDate = [];
   const compareEndDate = [];
   if (sortedDate.start) {
@@ -96,7 +116,8 @@ function getMonthRangeDate({start, end, minSelected, maxSelected, minScrolled, m
     maxSelected && compareEndDate.push(maxSelected);
   }
   return {
-    start: compareStartDate.length > 0 ? max(...compareStartDate) : sortedDate.start,
+    start:
+      compareStartDate.length > 0 ? max(...compareStartDate) : sortedDate.start,
     end: compareEndDate.length > 0 ? min(...compareEndDate) : sortedDate.end,
   };
 }
