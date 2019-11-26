@@ -14,6 +14,9 @@ import styles from './stories.scss';
 
 // Date manipulation utils
 import addDays from 'date-fns/add_days';
+import startOfWeek from 'date-fns/start_of_week';
+import endOfWeek from 'date-fns/end_of_week';
+import addWeeks from 'date-fns/add_weeks';
 import addMonths from 'date-fns/add_months';
 import endOfMonth from 'date-fns/end_of_month';
 import format from 'date-fns/format';
@@ -66,6 +69,45 @@ storiesOf('Higher Order Components', module)
         headerFormat: 'MMM Do',
       }}
       Component={withRange(withKeyboardSupport(Calendar))}
+    />
+  ))
+  .add('Weekly selection', () => (
+    <InfiniteCalendar
+      isWeeklySelection
+      selected={startOfWeek(new Date())}
+      locale={{
+        headerFormat: 'MMM Do',
+      }}
+      Component={withDateSelection(Calendar)}
+      min={subMonths(new Date(), 3)}
+      max={addMonths(new Date(), 3)}
+      minDate={subMonths(new Date(), 3)}
+      maxDate={addMonths(new Date(), 3)}
+    />
+  ))
+  .add('Week Range selection', () => (
+    <InfiniteCalendar
+      isWeeklySelection
+      selected={{
+        start: startOfWeek(new Date()),
+        end: addWeeks(endOfWeek(new Date()), 2),
+      }}
+      locale={{
+        headerFormat: 'MMM Do',
+      }}
+      Component={withRange(Calendar)}
+    />
+  ))
+  .add('Monthly selection', () => (
+    <InfiniteCalendar
+      selected={new Date()}
+      display={'years'}
+      displayOptions={{
+        showHeader: false,
+        hideYearsOnSelect: false,
+      }}
+      minDate={subMonths(new Date(), 10)}
+      maxDate={addMonths(new Date(), 10)}
     />
   ))
   .add('Month Range selection', () => (

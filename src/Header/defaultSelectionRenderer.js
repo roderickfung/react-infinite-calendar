@@ -3,6 +3,8 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import classNames from 'classnames';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
+import startOfWeek from 'date-fns/start_of_week';
+import endOfWeek from 'date-fns/end_of_week';
 import styles from './Header.scss';
 import animation from './Animation.scss';
 
@@ -17,9 +19,18 @@ export default function defaultSelectionRenderer(
     scrollToDate,
     setDisplay,
     shouldAnimate,
+    isWeeklySelection,
   }
 ) {
-  const date = parse(value);
+  let date = parse(value);
+
+  if (isWeeklySelection) {
+    if (key === 'start') {
+      date = startOfWeek(date);
+    } else {
+      date = endOfWeek(date);
+    }
+  }
   const values = date && [
     {
       active: display === 'years',

@@ -4,6 +4,10 @@ import { getDateString } from '../utils';
 import format from 'date-fns/format';
 import getDay from 'date-fns/get_day';
 import isSameYear from 'date-fns/is_same_year';
+import isSameDay from 'date-fns/is_same_day';
+import startOfWeek from 'date-fns/start_of_week';
+import endOfWeek from 'date-fns/end_of_week';
+import addWeeks from 'date-fns/add_weeks';
 import styles from './Month.scss';
 
 export default class Month extends PureComponent {
@@ -35,8 +39,21 @@ export default class Month extends PureComponent {
 
     // Used for faster comparisons
     const _today = format(today, 'YYYY-MM-DD');
-    const _minDate = format(minDate, 'YYYY-MM-DD');
-    const _maxDate = format(maxDate, 'YYYY-MM-DD');
+    let _minDate = format(minDate, 'YYYY-MM-DD');
+    let _maxDate = format(maxDate, 'YYYY-MM-DD');
+
+    // disable partial weeks for weekly selection
+    if (passThrough.Day && passThrough.Day.isWeeklySelection) {
+      const weekStartOfMin = startOfWeek(minDate);
+      if (!isSameDay(minDate, weekStartOfMin)) {
+        _minDate = format(addWeeks(weekStartOfMin, 1), 'YYYY-MM-DD');
+      }
+
+      const weekEndOfMax = endOfWeek(maxDate);
+      if (!isSameDay(maxDate, weekEndOfMax)) {
+        _maxDate = format(addWeeks(weekEndOfMax, -1), 'YYYY-MM-DD');
+      }
+    }
 
     // Oh the things we do in the name of performance...
     for (let i = 0, len = rows.length; i < len; i++) {
