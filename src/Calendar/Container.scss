@@ -1,14 +1,14 @@
-@import "../variables";
+@import '../variables';
 
 .root {
   position: relative;
   display: table;
   z-index: 1;
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 12px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 300;
+  font-weight: normal;
   outline: none;
   text-align: left;
 
@@ -29,5 +29,5 @@
 .listWrapper {
   position: relative;
   overflow: hidden;
-  background-color: #FFF;
+  background-color: #fff;
 }

@@ -13,7 +13,7 @@ import parse from 'date-fns/parse';
 import isWithinRange from 'date-fns/is_within_range';
 import styles from './Years.scss';
 
-const SPACING = 40;
+const SPACING = 0;
 
 export default class Years extends Component {
   static propTypes = {
@@ -162,7 +162,7 @@ export default class Years extends Component {
     const currentYear = today.getFullYear();
     const years = this.props.years.slice(0, this.props.years.length);
     const selectedYearIndex = this.selectedYearIndex;
-    const rowHeight = showMonths ? 110 : 50;
+    const rowHeight = showMonths ? 88 : 50;
     const heights = years.map((val, index) =>
       index === 0 || index === years.length - 1
         ? rowHeight + SPACING

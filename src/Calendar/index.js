@@ -39,7 +39,7 @@ export const withDefaultProps = defaultProps({
   onScrollEnd: emptyFn,
   onSelect: emptyFn,
   passThrough: {},
-  rowHeight: 56,
+  rowHeight: 44,
   tabIndex: 1,
   width: 400,
   YearsComponent: Years,
