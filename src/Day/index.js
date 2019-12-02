@@ -7,6 +7,8 @@ import isSameWeek from 'date-fns/is_same_week';
 import isSameDay from 'date-fns/is_same_day';
 import styles from './Day.scss';
 
+const padZero = n => (n < 10 ? `0${n}` : String(n));
+
 export default class Day extends PureComponent {
   handleClick = () => {
     let { date, isDisabled, onClick, isWeeklySelection } = this.props;
@@ -60,7 +62,7 @@ export default class Day extends PureComponent {
         <span className={styles.month}>
           {isToday ? todayLabel.short || todayLabel.long : monthShort}
         </span>
-        <span className={styles.day}>{day}</span>
+        <span className={styles.day}>{padZero(day)}</span>
       </div>
     );
   }
@@ -121,7 +123,7 @@ export default class Day extends PureComponent {
         {...handlers}
       >
         {day === 1 && <span className={styles.month}>{monthShort}</span>}
-        {isToday ? <span>{day}</span> : day}
+        {isToday ? <span>{padZero(day)}</span> : padZero(day)}
         {day === 1 && currentYear !== year && (
           <span className={styles.year}>{year}</span>
         )}

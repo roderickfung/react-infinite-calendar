@@ -1,7 +1,7 @@
-@import "../variables";
-@import "../Calendar/Range/Range";
+@import '../variables';
+@import '../Calendar/Range/Range';
 
-$cellSize: 44px;
+$cellSize: 40px;
 
 .root {
   position: absolute;
@@ -12,25 +12,7 @@ $cellSize: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F9F9F9;
-
-  &:before, &:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 50px;
-    pointer-events: none;
-    z-index: 1;
-  }
-  &:before {
-    top: 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255, 255, 255, 0) 100%);
-  }
-  &:after {
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,0.8) 100%);
-  }
+  background-color: #fff;
 }
 
 .list {
@@ -44,25 +26,24 @@ $cellSize: 44px;
 }
 
 .year {
-
   display: flex;
   padding: 0 20px;
   height: 100%;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: bold;
   text-align: center;
   cursor: pointer;
   -webkit-user-select: none;
   box-sizing: border-box;
 
   &.withMonths {
-    border-bottom: 1px solid $borderColor;
+    border-bottom: 1px solid $blue_15;
 
     label {
       height: $cellSize * 2;
-      padding-top: 12px;
+      line-height: $cellSize;
       box-sizing: border-box;
     }
   }
@@ -72,7 +53,7 @@ $cellSize: 44px;
 
     span {
       flex-shrink: 0;
-      color: #333;
+      color: $blue;
     }
   }
 
@@ -81,8 +62,9 @@ $cellSize: 44px;
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
+    min-width: 6 * $cellSize;
 
-    font-size: 14px;
+    font-size: 12px;
 
     li {
       display: flex;
@@ -93,11 +75,10 @@ $cellSize: 44px;
       justify-content: center;
       list-style: none;
       border-radius: 50%;
-      margin-bottom: 2px;
       box-sizing: border-box;
 
-      color: #444;
-      font-weight: 400;
+      color: $blue;
+      font-weight: normal;
       text-transform: capitalize;
 
       &.currentMonth {
@@ -106,19 +87,18 @@ $cellSize: 44px;
       &.selected {
         position: relative;
         z-index: 1;
-        background-color: blue;
-        color: #FFF !important;
+        color: #fff;
         border: 0;
 
         .selection {
           @include circle($cellSize);
-          line-height: $cellSize - 4px;
+          line-height: $cellSize;
           z-index: 2;
         }
       }
       &.disabled {
         cursor: not-allowed;
-        color: $textColorDisabled;
+        color: $blue_25;
 
         &:hover {
           background-color: inherit;
@@ -126,19 +106,20 @@ $cellSize: 44px;
       }
 
       &:hover {
-        background-color: $cellHoverBg;
+        background-color: $blue_10;
       }
     }
   }
 
-  &:hover, &.active {
+  &:hover,
+  &.active {
     label > span {
-      color: inherit;
+      color: $pink;
     }
   }
-  &:hover, &.active {
+  &:hover,
+  &.active {
     position: relative;
-    z-index: 2;
   }
   &.active {
     font-size: 32px;
@@ -160,7 +141,7 @@ $cellSize: 44px;
   }
 
   // Spacing
-  $spacing: 40px;
+  $spacing: 0;
   &.first {
     padding-top: $spacing;
   }
@@ -174,7 +155,8 @@ $cellSize: 44px;
  * Range selection styles
  */
 .range.selected {
-  &.start, &.end {
+  &.start,
+  &.end {
     &:after {
       content: '';
       position: absolute;
@@ -182,24 +164,30 @@ $cellSize: 44px;
       width: 50%;
       height: $cellSize;
       margin-top: -0.5 * $cellSize;
-      background-color: #559fff;
+      background-color: $blue_25;
+    }
+
+    .selection {
+      font-weight: bold;
+      color: #fff;
+      background-color: $blue;
+      box-sizing: border-box;
     }
   }
 
   &.disabled {
-      background-color: #EEE !important;
+    background-color: $blue_25 !important;
     .selection.selection {
-      background-color: #EEE !important;
-      color: #FFF;
+      background-color: $blue_25 !important;
+      color: #fff;
     }
     &:after {
-        background-color: #EEE !important;
+      background-color: $blue_25 !important;
     }
   }
 
   &.start {
     .selection {
-      background-color: #448aff;
       border-top-left-radius: 50%;
       border-bottom-left-radius: 50%;
     }
@@ -212,19 +200,7 @@ $cellSize: 44px;
       display: none;
     }
   }
-  &.betweenRange {
-    border-radius: 0;
-    .selection {
-      left: 0;
-      right: 0;
-      width: 100%;
-      margin-left: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 0;
-    }
-  }
+
   &.end {
     &:after {
       left: 0;
@@ -233,10 +209,35 @@ $cellSize: 44px;
     .selection {
       border-top-right-radius: 50%;
       border-bottom-right-radius: 50%;
-
-      color: #559fff;
-      background-color: #FFF;
-      box-sizing: border-box;
     }
+  }
+  &:nth-child(6n).start:after {
+    display: none;
+  }
+  &:nth-child(6n + 1).end:after {
+    display: none;
+  }
+
+  &.betweenRange {
+    border-radius: 0;
+    background-color: $blue_25 !important;
+    .selection {
+      left: 0;
+      right: 0;
+      width: 100%;
+      margin-left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $blue;
+    }
+  }
+  &:nth-child(6n + 1).betweenRange {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+  }
+  &:nth-child(6n).betweenRange {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
   }
 }

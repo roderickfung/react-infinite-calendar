@@ -34,7 +34,7 @@ export const enhanceDay = withPropsOnChange(
     const style =
       isRange &&
       ((isStart && { backgroundColor: theme.accentColor }) ||
-        (isEnd && { borderColor: theme.accentColor }));
+        (isEnd && { backgroundColor: theme.accentColor }));
 
     return {
       className:
