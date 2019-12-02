@@ -120,11 +120,12 @@
       z-index: 2;
 
       .month {
-        top: 10px;
+        color: #fff;
+        top: 8px;
       }
       .day {
         position: relative;
-        top: 8px;
+        top: 7px;
         font-size: 12px;
         font-weight: bold;
       }
@@ -148,11 +149,13 @@
 }
 
 .month {
-  top: 4px;
+  color: $blue_65;
+  top: 2px;
 }
 
 .year {
-  bottom: 4px;
+  color: $blue_65;
+  bottom: 2px;
 }
 
 /*

@@ -45,7 +45,7 @@
       content: '';
       display: block;
       width: 100%;
-      height: 44px;
+      height: 40px;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -59,10 +59,10 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 44px;
-        height: 44px;
-        margin-top: -22px;
-        margin-left: -22px;
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
+        margin-left: -20px;
         border-radius: 50%;
         background-color: #e7e8ec;
         z-index: -1; }
@@ -80,10 +80,10 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 44px;
-      height: 44px;
-      margin-top: -22px;
-      margin-left: -22px;
+      width: 40px;
+      height: 40px;
+      margin-top: -20px;
+      margin-left: -20px;
       border-radius: 50%;
       background-color: #e7e8ec;
       z-index: -1; }
@@ -103,10 +103,10 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 44px;
-      height: 44px;
-      margin-top: -22px;
-      margin-left: -22px;
+      width: 40px;
+      height: 40px;
+      margin-top: -20px;
+      margin-left: -20px;
       border-radius: 50%;
       box-shadow: inset 0 0 0 1px;
       z-index: -1; }
@@ -124,18 +124,19 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 44px;
-      height: 44px;
-      margin-top: -22px;
-      margin-left: -22px;
+      width: 40px;
+      height: 40px;
+      margin-top: -20px;
+      margin-left: -20px;
       border-radius: 50%;
-      line-height: 44px;
+      line-height: 40px;
       z-index: 2; }
       .Cal__Day__root.Cal__Day__selected .Cal__Day__selection .Cal__Day__month {
-        top: 10px; }
+        color: #fff;
+        top: 8px; }
       .Cal__Day__root.Cal__Day__selected .Cal__Day__selection .Cal__Day__day {
         position: relative;
-        top: 8px;
+        top: 7px;
         font-size: 12px;
         font-weight: bold; }
   .Cal__Day__root.Cal__Day__disabled {
@@ -152,10 +153,12 @@
   text-transform: capitalize; }
 
 .Cal__Day__month {
-  top: 4px; }
+  color: #647188;
+  top: 2px; }
 
 .Cal__Day__year {
-  bottom: 4px; }
+  color: #647188;
+  bottom: 2px; }
 
 /*
  * Range selection styles
@@ -168,7 +171,7 @@
   position: absolute;
   top: 50%;
   width: 50%;
-  height: 44px;
+  height: 40px;
   transform: translateY(-50%);
   background-color: #c3c8d1; }
 
@@ -183,8 +186,8 @@
     font-weight: normal; }
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__start .Cal__Day__selection {
-  border-top-left-radius: 22px;
-  border-bottom-left-radius: 22px; }
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px; }
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__start:after {
   right: 0; }
@@ -196,8 +199,8 @@
   left: 0; }
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__end .Cal__Day__selection {
-  border-top-right-radius: 22px;
-  border-bottom-right-radius: 22px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
   box-sizing: border-box; }
   .Cal__Day__range.Cal__Day__selected.Cal__Day__end .Cal__Day__selection .Cal__Day__day {
     top: 8px; }
@@ -215,7 +218,7 @@
   background-color: #c3c8d1 !important; }
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__betweenRange.Cal__Day__startOfWeek .Cal__Day__selection, .Cal__Day__range.Cal__Day__selected.Cal__Day__betweenRange.Cal__Day__endOfWeek .Cal__Day__selection {
-  width: 44px;
+  width: 40px;
   left: 50%;
   top: 50%;
   transform: translateX(-50%); }
@@ -226,20 +229,20 @@
   position: absolute;
   top: 50%;
   width: 50%;
-  height: 44px;
+  height: 40px;
   transform: translateY(-50%);
   background-color: #c3c8d1; }
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__betweenRange.Cal__Day__startOfWeek .Cal__Day__selection {
-  border-top-left-radius: 22px;
-  border-bottom-left-radius: 22px; }
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px; }
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__betweenRange.Cal__Day__startOfWeek:after {
   right: 0; }
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__betweenRange.Cal__Day__endOfWeek .Cal__Day__selection {
-  border-top-right-radius: 22px;
-  border-bottom-right-radius: 22px; }
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px; }
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__betweenRange.Cal__Day__endOfWeek:after {
   left: 0; }
@@ -446,13 +449,13 @@
     left: 0;
     right: 0;
     top: 0;
-    bottom: 44px;
+    bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-transform: capitalize; }
   .Cal__Month__label.Cal__Month__partialFirstRow {
-    top: 44px; }
+    top: 40px; }
 /*  imported from MonthList.scss  */
 
 .Cal__MonthList__root {
@@ -509,7 +512,7 @@
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.04); }
 
 .Cal__Weekdays__day {
-  line-height: 44px;
+  line-height: 40px;
   flex-basis: 14.28571%;
   flex-grow: 1;
   font-weight: normal;
@@ -552,8 +555,8 @@
   .Cal__Years__year.Cal__Years__withMonths {
     border-bottom: 1px solid #dbdee4; }
     .Cal__Years__year.Cal__Years__withMonths label {
-      height: 88px;
-      line-height: 44px;
+      height: 80px;
+      line-height: 40px;
       box-sizing: border-box; }
   .Cal__Years__year label {
     flex-basis: 42%; }
@@ -565,12 +568,12 @@
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
-    min-width: 264px;
+    min-width: 240px;
     font-size: 12px; }
     .Cal__Years__year ol li {
       display: flex;
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       flex-shrink: 0;
       align-items: center;
       justify-content: center;
@@ -592,12 +595,12 @@
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 44px;
-          height: 44px;
-          margin-top: -22px;
-          margin-left: -22px;
+          width: 40px;
+          height: 40px;
+          margin-top: -20px;
+          margin-left: -20px;
           border-radius: 50%;
-          line-height: 44px;
+          line-height: 40px;
           z-index: 2; }
       .Cal__Years__year ol li.Cal__Years__disabled {
         cursor: not-allowed;
@@ -634,8 +637,8 @@
   position: absolute;
   top: 50%;
   width: 50%;
-  height: 44px;
-  margin-top: -22px;
+  height: 40px;
+  margin-top: -20px;
   background-color: #c3c8d1; }
 
 .Cal__Years__range.Cal__Years__selected.Cal__Years__start .Cal__Years__selection, .Cal__Years__range.Cal__Years__selected.Cal__Years__end .Cal__Years__selection {

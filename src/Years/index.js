@@ -162,29 +162,29 @@ export default class Years extends Component {
     const currentYear = today.getFullYear();
     const years = this.props.years.slice(0, this.props.years.length);
     const selectedYearIndex = this.selectedYearIndex;
-    const rowHeight = showMonths ? 88 : 44;
+    const rowHeight = showMonths ? 80 : 40;
     const heights = years.map((val, index) =>
       index === 0 || index === years.length - 1
         ? rowHeight + SPACING
         : rowHeight
     );
-    const isYearLess = years.length * rowHeight < height + 44;
+    const isYearLess = years.length * rowHeight < height + 40;
     const containerHeight = isYearLess
       ? years.length * rowHeight + 2 * SPACING
-      : height + 44;
+      : height + 40;
 
     let scrollOffset = 0;
     if (!isYearLess && selectedYearIndex !== -1) {
       const top = heights
         .slice(0, selectedYearIndex)
         .reduce((acc, val) => acc + val, 0);
-      scrollOffset = top - containerHeight / 2 + 44;
+      scrollOffset = top - containerHeight / 2 + 40;
     }
 
     return (
       <div
         className={styles.root}
-        style={{ color: theme.selectionColor, height: height + 44 }}
+        style={{ color: theme.selectionColor, height: height + 40 }}
       >
         <VirtualList
           ref="List"
