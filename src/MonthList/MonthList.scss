@@ -1,7 +1,18 @@
+@import '../variables';
+
 .root {
   width: 100% !important;
-  background-color: #FFF;
+  background-color: #fff;
   -webkit-overflow-scrolling: touch;
+  // background-image: linear-gradient(
+  //   rgba(15, 35, 70, 0.12),
+  //   rgba(15, 35, 70, 0)
+  // );
+  // background-size: 100% 33px;
+  // background-repeat: no-repeat;
+  padding-left: $horizontalPadding;
+  padding-right: $horizontalPadding;
+  box-sizing: border-box;
 
   &.scrolling {
     > div {

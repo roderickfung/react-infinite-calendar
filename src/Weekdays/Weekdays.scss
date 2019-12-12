@@ -9,6 +9,9 @@
   margin: 0;
   list-style: none;
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.04);
+  padding-left: $horizontalPadding;
+  padding-right: $horizontalPadding !important;
+  box-sizing: border-box;
 }
 
 .day {
