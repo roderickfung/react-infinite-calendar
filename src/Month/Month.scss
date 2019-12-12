@@ -6,6 +6,10 @@
 }
 .rows {
   position: relative;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.44) 50%,
+    rgba(231, 232, 236, 0.55) 100%
+  );
 }
 .row {
   padding: 0;
@@ -13,6 +17,10 @@
 
   &:first-child {
     text-align: right;
+
+    li {
+      background-color: #fff;
+    }
   }
 
   &.partial {
