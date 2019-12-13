@@ -3,6 +3,21 @@
 .root {
   // position: absolute;
   // width: 100%;
+  &.even {
+    .row {
+      li {
+        background-color: #fff;
+      }
+    }
+  }
+
+  &.odd {
+    .row {
+      li {
+        background-color: $blue_5;
+      }
+    }
+  }
 }
 .rows {
   position: relative;
@@ -26,6 +41,7 @@
 }
 
 .label {
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;

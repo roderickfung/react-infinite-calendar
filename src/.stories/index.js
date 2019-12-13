@@ -79,8 +79,8 @@ storiesOf('Higher Order Components', module)
         headerFormat: 'MMM Do',
       }}
       Component={withDateSelection(Calendar)}
-      min={subMonths(new Date(), 3)}
-      max={addMonths(new Date(), 3)}
+      min={subMonths(new Date(), 10)}
+      max={addMonths(new Date(), 10)}
       minDate={subMonths(new Date(), 3)}
       maxDate={addMonths(new Date(), 3)}
     />
