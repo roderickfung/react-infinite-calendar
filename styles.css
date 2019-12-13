@@ -438,6 +438,7 @@
     z-index: 1; }
 
 .Cal__Month__label {
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -467,11 +468,7 @@
 
 .Cal__MonthList__root {
   width: 100% !important;
-  background-color: #fff;
-  -webkit-overflow-scrolling: touch;
-  background-image: linear-gradient(rgba(15, 35, 70, 0.12), rgba(15, 35, 70, 0));
-  background-size: 100% 8px;
-  background-repeat: no-repeat; }
+  -webkit-overflow-scrolling: touch; }
   .Cal__MonthList__root.Cal__MonthList__scrolling > div {
     pointer-events: none; }
   .Cal__MonthList__root.Cal__MonthList__scrolling label {
