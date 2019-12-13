@@ -1,6 +1,6 @@
 {
   "name": "@appannie/react-infinite-calendar",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
   "main": "lib/index.js",
   "module": "es/index.js",
