@@ -3,14 +3,24 @@
 .root {
   // position: absolute;
   // width: 100%;
+  &.even {
+    .row {
+      li {
+        background-color: #fff;
+      }
+    }
+  }
+
+  &.odd {
+    .row {
+      li {
+        background-color: $blue_5;
+      }
+    }
+  }
 }
 .rows {
   position: relative;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 50%,
-    rgba(231, 232, 236, 0.5) 100%
-  );
 }
 .row {
   padding: 0;
@@ -18,10 +28,6 @@
 
   &:first-child {
     text-align: right;
-
-    li {
-      background-color: #fff;
-    }
   }
 
   &.partial {

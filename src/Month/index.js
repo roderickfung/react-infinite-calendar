@@ -8,6 +8,7 @@ import isSameDay from 'date-fns/is_same_day';
 import startOfWeek from 'date-fns/start_of_week';
 import endOfWeek from 'date-fns/end_of_week';
 import addWeeks from 'date-fns/add_weeks';
+import getMonth from 'date-fns/get_month';
 import styles from './Month.scss';
 
 export default class Month extends PureComponent {
@@ -127,10 +128,14 @@ export default class Month extends PureComponent {
       theme,
     } = this.props;
     const dateFormat = isSameYear(monthDate, today) ? 'MMMM' : 'MMMM YYYY';
+    const month = getMonth(monthDate);
 
     return (
       <div
-        className={styles.root}
+        className={classNames(styles.root, {
+          [styles.even]: month % 2 === 0,
+          [styles.odd]: month % 2 === 1,
+        })}
         style={{ ...style, lineHeight: `${rowHeight}px` }}
       >
         <div className={styles.rows}>
