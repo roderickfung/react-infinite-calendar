@@ -419,17 +419,20 @@
   transform: translate3d(0, 100%, 0); }
 /*  imported from Month.scss  */
 
+.Cal__Month__root.Cal__Month__even .Cal__Month__row li {
+  background-color: #fff; }
+
+.Cal__Month__root.Cal__Month__odd .Cal__Month__row li {
+  background-color: #f3f4f6; }
+
 .Cal__Month__rows {
-  position: relative;
-  background: linear-gradient(rgba(255, 255, 255, 0.44) 50%, rgba(231, 232, 236, 0.55) 100%); }
+  position: relative; }
 
 .Cal__Month__row {
   padding: 0;
   margin: 0; }
   .Cal__Month__row:first-child {
     text-align: right; }
-    .Cal__Month__row:first-child li {
-      background-color: #fff; }
   .Cal__Month__row.Cal__Month__partial:last-of-type li {
     position: relative;
     z-index: 1; }
@@ -516,7 +519,7 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.04); }
+  box-shadow: 0 6px 3px -3px #e7e8ec; }
 
 .Cal__Weekdays__day {
   line-height: 40px;
@@ -538,6 +541,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(to bottom, #e7e8ec 0, #fff 6px);
   background-color: #fff; }
 
 .Cal__Years__list {
