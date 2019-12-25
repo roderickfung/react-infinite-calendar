@@ -85,6 +85,17 @@ export default class MonthList extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.initialScrollDate != null &&
+      this.props.initialScrollDate !== prevProps.initialScrollDate
+    ) {
+      this.setState({
+        scrollTop: this.getDateOffset(this.props.initialScrollDate),
+      });
+    }
+  }
+
   getDateOffset(date) {
     const {
       min,

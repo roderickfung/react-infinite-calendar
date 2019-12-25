@@ -301,6 +301,7 @@ export default class Calendar extends Component {
       HeaderComponent,
       rowHeight,
       scrollDate,
+      initialScrollDate,
       selected,
       tabIndex,
       width,
@@ -393,6 +394,7 @@ export default class Calendar extends Component {
               scrollDate={scrollDate}
               showOverlay={showOverlay}
               width={width}
+              initialScrollDate={initialScrollDate}
             />
           </div>
           {display === 'years' && (
