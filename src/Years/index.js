@@ -15,6 +15,32 @@ import styles from './Years.scss';
 
 const SPACING = 0;
 
+const isDateDisabled = ({ date, min, minDate, max, maxDate }) =>
+  isBefore(date, startOfMonth(min)) ||
+  isBefore(date, startOfMonth(minDate)) ||
+  isAfter(date, max) ||
+  isAfter(date, maxDate);
+
+const allowToSwitchYear = ({ selected, year, min, minDate, max, maxDate }) => {
+  if (isRange(selected)) {
+    return false;
+  }
+
+  if (
+    isDateDisabled({
+      date: new Date(selected).setYear(year),
+      min,
+      minDate,
+      max,
+      maxDate,
+    })
+  ) {
+    return false;
+  }
+
+  return true;
+};
+
 export default class Years extends Component {
   static propTypes = {
     height: PropTypes.number,
@@ -94,11 +120,13 @@ export default class Years extends Component {
             this.getSelected(selected).end
           );
           const isCurrentMonth = isSameMonth(date, today);
-          const isDisabled =
-            isBefore(date, startOfMonth(min)) ||
-            isBefore(date, startOfMonth(minDate)) ||
-            isAfter(date, max) ||
-            isAfter(date, maxDate);
+          const isDisabled = isDateDisabled({
+            date,
+            min,
+            minDate,
+            max,
+            maxDate,
+          });
           const style = Object.assign(
             {},
             isSelected && {
@@ -158,7 +186,19 @@ export default class Years extends Component {
   }
 
   render() {
-    const { height, selected, showMonths, theme, today, width } = this.props;
+    const {
+      height,
+      selected,
+      showMonths,
+      theme,
+      today,
+      width,
+      min,
+      minDate,
+      max,
+      maxDate,
+    } = this.props;
+
     const currentYear = today.getFullYear();
     const years = this.props.years.slice(0, this.props.years.length);
     const selectedYearIndex = this.selectedYearIndex;
@@ -198,6 +238,14 @@ export default class Years extends Component {
           renderItem={({ index, style }) => {
             const year = years[index];
             const isActive = index === selectedYearIndex;
+            const shouldAllowToSwitchYear = allowToSwitchYear({
+              selected,
+              year,
+              min,
+              minDate,
+              max,
+              maxDate,
+            });
 
             return (
               <div
@@ -210,10 +258,10 @@ export default class Years extends Component {
                   [styles.last]: index === years.length - 1,
                 })}
                 onClick={() =>
-                  !isRange(selected) &&
+                  shouldAllowToSwitchYear &&
                   this.handleClick(new Date(selected).setYear(year))
                 }
-                title={isRange(selected) ? '' : `Set year to ${year}`}
+                title={shouldAllowToSwitchYear ? `Set year to ${year}` : ''}
                 data-year={year}
                 style={Object.assign({}, style, {
                   color:
