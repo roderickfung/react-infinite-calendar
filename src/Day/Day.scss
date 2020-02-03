@@ -12,7 +12,7 @@
 
   cursor: pointer;
   user-select: none;
-
+  
   // for weekly selection
   &.hovered {
     position: relative;
@@ -304,4 +304,58 @@
 
 .endOfMonth {
   border-radius:  0 0 50% 0;
+} 
+
+.endOfOddMonth {
+  position: relative;
+  background-color: #f3f4f6 !important;
+  content: '';
+  border-radius:  0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius:  0 0 50% 0;
+    background-color:  #fff;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.endOfEvenMonth {
+  position: relative;
+  background-color:#fff !important;
+  content: '';
+  border-radius:  0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius:  0 0 50% 0;
+    background-color:  #f3f4f6;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.startOfEvenMonth {
+  position: relative;
+  background-color: #f3f4f6 !important;
+  content: '';
+  border-radius:  0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius:  50% 0 0 0;
+    background-color:  #fff;
+    width: 40px;
+    height: 40px;
+  }
 }

@@ -7,6 +7,7 @@ import isSameWeek from 'date-fns/is_same_week';
 import isSameDay from 'date-fns/is_same_day';
 import startOfMonth from 'date-fns/start_of_month';
 import endOfMonth from 'date-fns/end_of_month';
+import getMonth from 'date-fns/get_month';
 import styles from './Day.scss';
 
 const padZero = n => (n < 10 ? `0${n}` : String(n));
@@ -92,6 +93,7 @@ export default class Day extends PureComponent {
     const isStartOfMonth = isSameDay(date, startOfMonth(date));
     const isEndOfMonth = isSameDay(date, endOfMonth(date));
     const isHovered = isWeeklySelection && isSameWeek(date, hoveredDate);
+    const month = getMonth(date);
     let color;
 
     if (isSelected) {
@@ -119,6 +121,12 @@ export default class Day extends PureComponent {
             [styles.endOfWeek]: isEndOfWeek,
             [styles.startOfMonth]: isStartOfMonth,
             [styles.endOfMonth]: isEndOfMonth,
+            [styles.endOfOddMonth]:
+              month % 2 === 0 && isEndOfMonth && !isEndOfWeek,
+            [styles.endOfEvenMonth]:
+              month % 2 === 1 && isEndOfMonth && !isEndOfWeek,
+            [styles.startOfEvenMonth]:
+              month % 2 === 0 && isStartOfMonth && !isStartOfWeek,
           },
           className
         )}
