@@ -300,6 +300,7 @@
 
 .startOfMonth {
   position: relative;
+  border-radius: 50% 0 0 0;
 
   &:before {
     border-radius: 50% 0 0 0;
@@ -314,6 +315,7 @@
 
 .startOfEvenMonth {
   background-color: $blue_5 !important;
+  border-radius: 0;
 
   &:before {
     background-color:  #fff;
@@ -321,7 +323,7 @@
 
   &:hover {
     background-color: $blue_5 !important;
-    border-radius: 50%;
+    border-radius: 0 50% 50% 50%;
   }
 }
 
