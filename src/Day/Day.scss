@@ -301,7 +301,7 @@
 .startOfMonth {
   position: relative;
 
-  &:after {
+  &:before {
     border-radius: 50% 0 0 0;
     content: attr(data-value);
     position: absolute;
@@ -315,16 +315,26 @@
 .startOfEvenMonth {
   background-color: $blue_5 !important;
 
-  &:after {
+  &:before {
     background-color:  #fff;
+  }
+
+  &:hover {
+    background-color: $blue_5 !important;
+    border-radius: 50%;
   }
 }
 
 .startOfOddMonth {
   background-color:  #fff !important;
   
-  &:after {
+  &:before {
     background-color: $blue_5;
+  }
+
+  &:hover {
+    background-color: $blue_5 !important;
+    border-radius: 50% 0 0 0;
   }
 }
 
@@ -350,6 +360,11 @@
   &:before {
     background-color:  #fff;
   }
+
+  &:hover {
+    background-color: $blue_5 !important;
+    border-radius: 50% 50% 0 50%;
+  }
 }
 
 .endOfEvenMonth {
@@ -358,5 +373,10 @@
 
   &:before {
     background-color:  $blue_5;
+  }
+
+  &:hover {
+    background-color: $blue_5 !important;
+    border-radius: 0 0 50% 0;
   }
 }
