@@ -138,6 +138,7 @@ export default class Day extends PureComponent {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         data-date={date}
+        data-value={padZero(day)}
         {...handlers}
       >
         {day === 1 && <span className={styles.month}>{monthShort}</span>}

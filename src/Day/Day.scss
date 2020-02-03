@@ -299,25 +299,23 @@
 }
 
 .startOfMonth {
-  border-radius: 50% 0 0 0;
   position: relative;
-  content: '';
 
-  &:before {
-    content: '';
+  &:after {
+    border-radius: 50% 0 0 0;
+    content: attr(data-value);
     position: absolute;
     left: 0;
     top: 0;
-    border-radius:  50% 0 0 0;
     width: 40px;
     height: 40px;
   }
 }
 
 .startOfEvenMonth {
-  background-color: #f3f4f6 !important;
+  background-color: $blue_5 !important;
 
-  &:before {
+  &:after {
     background-color:  #fff;
   }
 }
@@ -325,18 +323,17 @@
 .startOfOddMonth {
   background-color:  #fff !important;
   
-  &:before {
-    background-color: #f3f4f6 !important;
+  &:after {
+    background-color: $blue_5;
   }
 }
 
 .endOfMonth {
   position: relative;
   border-radius:  0 0 50% 0;
-  content: '';
 
   &:before {
-    content: '';
+    content: attr(data-value);
     position: absolute;
     left: 0;
     top: 0;
@@ -347,7 +344,7 @@
 } 
 
 .endOfOddMonth {
-  background-color: #f3f4f6 !important;
+  background-color: $blue_5 !important;
   border-radius: 0;
 
   &:before {
@@ -360,6 +357,6 @@
   border-radius: 0;
 
   &:before {
-    background-color:  #f3f4f6;
+    background-color:  $blue_5;
   }
 }
