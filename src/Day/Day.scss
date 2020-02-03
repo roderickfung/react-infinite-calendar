@@ -300,53 +300,8 @@
 
 .startOfMonth {
   border-radius: 50% 0 0 0;
-}
-
-.endOfMonth {
-  border-radius:  0 0 50% 0;
-} 
-
-.endOfOddMonth {
   position: relative;
-  background-color: #f3f4f6 !important;
   content: '';
-  border-radius:  0;
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-radius:  0 0 50% 0;
-    background-color:  #fff;
-    width: 40px;
-    height: 40px;
-  }
-}
-
-.endOfEvenMonth {
-  position: relative;
-  background-color:#fff !important;
-  content: '';
-  border-radius:  0;
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-radius:  0 0 50% 0;
-    background-color:  #f3f4f6;
-    width: 40px;
-    height: 40px;
-  }
-}
-
-.startOfEvenMonth {
-  position: relative;
-  background-color: #f3f4f6 !important;
-  content: '';
-  border-radius:  0;
 
   &:before {
     content: '';
@@ -354,8 +309,57 @@
     left: 0;
     top: 0;
     border-radius:  50% 0 0 0;
-    background-color:  #fff;
     width: 40px;
     height: 40px;
+  }
+}
+
+.startOfEvenMonth {
+  background-color: #f3f4f6 !important;
+
+  &:before {
+    background-color:  #fff;
+  }
+}
+
+.startOfOddMonth {
+  background-color:  #fff !important;
+  
+  &:before {
+    background-color: #f3f4f6 !important;
+  }
+}
+
+.endOfMonth {
+  position: relative;
+  border-radius:  0 0 50% 0;
+  content: '';
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius:  0 0 50% 0;
+  }
+} 
+
+.endOfOddMonth {
+  background-color: #f3f4f6 !important;
+  border-radius: 0;
+
+  &:before {
+    background-color:  #fff;
+  }
+}
+
+.endOfEvenMonth {
+  background-color:#fff !important;
+  border-radius: 0;
+
+  &:before {
+    background-color:  #f3f4f6;
   }
 }

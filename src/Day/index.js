@@ -119,12 +119,16 @@ export default class Day extends PureComponent {
             [styles.hovered]: isHovered && !isSelected,
             [styles.startOfWeek]: isStartOfWeek,
             [styles.endOfWeek]: isEndOfWeek,
-            [styles.startOfMonth]: isStartOfMonth,
+
             [styles.endOfMonth]: isEndOfMonth,
             [styles.endOfOddMonth]:
               month % 2 === 0 && isEndOfMonth && !isEndOfWeek,
             [styles.endOfEvenMonth]:
               month % 2 === 1 && isEndOfMonth && !isEndOfWeek,
+
+            [styles.startOfMonth]: isStartOfMonth,
+            [styles.startOfOddMonth]:
+              month % 2 === 1 && isStartOfMonth && !isStartOfWeek,
             [styles.startOfEvenMonth]:
               month % 2 === 0 && isStartOfMonth && !isStartOfWeek,
           },
