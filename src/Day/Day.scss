@@ -4,7 +4,7 @@
 .root {
   display: inline-block;
   box-sizing: border-box;
-  width: 1 / 7 * 100%;
+  width: 40px;
   list-style: none;
   font-size: 12px;
   text-align: center;
@@ -12,7 +12,7 @@
 
   cursor: pointer;
   user-select: none;
-
+  
   // for weekly selection
   &.hovered {
     position: relative;
@@ -295,5 +295,90 @@
     .month {
       display: none;
     }
+  }
+}
+
+.startOfMonth {
+  position: relative;
+  border-radius: 50% 0 0 0;
+
+  &:before {
+    border-radius: 50% 0 0 0;
+    content: attr(data-value);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.startOfEvenMonth {
+  background-color: $blue_5 !important;
+  border-radius: 0;
+
+  &:before {
+    background-color:  #fff;
+  }
+
+  &:hover {
+    background-color: $blue_5 !important;
+    border-radius: 0 50% 50% 50%;
+  }
+}
+
+.startOfOddMonth {
+  background-color:  #fff !important;
+  
+  &:before {
+    background-color: $blue_5;
+  }
+
+  &:hover {
+    background-color: $blue_5 !important;
+    border-radius: 50% 0 0 0;
+  }
+}
+
+.endOfMonth {
+  position: relative;
+  border-radius:  0 0 50% 0;
+
+  &:before {
+    content: attr(data-value);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius:  0 0 50% 0;
+  }
+} 
+
+.endOfOddMonth {
+  background-color: $blue_5 !important;
+  border-radius: 0;
+
+  &:before {
+    background-color:  #fff;
+  }
+
+  &:hover {
+    background-color: $blue_5 !important;
+    border-radius: 50% 50% 0 50%;
+  }
+}
+
+.endOfEvenMonth {
+  background-color:#fff !important;
+  border-radius: 0;
+
+  &:before {
+    background-color:  $blue_5;
+  }
+
+  &:hover {
+    background-color: $blue_5 !important;
+    border-radius: 0 0 50% 0;
   }
 }

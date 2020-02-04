@@ -33,7 +33,7 @@
 .Cal__Day__root {
   display: inline-block;
   box-sizing: border-box;
-  width: 14.28571%;
+  width: 40px;
   list-style: none;
   font-size: 12px;
   text-align: center;
@@ -255,6 +255,12 @@
 
 .Cal__Day__range.Cal__Day__selected.Cal__Day__betweenRange .Cal__Day__month {
   display: none; }
+
+.Cal__Day__startOfMonth {
+  border-radius: 50% 0 0 0; }
+
+.Cal__Day__endOfMonth {
+  border-radius: 0 0 50% 0; }
 /*  imported from Slider.scss  */
 
 .Cal__Slider__root, .Cal__Slider__slide {
@@ -430,7 +436,8 @@
 
 .Cal__Month__row {
   padding: 0;
-  margin: 0; }
+  margin: 0 auto;
+  width: 280px; }
   .Cal__Month__row:first-child {
     text-align: right; }
   .Cal__Month__row.Cal__Month__partial:last-of-type li {
@@ -515,12 +522,13 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  box-shadow: 0 3px 3px 0 rgba(15, 30, 70, 0.12); }
+  box-shadow: 0 3px 3px 0 rgba(15, 30, 70, 0.12);
+  justify-content: center; }
 
 .Cal__Weekdays__day {
   line-height: 40px;
-  flex-basis: 14.28571%;
-  flex-grow: 1;
+  flex-basis: 40px;
+  flex-grow: 0;
   font-weight: normal;
   text-align: center;
   color: #647188; }
