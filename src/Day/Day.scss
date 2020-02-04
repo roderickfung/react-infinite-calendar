@@ -382,6 +382,11 @@
     background-color: $blue_5 !important;
     border-radius: 50% 50% 0 50%;
   }
+
+  &.selected {
+    background-color: $blue_5 !important;
+    border-radius: 50% 50% 0 50%;
+  }
 }
 
 .endOfEvenMonth {
