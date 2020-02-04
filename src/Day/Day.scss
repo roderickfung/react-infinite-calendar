@@ -176,6 +176,10 @@
       height: $rowHeight;
       transform: translateY(-50%);
       background-color: $blue_25;
+
+      .edge & {
+        background-color: $blue;
+      }
     }
   }
 
@@ -294,6 +298,13 @@
     }
     .month {
       display: none;
+    }
+  }
+
+  &.selected .selection {
+    .edge & {
+      color: #fff !important;
+      background-color: $blue !important;
     }
   }
 }

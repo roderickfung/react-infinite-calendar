@@ -36,6 +36,13 @@ export default class Month extends PureComponent {
     let day = 0;
     let isDisabled = false;
     let isToday = false;
+
+    let { start, end } = selected;
+    if (passThrough.Day.isWeeklySelection) {
+      start = format(startOfWeek(start), 'YYYY-MM-DD');
+      end = format(endOfWeek(end), 'YYYY-MM-DD');
+    }
+
     let date, days, dow, row;
 
     // Used for faster comparisons
@@ -55,18 +62,25 @@ export default class Month extends PureComponent {
         _maxDate = format(addWeeks(weekEndOfMax, -1), 'YYYY-MM-DD');
       }
     }
-
+    const edgeRow = {};
     // Oh the things we do in the name of performance...
     for (let i = 0, len = rows.length; i < len; i++) {
       row = rows[i];
       days = [];
       dow = getDay(new Date(year, month, row[0]));
-
       for (let k = 0, len = row.length; k < len; k++) {
         day = row[k];
 
         date = getDateString(year, month, day);
         isToday = date === _today;
+
+        if (passThrough.Day.isWeeklySelection) {
+          if (date === start || date === end) {
+            edgeRow[i] = {
+              k: true,
+            };
+          }
+        }
 
         isDisabled =
           (minDate && date < _minDate) ||
@@ -101,7 +115,7 @@ export default class Month extends PureComponent {
       monthRows[i] = (
         <ul
           key={`Row-${i}`}
-          className={classNames(styles.row, {
+          className={classNames(styles.row, edgeRow[i] && 'Day__edge', {
             [styles.partial]: row.length !== 7,
           })}
           style={{ height: rowHeight }}
