@@ -53,6 +53,13 @@
         left: 0;
       }
     }
+
+    &.startOfEvenMonth:before,
+    &.startOfOddMonth:before,
+    &.endOfEvenMonth:before,
+    &.endOfOddMonth:before {
+      background-color: $blue_10 !important;
+    }
   }
 
   &.enabled {
@@ -330,6 +337,10 @@
 .startOfOddMonth {
   background-color:  #fff !important;
   
+  &.enabled {
+    background-color:  $blue_5 !important;
+  }
+
   &:before {
     background-color: $blue_5;
   }
@@ -371,7 +382,11 @@
 
 .endOfEvenMonth {
   background-color:#fff !important;
-  border-radius: 0;
+  border-radius: 0 0 50% 0;
+
+  &.enabled {
+    background-color: $blue_5 !important;
+  }
 
   &:before {
     background-color:  $blue_5;

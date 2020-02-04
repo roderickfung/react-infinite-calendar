@@ -73,6 +73,8 @@
       right: 0; }
     .Cal__Day__root.Cal__Day__hovered.Cal__Day__endOfWeek:after {
       left: 0; }
+    .Cal__Day__root.Cal__Day__hovered.Cal__Day__startOfEvenMonth:before, .Cal__Day__root.Cal__Day__hovered.Cal__Day__startOfOddMonth:before, .Cal__Day__root.Cal__Day__hovered.Cal__Day__endOfEvenMonth:before, .Cal__Day__root.Cal__Day__hovered.Cal__Day__endOfOddMonth:before {
+      background-color: #e7e8ec !important; }
   .Cal__Day__root.Cal__Day__enabled.Cal__Day__highlighted, .Cal__Day__root.Cal__Day__enabled:active, .Cal__Day__root.Cal__Day__enabled:hover {
     position: relative;
     z-index: 1; }
@@ -257,10 +259,67 @@
   display: none; }
 
 .Cal__Day__startOfMonth {
+  position: relative;
   border-radius: 50% 0 0 0; }
+  .Cal__Day__startOfMonth:before {
+    border-radius: 50% 0 0 0;
+    content: attr(data-value);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px; }
+
+.Cal__Day__startOfEvenMonth {
+  background-color: #f3f4f6 !important;
+  border-radius: 0; }
+  .Cal__Day__startOfEvenMonth:before {
+    background-color: #fff; }
+  .Cal__Day__startOfEvenMonth:hover {
+    background-color: #f3f4f6 !important;
+    border-radius: 0 50% 50% 50%; }
+
+.Cal__Day__startOfOddMonth {
+  background-color: #fff !important; }
+  .Cal__Day__startOfOddMonth.Cal__Day__enabled {
+    background-color: #f3f4f6 !important; }
+  .Cal__Day__startOfOddMonth:before {
+    background-color: #f3f4f6; }
+  .Cal__Day__startOfOddMonth:hover {
+    background-color: #f3f4f6 !important;
+    border-radius: 50% 0 0 0; }
 
 .Cal__Day__endOfMonth {
+  position: relative;
   border-radius: 0 0 50% 0; }
+  .Cal__Day__endOfMonth:before {
+    content: attr(data-value);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 0 0 50% 0; }
+
+.Cal__Day__endOfOddMonth {
+  background-color: #f3f4f6 !important;
+  border-radius: 0; }
+  .Cal__Day__endOfOddMonth:before {
+    background-color: #fff; }
+  .Cal__Day__endOfOddMonth:hover {
+    background-color: #f3f4f6 !important;
+    border-radius: 50% 50% 0 50%; }
+
+.Cal__Day__endOfEvenMonth {
+  background-color: #fff !important;
+  border-radius: 0 0 50% 0; }
+  .Cal__Day__endOfEvenMonth.Cal__Day__enabled {
+    background-color: #f3f4f6 !important; }
+  .Cal__Day__endOfEvenMonth:before {
+    background-color: #f3f4f6; }
+  .Cal__Day__endOfEvenMonth:hover {
+    background-color: #f3f4f6 !important;
+    border-radius: 0 0 50% 0; }
 /*  imported from Slider.scss  */
 
 .Cal__Slider__root, .Cal__Slider__slide {
