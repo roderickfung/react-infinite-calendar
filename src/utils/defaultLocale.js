@@ -1,6 +1,7 @@
 module.exports = {
   blank: 'Select a date...',
   headerFormat: 'ddd, MMM Do',
+  monthLabelFormat: 'MMM YYYY',
   todayLabel: {
     long: 'Today',
   },

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import format from 'date-fns/format';
+import defaultLocale from '../utils/defaultLocale';
 import styles from './CurrentMonth.scss';
 
 export default class CurrentMonth extends PureComponent {
@@ -20,7 +21,7 @@ export default class CurrentMonth extends PureComponent {
           color: theme.floatingNav.color,
         }}
       >
-        {format(currentMonth, 'MMM YYYY').toUpperCase()}
+        {format(currentMonth, defaultLocale.monthLabelFormat).toUpperCase()}
       </div>
     ) : null;
   }
