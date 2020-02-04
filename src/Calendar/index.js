@@ -343,21 +343,6 @@ export default class Calendar extends Component {
     const theme = this.getTheme();
     const today = (this.today = startOfDay(new Date()));
 
-    let helper;
-    if (showCurrentMonth) {
-      helper = <CurrentMonth currentMonth={currentMonth} theme={theme} />;
-    } else if (showTodayHelper) {
-      helper = (
-        <Today
-          scrollToDate={this.scrollToDate}
-          show={showToday}
-          today={today}
-          theme={theme}
-          todayLabel={locale.todayLabel.long}
-        />
-      );
-    }
-
     return (
       <div
         tabIndex={tabIndex}
@@ -395,7 +380,18 @@ export default class Calendar extends Component {
             />
           )}
           <div className={styles.container.listWrapper}>
-            {helper}
+            {showCurrentMonth && (
+              <CurrentMonth currentMonth={currentMonth} theme={theme} />
+            )}
+            {showTodayHelper && (
+              <Today
+                scrollToDate={this.scrollToDate}
+                show={showToday}
+                today={today}
+                theme={theme}
+                todayLabel={locale.todayLabel.long}
+              />
+            )}
             <MonthList
               ref={instance => {
                 this._MonthList = instance;
