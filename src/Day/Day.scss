@@ -12,7 +12,7 @@
 
   cursor: pointer;
   user-select: none;
-  
+
   // for weekly selection
   &.hovered {
     position: relative;
@@ -325,20 +325,24 @@
   border-radius: 0;
 
   &:before {
-    background-color:  #fff;
+    background-color: #fff;
   }
 
   &:hover {
     background-color: $blue_5 !important;
     border-radius: 0 50% 50% 50%;
   }
+
+  &.selected {
+    background-color: #fff !important;
+  }
 }
 
 .startOfOddMonth {
-  background-color:  #fff !important;
-  
+  background-color: #fff !important;
+
   &.enabled {
-    background-color:  $blue_5 !important;
+    background-color: $blue_5 !important;
   }
 
   &:before {
@@ -353,7 +357,7 @@
 
 .endOfMonth {
   position: relative;
-  border-radius:  0 0 50% 0;
+  border-radius: 0 0 50% 0;
 
   &:before {
     content: attr(data-value);
@@ -362,16 +366,16 @@
     top: 0;
     width: 40px;
     height: 40px;
-    border-radius:  0 0 50% 0;
+    border-radius: 0 0 50% 0;
   }
-} 
+}
 
 .endOfOddMonth {
   background-color: $blue_5 !important;
   border-radius: 0;
 
   &:before {
-    background-color:  #fff;
+    background-color: #fff;
   }
 
   &:hover {
@@ -381,7 +385,7 @@
 }
 
 .endOfEvenMonth {
-  background-color:#fff !important;
+  background-color: #fff !important;
   border-radius: 0 0 50% 0;
 
   &.enabled {
@@ -389,7 +393,7 @@
   }
 
   &:before {
-    background-color:  $blue_5;
+    background-color: $blue_5;
   }
 
   &:hover {
