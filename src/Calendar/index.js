@@ -6,7 +6,7 @@ import {
   emptyFn,
   range,
   ScrollSpeed,
-  getValidSelectedRange,
+  getValidSelection,
 } from '../utils';
 import { defaultProps } from 'recompose';
 import defaultDisplayOptions from '../utils/defaultDisplayOptions';
@@ -333,7 +333,7 @@ export default class Calendar extends Component {
     const locale = this.getLocale();
     const theme = this.getTheme();
     const today = (this.today = startOfDay(new Date()));
-    const validSelection = getValidSelectedRange(
+    const validSelection = getValidSelection(
       selected,
       minDate || min,
       maxDate || max

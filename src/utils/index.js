@@ -205,7 +205,7 @@ export function isRange(date) {
   return start !== undefined && end !== undefined;
 }
 
-export function getValidSelectedRange(selected, minDate, maxDate) {
+export function getValidSelection(selected, minDate, maxDate) {
   if (!isRange(selected)) {
     if (minDate && isBefore(selected, minDate)) {
       return format(minDate, 'YYYY-MM-DD');
