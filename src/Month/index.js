@@ -38,7 +38,7 @@ export default class Month extends PureComponent {
     let isDisabled = false;
     let isToday = false;
 
-    const { isWeeklySelection } = passThrough.Day;
+    const { isWeeklySelection } = passThrough.Day || {};
     let { start, end } = selected;
     if (isWeeklySelection) {
       start = format(startOfWeek(start), 'YYYY-MM-DD');
@@ -54,7 +54,7 @@ export default class Month extends PureComponent {
     let _maxDate = format(maxDate, 'YYYY-MM-DD');
 
     // disable partial weeks for weekly selection
-    if (passThrough.Day && isWeeklySelection) {
+    if (isWeeklySelection) {
       const weekStartOfMin = startOfWeek(minDate);
       if (!isSameDay(minDate, weekStartOfMin)) {
         _minDate = format(addWeeks(weekStartOfMin, 1), 'YYYY-MM-DD');
