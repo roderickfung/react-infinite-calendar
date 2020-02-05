@@ -5,6 +5,7 @@ import format from 'date-fns/format';
 import getDay from 'date-fns/get_day';
 import isSameYear from 'date-fns/is_same_year';
 import isSameDay from 'date-fns/is_same_day';
+import isSameWeek from 'date-fns/is_same_week';
 import startOfWeek from 'date-fns/start_of_week';
 import endOfWeek from 'date-fns/end_of_week';
 import addWeeks from 'date-fns/add_weeks';
@@ -62,7 +63,7 @@ export default class Month extends PureComponent {
         _maxDate = format(addWeeks(weekEndOfMax, -1), 'YYYY-MM-DD');
       }
     }
-    const edgeRow = {};
+    const edgeRows = {};
     // Oh the things we do in the name of performance...
     for (let i = 0, len = rows.length; i < len; i++) {
       row = rows[i];
@@ -75,11 +76,7 @@ export default class Month extends PureComponent {
         isToday = date === _today;
 
         if (passThrough.Day.isWeeklySelection) {
-          if (date === start || date === end) {
-            edgeRow[i] = {
-              k: true,
-            };
-          }
+          edgeRows[i] = isSameWeek(start, date) || isSameWeek(end, date);
         }
 
         isDisabled =
@@ -115,7 +112,7 @@ export default class Month extends PureComponent {
       monthRows[i] = (
         <ul
           key={`Row-${i}`}
-          className={classNames(styles.row, edgeRow[i] && 'Day__edge', {
+          className={classNames(styles.row, edgeRows[i] && 'Day__edge', {
             [styles.partial]: row.length !== 7,
           })}
           style={{ height: rowHeight }}
