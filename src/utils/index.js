@@ -6,7 +6,7 @@ import isBefore from 'date-fns/is_before';
 import isSameDay from 'date-fns/is_same_day';
 import endOfDay from 'date-fns/end_of_day';
 import startOfDay from 'date-fns/start_of_day';
-import parse from 'date-fns/parse';
+import format from 'date-fns/format';
 import { withPropsOnChange } from 'recompose';
 
 export const keyCodes = {
@@ -203,6 +203,27 @@ export function isRange(date) {
   }
   const { start, end } = date;
   return start !== undefined && end !== undefined;
+}
+
+export function getValidSelection(selected, minDate, maxDate) {
+  if (!isRange(selected)) {
+    if (minDate && isBefore(selected, minDate)) {
+      return format(minDate, 'YYYY-MM-DD');
+    }
+    if (maxDate && isAfter(selected, maxDate)) {
+      return format(maxDate, 'YYYY-MM-DD');
+    }
+    return selected;
+  }
+
+  let { start, end } = selected;
+  if (minDate && isBefore(start, minDate)) {
+    start = format(minDate, 'YYYY-MM-DD');
+  }
+  if (maxDate && isAfter(end, maxDate)) {
+    end = format(maxDate, 'YYYY-MM-DD');
+  }
+  return { start, end };
 }
 
 export function getSortedDate(start, end) {

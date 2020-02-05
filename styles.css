@@ -278,6 +278,8 @@
   .Cal__Day__startOfEvenMonth:hover {
     background-color: #f3f4f6 !important;
     border-radius: 0 50% 50% 50%; }
+  .Cal__Day__startOfEvenMonth.Cal__Day__selected {
+    background-color: #fff !important; }
 
 .Cal__Day__startOfOddMonth {
   background-color: #fff !important; }
@@ -309,6 +311,9 @@
   .Cal__Day__endOfOddMonth:hover {
     background-color: #f3f4f6 !important;
     border-radius: 50% 50% 0 50%; }
+  .Cal__Day__endOfOddMonth.Cal__Day__selected {
+    background-color: #f3f4f6 !important;
+    border-radius: 50% 50% 0 50%; }
 
 .Cal__Day__endOfEvenMonth {
   background-color: #fff !important;
@@ -320,6 +325,22 @@
   .Cal__Day__endOfEvenMonth:hover {
     background-color: #f3f4f6 !important;
     border-radius: 0 0 50% 0; }
+/*  imported from CurrentMonth.scss  */
+
+.Cal__CurrentMonth__root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  padding: 6px;
+  box-sizing: border-box;
+  font-weight: 500;
+  line-height: 0;
+  z-index: 10; }
 /*  imported from Slider.scss  */
 
 .Cal__Slider__root, .Cal__Slider__slide {

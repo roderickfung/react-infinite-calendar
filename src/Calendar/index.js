@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { debounce, emptyFn, range, ScrollSpeed } from '../utils';
+import {
+  debounce,
+  emptyFn,
+  range,
+  ScrollSpeed,
+  getValidSelection,
+} from '../utils';
 import { defaultProps } from 'recompose';
 import defaultDisplayOptions from '../utils/defaultDisplayOptions';
 import defaultLocale from '../utils/defaultLocale';
 import defaultTheme from '../utils/defaultTheme';
 import Today, { DIRECTION_UP, DIRECTION_DOWN } from '../Today';
+import CurrentMonth from '../CurrentMonth';
 import Header from '../Header';
 import MonthList from '../MonthList';
 import Weekdays from '../Weekdays';
@@ -67,6 +74,7 @@ export default class Calendar extends Component {
       layout: PropTypes.oneOf(['portrait', 'landscape']),
       overscanMonthCount: PropTypes.number,
       shouldHeaderAnimate: PropTypes.bool,
+      showCurrentMonth: PropTypes.bool,
       showHeader: PropTypes.bool,
       showMonthsForYears: PropTypes.bool,
       showOverlay: PropTypes.bool,
@@ -115,10 +123,15 @@ export default class Calendar extends Component {
     YearsComponent: PropTypes.func,
   };
   componentDidMount() {
-    let { autoFocus } = this.props;
+    const { autoFocus } = this.props;
+    const { showCurrentMonth } = this.getDisplayOptions();
 
     if (autoFocus) {
       this.node.focus();
+    }
+
+    if (showCurrentMonth) {
+      this.updateCurrentMonth();
     }
   }
   componentWillUpdate(nextProps, nextState) {
@@ -213,7 +226,11 @@ export default class Calendar extends Component {
   handleScroll = (scrollTop, e) => {
     const { onScroll, rowHeight } = this.props;
     const { isScrolling } = this.state;
-    const { showTodayHelper, showOverlay } = this.getDisplayOptions();
+    const {
+      showCurrentMonth,
+      showTodayHelper,
+      showOverlay,
+    } = this.getDisplayOptions();
     const scrollSpeed = (this.scrollSpeed = Math.abs(
       this.getScrollSpeed(scrollTop)
     ));
@@ -224,6 +241,10 @@ export default class Calendar extends Component {
       this.setState({
         isScrolling: true,
       });
+    }
+
+    if (showCurrentMonth) {
+      this.updateCurrentMonth();
     }
 
     if (showTodayHelper) {
@@ -248,6 +269,9 @@ export default class Calendar extends Component {
 
     onScrollEnd(this.scrollTop);
   }, 150);
+  updateCurrentMonth = () => {
+    this.setState({ currentMonth: this._MonthList.currentMonth });
+  };
   updateTodayHelperPosition = scrollSpeed => {
     const today = this.today;
     const scrollTop = this.scrollTop;
@@ -306,23 +330,33 @@ export default class Calendar extends Component {
       tabIndex,
       width,
       YearsComponent,
+      minDate,
+      maxDate,
+      min,
+      max,
     } = this.props;
     const {
       hideYearsOnSelect,
       layout,
       overscanMonthCount,
       shouldHeaderAnimate,
+      showCurrentMonth,
       showHeader,
       showMonthsForYears,
       showOverlay,
       showTodayHelper,
       showWeekdays,
     } = this.getDisplayOptions();
-    const { display, isScrolling, showToday } = this.state;
+    const { display, isScrolling, showToday, currentMonth } = this.state;
     const disabledDates = this.getDisabledDates(this.props.disabledDates);
     const locale = this.getLocale();
     const theme = this.getTheme();
     const today = (this.today = startOfDay(new Date()));
+    const validSelection = getValidSelection(
+      selected,
+      minDate || min,
+      maxDate || max
+    );
 
     return (
       <div
@@ -339,7 +373,7 @@ export default class Calendar extends Component {
       >
         {showHeader && (
           <HeaderComponent
-            selected={selected}
+            selected={validSelection}
             shouldAnimate={Boolean(shouldHeaderAnimate && display !== 'years')}
             layout={layout}
             theme={theme}
@@ -361,6 +395,9 @@ export default class Calendar extends Component {
             />
           )}
           <div className={styles.container.listWrapper}>
+            {showCurrentMonth && (
+              <CurrentMonth currentMonth={currentMonth} theme={theme} />
+            )}
             {showTodayHelper && (
               <Today
                 scrollToDate={this.scrollToDate}
@@ -390,7 +427,7 @@ export default class Calendar extends Component {
               theme={theme}
               today={today}
               rowHeight={rowHeight}
-              selected={selected}
+              selected={validSelection}
               scrollDate={scrollDate}
               showOverlay={showOverlay}
               width={width}
@@ -410,7 +447,7 @@ export default class Calendar extends Component {
               min={this._min}
               minDate={this._minDate}
               scrollToDate={this.scrollToDate}
-              selected={selected}
+              selected={validSelection}
               setDisplay={this.setDisplay}
               showMonths={showMonthsForYears}
               theme={theme}

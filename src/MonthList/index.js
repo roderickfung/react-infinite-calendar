@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import { emptyFn, getMonth, getWeek, getWeeksInMonth, animate } from '../utils';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
+import addMonths from 'date-fns/add_months';
+import isSameMonth from 'date-fns/is_same_month';
 import Month from '../Month';
 import styles from './MonthList.scss';
 
@@ -25,14 +27,17 @@ export default class MonthList extends Component {
     onScroll: PropTypes.func,
     overscanMonthCount: PropTypes.number,
     rowHeight: PropTypes.number,
-    selectedDate: PropTypes.instanceOf(Date),
+    selected: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.object,
+    ]),
     showOverlay: PropTypes.bool,
     theme: PropTypes.object,
     today: PropTypes.instanceOf(Date),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
   state = {
-    scrollTop: this.getDateOffset(this.props.scrollDate),
+    scrollOffset: this.getDateOffset(this.props.scrollDate),
   };
   cache = {};
   memoize = function(param) {
@@ -47,6 +52,8 @@ export default class MonthList extends Component {
     return this.cache[param];
   };
   monthHeights = [];
+  scrollTop = 0;
+  currentMonth;
 
   _getRef = instance => {
     this.VirtualList = instance;
@@ -71,6 +78,38 @@ export default class MonthList extends Component {
     }
 
     return this.monthHeights[index];
+  };
+
+  // When reaching the top the real overscan count is actually
+  // smaller than the given size
+  getTopOverscanCount = () => {
+    let height = 0;
+    let index = 0;
+
+    while (this.scrollTop > height) {
+      height += this.getMonthHeight(index);
+      index++;
+    }
+    return index < 1 ? 0 : index - 1;
+  };
+
+  onMonthsRendered = ({ startIndex, stopIndex }) => {
+    const { months, min, overscanMonthCount } = this.props;
+    const { month, year } = months[startIndex];
+    const startMonth = new Date(Date.UTC(year, month, 1));
+    let topOverscanCount = overscanMonthCount;
+
+    // Handler edge case when reach the top
+    if (isSameMonth(startMonth, min)) {
+      topOverscanCount = this.getTopOverscanCount();
+    }
+
+    this.currentMonth = addMonths(startMonth, topOverscanCount);
+  };
+
+  onScroll = (scrollTop, event) => {
+    this.scrollTop = scrollTop;
+    this.props.onScroll(scrollTop, event);
   };
 
   componentDidMount() {
@@ -189,13 +228,12 @@ export default class MonthList extends Component {
     let {
       height,
       isScrolling,
-      onScroll,
       overscanMonthCount,
       months,
       rowHeight,
       width,
     } = this.props;
-    const { scrollTop } = this.state;
+    const { scrollOffset } = this.state;
 
     return (
       <VirtualList
@@ -206,11 +244,12 @@ export default class MonthList extends Component {
         itemSize={this.getMonthHeight}
         estimatedItemSize={rowHeight * AVERAGE_ROWS_PER_MONTH}
         renderItem={this.renderMonth}
-        onScroll={onScroll}
-        scrollOffset={scrollTop}
+        onScroll={this.onScroll}
+        scrollOffset={scrollOffset}
         className={classNames(styles.root, { [styles.scrolling]: isScrolling })}
         style={{ lineHeight: `${rowHeight}px` }}
         overscanCount={overscanMonthCount}
+        onItemsRendered={this.onMonthsRendered}
       />
     );
   }

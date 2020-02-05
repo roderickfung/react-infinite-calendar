@@ -3,6 +3,7 @@ module.exports = {
   layout: 'portrait',
   overscanMonthCount: 2,
   shouldHeaderAnimate: true,
+  showCurrentMonth: false,
   showHeader: true,
   showMonthsForYears: true,
   showOverlay: true,
