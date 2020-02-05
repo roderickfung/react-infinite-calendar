@@ -25,7 +25,10 @@ export default class MonthList extends Component {
     onScroll: PropTypes.func,
     overscanMonthCount: PropTypes.number,
     rowHeight: PropTypes.number,
-    selectedDate: PropTypes.instanceOf(Date),
+    selected: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.object,
+    ]),
     showOverlay: PropTypes.bool,
     theme: PropTypes.object,
     today: PropTypes.instanceOf(Date),

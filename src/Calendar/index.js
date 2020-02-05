@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { debounce, emptyFn, range, ScrollSpeed } from '../utils';
+import {
+  debounce,
+  emptyFn,
+  range,
+  ScrollSpeed,
+  getValidSelectedRange,
+} from '../utils';
 import { defaultProps } from 'recompose';
 import defaultDisplayOptions from '../utils/defaultDisplayOptions';
 import defaultLocale from '../utils/defaultLocale';
@@ -306,6 +312,10 @@ export default class Calendar extends Component {
       tabIndex,
       width,
       YearsComponent,
+      minDate,
+      maxDate,
+      min,
+      max,
     } = this.props;
     const {
       hideYearsOnSelect,
@@ -323,6 +333,11 @@ export default class Calendar extends Component {
     const locale = this.getLocale();
     const theme = this.getTheme();
     const today = (this.today = startOfDay(new Date()));
+    const validSelection = getValidSelectedRange(
+      selected,
+      minDate || min,
+      maxDate || max
+    );
 
     return (
       <div
@@ -339,7 +354,7 @@ export default class Calendar extends Component {
       >
         {showHeader && (
           <HeaderComponent
-            selected={selected}
+            selected={validSelection}
             shouldAnimate={Boolean(shouldHeaderAnimate && display !== 'years')}
             layout={layout}
             theme={theme}
@@ -390,7 +405,7 @@ export default class Calendar extends Component {
               theme={theme}
               today={today}
               rowHeight={rowHeight}
-              selected={selected}
+              selected={validSelection}
               scrollDate={scrollDate}
               showOverlay={showOverlay}
               width={width}
@@ -410,7 +425,7 @@ export default class Calendar extends Component {
               min={this._min}
               minDate={this._minDate}
               scrollToDate={this.scrollToDate}
-              selected={selected}
+              selected={validSelection}
               setDisplay={this.setDisplay}
               showMonths={showMonthsForYears}
               theme={theme}
