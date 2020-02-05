@@ -11,6 +11,7 @@ import endOfWeek from 'date-fns/end_of_week';
 import addWeeks from 'date-fns/add_weeks';
 import getMonth from 'date-fns/get_month';
 import styles from './Month.scss';
+import dayStyles from '../Day/Day.scss';
 
 export default class Month extends PureComponent {
   renderRows() {
@@ -117,7 +118,7 @@ export default class Month extends PureComponent {
           key={`Row-${i}`}
           className={classNames(styles.row, {
             [styles.partial]: row.length !== 7,
-            Day__edge: edgeRows[i],
+            [dayStyles.edge]: edgeRows[i],
           })}
           style={{ height: rowHeight }}
           role="row"
