@@ -268,6 +268,15 @@ storiesOf('Display Options', module)
       }}
     />
   ))
+  .add('Show Current Month', () => (
+    <InfiniteCalendar
+      displayOptions={{
+        showTodayHelper: false,
+        showCurrentMonth: true,
+        showOverlay: false,
+      }}
+    />
+  ))
   .add('Hide Months in Year Selection', () => (
     <InfiniteCalendar
       display={'years'}
