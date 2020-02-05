@@ -117,6 +117,7 @@ For more usage examples, see [http://appannie.github.io/react-infinite-calendar/
 | Property             | Type    | Default      | Description                                                                                                                                      |
 | :------------------- | :------ | :----------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
 | layout               | String  | `'portrait'` | Layout of the calendar. Should be one of `'portrait'` or `'landscape'`                                                                           |
+| showCurrentMonth     | Boolean | `false`      | Show/hide the floating label of current month                                                                                                    |
 | showHeader           | Boolean | `true`       | Show/hide the header                                                                                                                             |
 | shouldHeaderAnimate  | Boolean | `true`       | Enable/Disable the header animation                                                                                                              |
 | showOverlay          | Boolean | `true`       | Show/hide the month overlay when scrolling                                                                                                       |
