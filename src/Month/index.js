@@ -5,11 +5,13 @@ import format from 'date-fns/format';
 import getDay from 'date-fns/get_day';
 import isSameYear from 'date-fns/is_same_year';
 import isSameDay from 'date-fns/is_same_day';
+import isSameWeek from 'date-fns/is_same_week';
 import startOfWeek from 'date-fns/start_of_week';
 import endOfWeek from 'date-fns/end_of_week';
 import addWeeks from 'date-fns/add_weeks';
 import getMonth from 'date-fns/get_month';
 import styles from './Month.scss';
+import dayStyles from '../Day/Day.scss';
 
 export default class Month extends PureComponent {
   renderRows() {
@@ -36,6 +38,15 @@ export default class Month extends PureComponent {
     let day = 0;
     let isDisabled = false;
     let isToday = false;
+
+    const { isWeeklySelection } = passThrough.Day || {};
+    let { start, end } = selected;
+    if (isWeeklySelection) {
+      start = format(startOfWeek(start), 'YYYY-MM-DD');
+      end = format(endOfWeek(end), 'YYYY-MM-DD');
+    }
+    const edgeRows = {};
+
     let date, days, dow, row;
 
     // Used for faster comparisons
@@ -44,7 +55,7 @@ export default class Month extends PureComponent {
     let _maxDate = format(maxDate, 'YYYY-MM-DD');
 
     // disable partial weeks for weekly selection
-    if (passThrough.Day && passThrough.Day.isWeeklySelection) {
+    if (isWeeklySelection) {
       const weekStartOfMin = startOfWeek(minDate);
       if (!isSameDay(minDate, weekStartOfMin)) {
         _minDate = format(addWeeks(weekStartOfMin, 1), 'YYYY-MM-DD');
@@ -67,6 +78,10 @@ export default class Month extends PureComponent {
 
         date = getDateString(year, month, day);
         isToday = date === _today;
+
+        if (isWeeklySelection) {
+          edgeRows[i] = isSameWeek(start, date) || isSameWeek(end, date);
+        }
 
         isDisabled =
           (minDate && date < _minDate) ||
@@ -103,6 +118,7 @@ export default class Month extends PureComponent {
           key={`Row-${i}`}
           className={classNames(styles.row, {
             [styles.partial]: row.length !== 7,
+            [dayStyles.edge]: edgeRows[i],
           })}
           style={{ height: rowHeight }}
           role="row"
