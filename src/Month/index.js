@@ -38,11 +38,13 @@ export default class Month extends PureComponent {
     let isDisabled = false;
     let isToday = false;
 
+    const { isWeeklySelection } = passThrough.Day;
     let { start, end } = selected;
-    if (passThrough.Day.isWeeklySelection) {
+    if (isWeeklySelection) {
       start = format(startOfWeek(start), 'YYYY-MM-DD');
       end = format(endOfWeek(end), 'YYYY-MM-DD');
     }
+    const edgeRows = {};
 
     let date, days, dow, row;
 
@@ -52,7 +54,7 @@ export default class Month extends PureComponent {
     let _maxDate = format(maxDate, 'YYYY-MM-DD');
 
     // disable partial weeks for weekly selection
-    if (passThrough.Day && passThrough.Day.isWeeklySelection) {
+    if (passThrough.Day && isWeeklySelection) {
       const weekStartOfMin = startOfWeek(minDate);
       if (!isSameDay(minDate, weekStartOfMin)) {
         _minDate = format(addWeeks(weekStartOfMin, 1), 'YYYY-MM-DD');
@@ -63,7 +65,6 @@ export default class Month extends PureComponent {
         _maxDate = format(addWeeks(weekEndOfMax, -1), 'YYYY-MM-DD');
       }
     }
-    const edgeRows = {};
     // Oh the things we do in the name of performance...
     for (let i = 0, len = rows.length; i < len; i++) {
       row = rows[i];
@@ -75,7 +76,7 @@ export default class Month extends PureComponent {
         date = getDateString(year, month, day);
         isToday = date === _today;
 
-        if (passThrough.Day.isWeeklySelection) {
+        if (isWeeklySelection) {
           edgeRows[i] = isSameWeek(start, date) || isSameWeek(end, date);
         }
 
@@ -112,8 +113,9 @@ export default class Month extends PureComponent {
       monthRows[i] = (
         <ul
           key={`Row-${i}`}
-          className={classNames(styles.row, edgeRows[i] && 'Day__edge', {
+          className={classNames(styles.row, {
             [styles.partial]: row.length !== 7,
+            Day__edge: edgeRows[i],
           })}
           style={{ height: rowHeight }}
           role="row"
