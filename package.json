@@ -36,11 +36,13 @@
     "react": "^15.3.0 || ^16.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-options": "^3.4.8",
-    "@storybook/cli": "^3.2.9",
-    "@storybook/react": "^3.2.8",
-    "@storybook/storybook-deployer": "^2.3.0",
+    "@babel/core": "^7.8.4",
+    "@storybook/addon-options": "^5.3.13",
+    "@storybook/cli": "^5.3.13",
+    "@storybook/react": "^5.3.13",
+    "@storybook/storybook-deployer": "^2.8.1",
     "babel-eslint": "^8.2.3",
+    "babel-loader": "^8.0.6",
     "babel-plugin-css-modules-transform": "^1.2.1",
     "css-loader": "^1.0.1",
     "eslint": "^5.2.0",
