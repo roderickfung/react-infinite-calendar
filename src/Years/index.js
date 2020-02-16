@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import VirtualList from 'react-tiny-virtual-list';
 import classNames from 'classnames';
 import { emptyFn, getMonthsForYear, isRange } from '../utils';
-import format from 'date-fns/format';
-import isAfter from 'date-fns/is_after';
-import isBefore from 'date-fns/is_before';
-import isSameMonth from 'date-fns/is_same_month';
-import startOfMonth from 'date-fns/start_of_month';
-import endOfMonth from 'date-fns/end_of_month';
-import parse from 'date-fns/parse';
-import isWithinRange from 'date-fns/is_within_range';
+import {
+  format,
+  isAfter,
+  isBefore,
+  isSameMonth,
+  startOfMonth,
+  endOfMonth,
+  parse,
+  isWithinRange,
+} from 'date-fns';
 import styles from './Years.scss';
 
 const SPACING = 0;

@@ -1,10 +1,7 @@
 import React from 'react';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { CSSTransitionGroup } from 'react-transition-group';
 import classNames from 'classnames';
-import parse from 'date-fns/parse';
-import format from 'date-fns/format';
-import startOfWeek from 'date-fns/start_of_week';
-import endOfWeek from 'date-fns/end_of_week';
+import { parse, format, startOfWeek, endOfWeek } from 'date-fns';
 import styles from './Header.scss';
 import animation from './Animation.scss';
 

@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import VirtualList from 'react-tiny-virtual-list';
 import classNames from 'classnames';
 import { emptyFn, getMonth, getWeek, getWeeksInMonth, animate } from '../utils';
-import parse from 'date-fns/parse';
-import startOfMonth from 'date-fns/start_of_month';
-import addMonths from 'date-fns/add_months';
-import isSameMonth from 'date-fns/is_same_month';
+import { parse, startOfMonth, addMonths, isSameMonth } from 'date-fns';
 import Month from '../Month';
 import styles from './MonthList.scss';
 

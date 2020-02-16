@@ -1,7 +1,4 @@
-import min from 'date-fns/min';
-import max from 'date-fns/max';
-import startOfMonth from 'date-fns/start_of_month';
-import endOfMonth from 'date-fns/end_of_month';
+import { min, max, startOfMonth, endOfMonth } from 'date-fns';
 import { compose, withProps, withState } from 'recompose';
 import { withDefaultProps } from './';
 import { withImmutableProps } from '../utils';

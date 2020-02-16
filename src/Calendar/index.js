@@ -19,14 +19,8 @@ import MonthList from '../MonthList';
 import Weekdays from '../Weekdays';
 import Years from '../Years';
 import Day from '../Day';
-import parse from 'date-fns/parse';
-import format from 'date-fns/format';
-import startOfDay from 'date-fns/start_of_day';
-
-const styles = {
-  container: require('./Container.scss'),
-  day: require('../Day/Day.scss'),
-};
+import { parse, format, startOfDay } from 'date-fns';
+import containerStyles from './Container.scss';
 
 export const withDefaultProps = defaultProps({
   autoFocus: true,
@@ -361,8 +355,8 @@ export default class Calendar extends Component {
     return (
       <div
         tabIndex={tabIndex}
-        className={classNames(className, styles.container.root, {
-          [styles.container.landscape]: layout === 'landscape',
+        className={classNames(className, containerStyles.root, {
+          [containerStyles.landscape]: layout === 'landscape',
         })}
         style={{ color: theme.textColor.default, width }}
         aria-label="Calendar"
@@ -386,7 +380,7 @@ export default class Calendar extends Component {
             {...passThrough.Header}
           />
         )}
-        <div className={styles.container.wrapper}>
+        <div className={containerStyles.wrapper}>
           {showWeekdays && (
             <Weekdays
               weekdays={locale.weekdays}
@@ -394,7 +388,7 @@ export default class Calendar extends Component {
               theme={theme}
             />
           )}
-          <div className={styles.container.listWrapper}>
+          <div className={containerStyles.listWrapper}>
             {showCurrentMonth && (
               <CurrentMonth currentMonth={currentMonth} theme={theme} />
             )}

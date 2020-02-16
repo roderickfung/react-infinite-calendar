@@ -1,8 +1,5 @@
 import { compose, withHandlers, withProps, withState } from 'recompose';
-import addDays from 'date-fns/add_days';
-import format from 'date-fns/format';
-import isAfter from 'date-fns/is_after';
-import isBefore from 'date-fns/is_before';
+import { addDays, format, isAfter, isBefore } from 'date-fns';
 import { keyCodes, withImmutableProps } from '../utils';
 
 const enhanceDay = withProps(props => ({
