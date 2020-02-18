@@ -145,7 +145,7 @@ export default class Day extends PureComponent {
       >
         {day === 1 && <span className={styles.month}>{monthShort}</span>}
         {isToday ? <span>{padZero(day)}</span> : padZero(day)}
-        {day === 1 && currentYear !== year && (
+        {day === 1 && currentYear !== year && monthShort === 'Jan' && (
           <span className={styles.year}>{year}</span>
         )}
         {isSelected && this.renderSelection()}
