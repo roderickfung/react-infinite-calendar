@@ -2,8 +2,7 @@ import { compose, withProps, withPropsOnChange, withState } from 'recompose';
 import { withDefaultProps } from './';
 import { sanitizeDate, withImmutableProps } from '../utils';
 import enhanceHeader from '../Header/withMultipleDates';
-import format from 'date-fns/format';
-import parse from 'date-fns/parse';
+import { format, parse } from 'date-fns';
 
 // Enhance Day component to display selected state based on an array of selected dates
 export const enhanceDay = withPropsOnChange(['selected'], props => ({

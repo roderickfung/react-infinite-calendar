@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
-import parse from 'date-fns/parse';
-import startOfWeek from 'date-fns/start_of_week';
-import endOfWeek from 'date-fns/end_of_week';
-import isSameWeek from 'date-fns/is_same_week';
-import isSameDay from 'date-fns/is_same_day';
-import startOfMonth from 'date-fns/start_of_month';
-import endOfMonth from 'date-fns/end_of_month';
-import getMonth from 'date-fns/get_month';
+import {
+  parse,
+  startOfWeek,
+  endOfWeek,
+  isSameWeek,
+  isSameDay,
+  startOfMonth,
+  endOfMonth,
+  getMonth,
+} from 'date-fns';
 import styles from './Day.scss';
 
 const padZero = n => (n < 10 ? `0${n}` : String(n));

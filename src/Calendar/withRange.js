@@ -2,12 +2,8 @@ import { compose, withProps, withPropsOnChange, withState } from 'recompose';
 import classNames from 'classnames';
 import { withDefaultProps } from './';
 import { withImmutableProps } from '../utils';
-import isBefore from 'date-fns/is_before';
 import enhanceHeader from '../Header/withRange';
-import format from 'date-fns/format';
-import parse from 'date-fns/parse';
-import startOfWeek from 'date-fns/start_of_week';
-import endOfWeek from 'date-fns/end_of_week';
+import { isBefore, format, parse, startOfWeek, endOfWeek } from 'date-fns';
 import styles from '../Day/Day.scss';
 
 let isTouchDevice = false;

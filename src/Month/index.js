@@ -1,15 +1,17 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import { getDateString } from '../utils';
-import format from 'date-fns/format';
-import getDay from 'date-fns/get_day';
-import isSameYear from 'date-fns/is_same_year';
-import isSameDay from 'date-fns/is_same_day';
-import isSameWeek from 'date-fns/is_same_week';
-import startOfWeek from 'date-fns/start_of_week';
-import endOfWeek from 'date-fns/end_of_week';
-import addWeeks from 'date-fns/add_weeks';
-import getMonth from 'date-fns/get_month';
+import {
+  format,
+  getDay,
+  isSameYear,
+  isSameDay,
+  isSameWeek,
+  startOfWeek,
+  endOfWeek,
+  addWeeks,
+  getMonth,
+} from 'date-fns';
 import styles from './Month.scss';
 import dayStyles from '../Day/Day.scss';
 

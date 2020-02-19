@@ -2,10 +2,8 @@
   "extends": ["react-app", "prettier"],
   "plugins": ["prettier"],
   "rules": {
-    "comma-dangle": ["error", "always-multiline"],
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "semi": ["error", "always"],
-    "sort-keys": ["warn", "asc", { "caseSensitive": false, "natural": true }],
     "no-mixed-operators": [
       "warn",
       {

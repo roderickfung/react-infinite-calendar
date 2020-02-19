@@ -13,15 +13,17 @@ import InfiniteCalendar, {
 import styles from './stories.scss';
 
 // Date manipulation utils
-import addDays from 'date-fns/add_days';
-import startOfWeek from 'date-fns/start_of_week';
-import endOfWeek from 'date-fns/end_of_week';
-import addWeeks from 'date-fns/add_weeks';
-import addMonths from 'date-fns/add_months';
-import endOfMonth from 'date-fns/end_of_month';
-import format from 'date-fns/format';
-import isBefore from 'date-fns/is_before';
-import subMonths from 'date-fns/sub_months';
+import {
+  addDays,
+  startOfWeek,
+  endOfWeek,
+  addWeeks,
+  addMonths,
+  endOfMonth,
+  format,
+  isBefore,
+  subMonths,
+} from 'date-fns';
 
 const CenterDecorator = story => <div className={styles.center}>{story()}</div>;
 addDecorator(CenterDecorator);
