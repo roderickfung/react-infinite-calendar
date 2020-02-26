@@ -93,7 +93,7 @@ export default class MonthList extends Component {
   onMonthsRendered = ({ startIndex, stopIndex }) => {
     const { months, min, overscanMonthCount } = this.props;
     const { month, year } = months[startIndex];
-    const startMonth = new Date(Date.UTC(year, month, 1));
+    const startMonth = new Date(year, month, 1);
     let topOverscanCount = overscanMonthCount;
 
     // Handler edge case when reach the top
