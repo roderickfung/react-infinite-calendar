@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production BABEL_ENV=production rollup -c",
+    "build:watch": "NODE_ENV=production rollup -c -w",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "deploy-storybook": "storybook-to-ghpages",
     "lint": "esw --ext src/**/*.js --color",
