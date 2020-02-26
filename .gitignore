@@ -5,4 +5,5 @@
 /node_modules
 /umd
 /.out
+styles.css
 npm-debug.log*
