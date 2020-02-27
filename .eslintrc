@@ -15,6 +15,7 @@
         "allowSamePrecedence": true
       }
     ],
+    "no-unused-vars": "error",
     "prettier/prettier": "error",
     "jsx-a11y/href-no-hash": "off"
   }

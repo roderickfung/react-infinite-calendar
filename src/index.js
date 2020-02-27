@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import Calendar from './Calendar';
 import { withDateSelection } from './Calendar/withDateSelection';
 
