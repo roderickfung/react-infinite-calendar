@@ -1,3 +1,4 @@
+import React, { forwardRef } from 'react';
 import { compose, withProps, withPropsOnChange, withState } from 'recompose';
 import classNames from 'classnames';
 import { withDefaultProps } from './';
@@ -48,59 +49,71 @@ export const enhanceDay = withPropsOnChange(
 );
 
 // Enhancer to handle selecting and displaying multiple dates
-export const withRange = compose(
-  withDefaultProps,
-  withState('scrollDate', 'setScrollDate', getInitialDate),
-  withState('displayKey', 'setDisplayKey', getInitialDate),
-  withState('selectionStart', 'setSelectionStart', null),
-  withState('hoveredDate', 'setHoveredDate'),
-  withImmutableProps(({ DayComponent, HeaderComponent, YearsComponent }) => ({
-    DayComponent: enhanceDay(DayComponent),
-    HeaderComponent: enhanceHeader(HeaderComponent),
-  })),
-  withProps(
-    ({
-      displayKey,
-      passThrough,
-      selected,
-      setDisplayKey,
-      hoveredDate,
-      setHoveredDate,
-      ...props
-    }) => ({
-      /* eslint-disable sort-keys */
-      passThrough: {
-        ...passThrough,
-        Day: {
-          hoveredDate: hoveredDate,
-          isWeeklySelection: Boolean(props.isWeeklySelection),
-          onClick: date => handleSelect(date, { selected, ...props }),
-          onMouseEnter: setHoveredDate,
-          onMouseLeave: () => setHoveredDate(undefined),
-          handlers: {
-            onMouseOver:
-              !isTouchDevice && props.selectionStart
-                ? e => handleMouseOver(e, { selected, ...props })
-                : null,
+export const withRange = Calendar => {
+  const CalendarWithRef = ({ forwardedRef, ...props }) => (
+    <Calendar {...props} ref={forwardedRef} />
+  );
+
+  const EnhancedCalendar = compose(
+    withDefaultProps,
+    withState('scrollDate', 'setScrollDate', getInitialDate),
+    withState('displayKey', 'setDisplayKey', getInitialDate),
+    withState('selectionStart', 'setSelectionStart', null),
+    withState('hoveredDate', 'setHoveredDate'),
+    withImmutableProps(({ DayComponent, HeaderComponent, YearsComponent }) => ({
+      DayComponent: enhanceDay(DayComponent),
+      HeaderComponent: enhanceHeader(HeaderComponent),
+    })),
+    withProps(
+      ({
+        displayKey,
+        passThrough,
+        selected,
+        setDisplayKey,
+        hoveredDate,
+        setHoveredDate,
+        forwardedRef,
+        ...props
+      }) => ({
+        /* eslint-disable sort-keys */
+        passThrough: {
+          ...passThrough,
+          Day: {
+            hoveredDate: hoveredDate,
+            isWeeklySelection: Boolean(props.isWeeklySelection),
+            onClick: date => handleSelect(date, { selected, ...props }),
+            onMouseEnter: setHoveredDate,
+            onMouseLeave: () => setHoveredDate(undefined),
+            handlers: {
+              onMouseOver:
+                !isTouchDevice && props.selectionStart
+                  ? e => handleMouseOver(e, { selected, ...props })
+                  : null,
+            },
+          },
+          Years: {
+            selected: selected && selected[displayKey],
+            onSelect: date =>
+              handleYearSelect(date, { displayKey, selected, ...props }),
+          },
+          Header: {
+            isWeeklySelection: Boolean(props.isWeeklySelection),
+            onYearClick: (date, e, key) => setDisplayKey(key || 'start'),
           },
         },
-        Years: {
-          selected: selected && selected[displayKey],
-          onSelect: date =>
-            handleYearSelect(date, { displayKey, selected, ...props }),
+        selected: {
+          start: selected && format(selected.start, 'YYYY-MM-DD'),
+          end: selected && format(selected.end, 'YYYY-MM-DD'),
         },
-        Header: {
-          isWeeklySelection: Boolean(props.isWeeklySelection),
-          onYearClick: (date, e, key) => setDisplayKey(key || 'start'),
-        },
-      },
-      selected: {
-        start: selected && format(selected.start, 'YYYY-MM-DD'),
-        end: selected && format(selected.end, 'YYYY-MM-DD'),
-      },
-    })
-  )
-);
+        forwardedRef,
+      })
+    )
+  )(CalendarWithRef);
+
+  return forwardRef((props, ref) => (
+    <EnhancedCalendar {...props} forwardedRef={ref} />
+  ));
+};
 
 function getSortedSelection({ start, end }) {
   return isBefore(start, end) ? { start, end } : { start: end, end: start };
