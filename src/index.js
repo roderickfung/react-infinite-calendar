@@ -27,6 +27,9 @@ export default class DefaultCalendar extends Component {
         ? this.props.selected
         : new Date(),
   };
+  _getRef = ref => {
+    this.calendar = ref;
+  };
   componentWillReceiveProps({ selected }) {
     if (selected !== this.props.selected) {
       this.setState({ selected });
@@ -43,6 +46,9 @@ export default class DefaultCalendar extends Component {
       selected: interpolateSelection(selected, this.state.selected),
     });
   };
+  scrollToDate = date => {
+    this.calendar && this.calendar.scrollToDate(date, -40);
+  };
   render() {
     // eslint-disable-next-line no-unused-vars
     const { Component, interpolateSelection, ...props } = this.props;
@@ -50,6 +56,7 @@ export default class DefaultCalendar extends Component {
     return (
       <Component
         {...props}
+        ref={this._getRef}
         onSelect={this.handleSelect}
         selected={this.state.selected}
       />

@@ -264,7 +264,10 @@ export default class Calendar extends Component {
     onScrollEnd(this.scrollTop);
   }, 150);
   updateCurrentMonth = () => {
-    this.setState({ currentMonth: this._MonthList.currentMonth });
+    this._MonthList &&
+      this.setState({
+        currentMonth: this._MonthList.currentMonth,
+      });
   };
   updateTodayHelperPosition = scrollSpeed => {
     const today = this.today;
