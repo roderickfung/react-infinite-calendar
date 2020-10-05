@@ -128,7 +128,7 @@ export default class Calendar extends Component {
       this.updateCurrentMonth();
     }
   }
-  componentWillUpdate(nextProps, nextState) {
+  UNSAFE_componentWillUpdate(nextProps) {
     let { min, minDate, max, maxDate } = this.props;
 
     if (
@@ -225,9 +225,7 @@ export default class Calendar extends Component {
       showTodayHelper,
       showOverlay,
     } = this.getDisplayOptions();
-    const scrollSpeed = (this.scrollSpeed = Math.abs(
-      this.getScrollSpeed(scrollTop)
-    ));
+    const scrollSpeed = Math.abs(this.getScrollSpeed(scrollTop));
     this.scrollTop = scrollTop;
 
     // We only want to display the months overlay if the user is rapidly scrolling
@@ -433,9 +431,6 @@ export default class Calendar extends Component {
           </div>
           {display === 'years' && (
             <YearsComponent
-              ref={instance => {
-                this._Years = instance;
-              }}
               height={height}
               hideOnSelect={hideYearsOnSelect}
               locale={locale}

@@ -4,7 +4,7 @@ import defaultSelectionRenderer from './defaultSelectionRenderer';
 import Slider from './Slider';
 import { parse, format } from 'date-fns';
 
-export default withImmutableProps(({ renderSelection, setDisplayDate }) => ({
+export default withImmutableProps(({ setDisplayDate }) => ({
   renderSelection: (values, { scrollToDate, displayDate, ...props }) => {
     if (!values.length) {
       return null;

@@ -60,7 +60,7 @@ export const withRange = Calendar => {
     withState('displayKey', 'setDisplayKey', getInitialDate),
     withState('selectionStart', 'setSelectionStart', null),
     withState('hoveredDate', 'setHoveredDate'),
-    withImmutableProps(({ DayComponent, HeaderComponent, YearsComponent }) => ({
+    withImmutableProps(({ DayComponent, HeaderComponent }) => ({
       DayComponent: enhanceDay(DayComponent),
       HeaderComponent: enhanceHeader(HeaderComponent),
     })),
@@ -121,7 +121,7 @@ function getSortedSelection({ start, end }) {
 
 function handleSelect(
   date,
-  { onSelect, selected, selectionStart, setSelectionStart, isWeeklySelection }
+  { onSelect, selectionStart, setSelectionStart, isWeeklySelection }
 ) {
   if (selectionStart) {
     let { start, end } = getSortedSelection({

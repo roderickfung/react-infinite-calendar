@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VirtualList from 'react-tiny-virtual-list';
 import classNames from 'classnames';
-import { emptyFn, getMonth, getWeek, getWeeksInMonth, animate } from '../utils';
-import { parse, startOfMonth, addMonths, isSameMonth } from 'date-fns';
+import { animate, emptyFn, getMonth, getWeek, getWeeksInMonth } from '../utils';
+import { addMonths, isSameMonth, parse, startOfMonth } from 'date-fns';
 import Month from '../Month';
 import styles from './MonthList.scss';
 
@@ -43,8 +43,7 @@ export default class MonthList extends Component {
         locale: { weekStartsOn },
       } = this.props;
       const [year, month] = param.split(':');
-      const result = getMonth(year, month, weekStartsOn);
-      this.cache[param] = result;
+      this.cache[param] = getMonth(year, month, weekStartsOn);
     }
     return this.cache[param];
   };
@@ -70,8 +69,7 @@ export default class MonthList extends Component {
         weekStartsOn,
         index === months.length - 1
       );
-      let height = weeks * rowHeight;
-      this.monthHeights[index] = height;
+      this.monthHeights[index] = weeks * rowHeight;
     }
 
     return this.monthHeights[index];
@@ -90,7 +88,7 @@ export default class MonthList extends Component {
     return index < 1 ? 0 : index - 1;
   };
 
-  onMonthsRendered = ({ startIndex, stopIndex }) => {
+  onMonthsRendered = ({ startIndex }) => {
     const { months, min, overscanMonthCount } = this.props;
     const { month, year } = months[startIndex];
     const startMonth = new Date(year, month, 1);
@@ -113,7 +111,7 @@ export default class MonthList extends Component {
     this.scrollEl = this.VirtualList.rootNode;
   }
 
-  componentWillReceiveProps({ scrollDate }) {
+  UNSAFE_componentWillReceiveProps({ scrollDate }) {
     if (scrollDate !== this.props.scrollDate) {
       this.setState({
         scrollTop: this.getDateOffset(scrollDate),

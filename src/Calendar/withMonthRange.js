@@ -36,16 +36,7 @@ export const withMonthRange = compose(
 
 function handleSelect(
   date,
-  {
-    onSelect,
-    selected,
-    selectionStart,
-    setSelectionStart,
-    min,
-    max,
-    minDate,
-    maxDate,
-  }
+  { onSelect, selectionStart, setSelectionStart, min, max, minDate, maxDate }
 ) {
   if (selectionStart) {
     onSelect({

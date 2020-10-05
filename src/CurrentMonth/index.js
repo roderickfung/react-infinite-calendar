@@ -1,28 +1,25 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import defaultLocale from '../utils/defaultLocale';
 import styles from './CurrentMonth.scss';
 
-export default class CurrentMonth extends PureComponent {
-  static propTypes = {
-    currentMonth: PropTypes.instanceOf(Date),
-    theme: PropTypes.object,
-  };
+const CurrentMonth = ({ currentMonth, theme }) =>
+  currentMonth ? (
+    <div
+      className={styles.root}
+      style={{
+        backgroundColor: theme.floatingNav.background,
+        color: theme.floatingNav.color,
+      }}
+    >
+      {format(currentMonth, defaultLocale.monthLabelFormat).toUpperCase()}
+    </div>
+  ) : null;
 
-  render() {
-    const { currentMonth, theme } = this.props;
+export default CurrentMonth;
 
-    return currentMonth ? (
-      <div
-        className={styles.root}
-        style={{
-          backgroundColor: theme.floatingNav.background,
-          color: theme.floatingNav.color,
-        }}
-      >
-        {format(currentMonth, defaultLocale.monthLabelFormat).toUpperCase()}
-      </div>
-    ) : null;
-  }
-}
+CurrentMonth.propTypes = {
+  currentMonth: PropTypes.instanceOf(Date),
+  theme: PropTypes.object,
+};

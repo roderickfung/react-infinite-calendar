@@ -43,7 +43,7 @@ export default class Day extends PureComponent {
     }
   };
 
-  renderSelection(selectionColor) {
+  renderSelection() {
     const {
       day,
       date,
