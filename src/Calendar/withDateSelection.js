@@ -46,12 +46,10 @@ const enhanceYear = withPropsOnChange(['selected'], ({ selected }) => ({
 // Enhancer to handle selecting and displaying a single date
 export const withDateSelection = compose(
   withDefaultProps,
-  withImmutableProps(
-    ({ DayComponent, onSelect, setScrollDate, YearsComponent }) => ({
-      DayComponent: enhanceDay(DayComponent),
-      YearsComponent: enhanceYear(YearsComponent),
-    })
-  ),
+  withImmutableProps(({ DayComponent, YearsComponent }) => ({
+    DayComponent: enhanceDay(DayComponent),
+    YearsComponent: enhanceYear(YearsComponent),
+  })),
   withState('hoveredDate', 'setHoveredDate'),
   withState(
     'scrollDate',
@@ -82,7 +80,7 @@ export const withDateSelection = compose(
   )
 );
 
-function handleYearSelect(date, { setScrollDate, selected, onSelect }) {
+function handleYearSelect(date, { setScrollDate, onSelect }) {
   const newDate = parse(date);
 
   onSelect(newDate);

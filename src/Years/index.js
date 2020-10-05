@@ -28,19 +28,13 @@ const allowToSwitchYear = ({ selected, year, min, minDate, max, maxDate }) => {
     return false;
   }
 
-  if (
-    isDateDisabled({
-      date: new Date(selected).setYear(year),
-      min,
-      minDate,
-      max,
-      maxDate,
-    })
-  ) {
-    return false;
-  }
-
-  return true;
+  return !isDateDisabled({
+    date: new Date(selected).setYear(year),
+    min,
+    minDate,
+    max,
+    maxDate,
+  });
 };
 
 export default class Years extends Component {
@@ -150,7 +144,7 @@ export default class Years extends Component {
                 e.stopPropagation();
 
                 if (!isDisabled) {
-                  this.handleClick(date, e);
+                  this.handleClick(e);
                 }
               }}
               className={classNames(styles.month, {
@@ -259,10 +253,7 @@ export default class Years extends Component {
                   [styles.first]: index === 0,
                   [styles.last]: index === years.length - 1,
                 })}
-                onClick={() =>
-                  shouldAllowToSwitchYear &&
-                  this.handleClick(new Date(selected).setYear(year))
-                }
+                onClick={() => shouldAllowToSwitchYear && this.handleClick()}
                 title={shouldAllowToSwitchYear ? `Set year to ${year}` : ''}
                 data-year={year}
                 style={Object.assign({}, style, {

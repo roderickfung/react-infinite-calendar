@@ -1,13 +1,13 @@
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import {
-  getDaysInMonth,
+  endOfDay,
+  format,
   getDay,
+  getDaysInMonth,
   isAfter,
   isBefore,
   isSameDay,
-  endOfDay,
   startOfDay,
-  format,
 } from 'date-fns';
 import { withPropsOnChange } from 'recompose';
 
@@ -79,6 +79,7 @@ export function getWeek(yearStart, date, weekStartsOn) {
  * @param {Number} year - the year number
  * @param {Number} month - the index of the month
  * @param {Number} weekStartsOn - the index of the first day of the week (from 0 to 6)
+ * @param isLastDisplayedMonth
  * @return {Number} - Returns the number of weeks for the given month
  */
 export function getWeeksInMonth(
@@ -111,9 +112,7 @@ export function getWeeksInMonth(
  * @return {Number} - Returns the index of the day the week ends on
  */
 function getEndOfWeekIndex(weekStartsOn) {
-  const weekEndsOn = weekStartsOn === 0 ? 6 : weekStartsOn - 1;
-
-  return weekEndsOn;
+  return weekStartsOn === 0 ? 6 : weekStartsOn - 1;
 }
 
 export class ScrollSpeed {

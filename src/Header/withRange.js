@@ -3,7 +3,7 @@ import { withImmutableProps } from '../utils';
 import defaultSelectionRenderer from './defaultSelectionRenderer';
 import styles from './Header.scss';
 
-export default withImmutableProps(({ renderSelection }) => ({
+export default withImmutableProps(() => ({
   renderSelection: (values, props) => {
     if (!values || (!values.start && !values.end)) {
       return null;

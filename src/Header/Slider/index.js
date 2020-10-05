@@ -23,7 +23,7 @@ const Arrow = ({ direction, onClick }) => (
         id="Shape"
         fill="#FFF"
         transform="translate(13.000000, 23.000000) rotate(90.000000) translate(-13.000000, -23.000000) "
-      ></path>
+      />
     </svg>
   </div>
 );

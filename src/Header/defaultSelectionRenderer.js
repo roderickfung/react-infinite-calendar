@@ -41,7 +41,7 @@ export default function defaultSelectionRenderer(
     },
     {
       active: display === 'days',
-      handleClick: e => {
+      handleClick: () => {
         if (display !== 'days') {
           setDisplay('days');
         } else if (date) {
@@ -63,7 +63,7 @@ export default function defaultSelectionRenderer(
       className={styles.wrapper}
       aria-label={format(date, dateFormat + ' YYYY', { locale })}
     >
-      {values.map(({ handleClick, item, key, value, active, title }) => {
+      {values.map(({ handleClick, item, value, active, title }) => {
         return (
           <div
             key={item}

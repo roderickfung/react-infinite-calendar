@@ -5,9 +5,9 @@ function easing(time) {
 /**
  * Given a start/end point of a scroll and time elapsed, calculate the scroll position we should be at
  * @param {Number} start - the initial value
- * @param {Number} stop - the final desired value
+ * @param end
  * @param {Number} elapsed - the amount of time elapsed since we started animating
- * @param {Number} - duration - the duration of the animation
+ * @param duration
  * @return {Number} - The value we should use on the next tick
  */
 function getValue(start, end, elapsed, duration) {

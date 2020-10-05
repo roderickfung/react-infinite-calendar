@@ -14,22 +14,20 @@ export const withKeyboardSupport = compose(
   withHandlers({
     onKeyDown: props => e => handleKeyDown(e, props),
   }),
-  withProps(
-    ({ highlightedDate, onKeyDown, onSelect, passThrough, setHighlight }) => ({
-      passThrough: {
-        ...passThrough,
-        Day: {
-          ...passThrough.Day,
-          highlightedDate: format(highlightedDate, 'YYYY-MM-DD'),
-          onClick: date => {
-            setHighlight(null);
-            passThrough.Day.onClick(date);
-          },
+  withProps(({ highlightedDate, onKeyDown, passThrough, setHighlight }) => ({
+    passThrough: {
+      ...passThrough,
+      Day: {
+        ...passThrough.Day,
+        highlightedDate: format(highlightedDate, 'YYYY-MM-DD'),
+        onClick: date => {
+          setHighlight(null);
+          passThrough.Day.onClick(date);
         },
-        rootNode: { onKeyDown },
       },
-    })
-  )
+      rootNode: { onKeyDown },
+    },
+  }))
 );
 
 function handleKeyDown(e, props) {
