@@ -1,37 +1,38 @@
-import React, { PureComponent } from 'react';
+import React, { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import { getDateString } from '../utils';
 import {
+  addWeeks,
+  endOfWeek,
   format,
   getDay,
-  isSameYear,
+  getMonth,
   isSameDay,
   isSameWeek,
+  isSameYear,
   startOfWeek,
-  endOfWeek,
-  addWeeks,
-  getMonth,
 } from 'date-fns';
 import styles from './Month.scss';
 import dayStyles from '../Day/Day.scss';
 
-export default class Month extends PureComponent {
-  renderRows() {
-    const {
-      DayComponent,
-      disabledDates,
-      disabledDays,
-      monthDate,
-      locale,
-      maxDate,
-      minDate,
-      rowHeight,
-      rows,
-      selected,
-      today,
-      theme,
-      passThrough,
-    } = this.props;
+const Month = ({
+  locale,
+  showOverlay,
+  style,
+  DayComponent,
+  disabledDates,
+  disabledDays,
+  monthDate,
+  maxDate,
+  minDate,
+  rowHeight,
+  rows,
+  selected,
+  today,
+  theme,
+  passThrough,
+}) => {
+  const renderRows = useCallback(() => {
     const currentYear = today.getFullYear();
     const year = monthDate.getFullYear();
     const month = monthDate.getMonth();
@@ -132,44 +133,49 @@ export default class Month extends PureComponent {
     }
 
     return monthRows;
-  }
+  }, [
+    disabledDates,
+    disabledDays,
+    locale,
+    maxDate,
+    minDate,
+    monthDate,
+    passThrough.Day,
+    rowHeight,
+    rows,
+    selected,
+    theme,
+    today,
+  ]);
 
-  render() {
-    const {
-      locale: { locale },
-      monthDate,
-      today,
-      rows,
-      rowHeight,
-      showOverlay,
-      style,
-      theme,
-    } = this.props;
-    const dateFormat = isSameYear(monthDate, today) ? 'MMMM' : 'MMMM YYYY';
-    const month = getMonth(monthDate);
+  const dateFormat = isSameYear(monthDate, today) ? 'MMMM' : 'MMMM YYYY';
+  const month = getMonth(monthDate);
 
-    return (
-      <div
-        className={classNames(styles.root, {
-          [styles.even]: month % 2 === 0,
-          [styles.odd]: month % 2 === 1,
-        })}
-        style={{ ...style, lineHeight: `${rowHeight}px` }}
-      >
-        <div className={styles.rows}>
-          {this.renderRows()}
-          {showOverlay && (
-            <label
-              className={classNames(styles.label, {
-                [styles.partialFirstRow]: rows[0].length !== 7,
-              })}
-              style={{ backgroundColor: theme.overlayColor }}
-            >
-              <span>{format(monthDate, dateFormat, { locale })}</span>
-            </label>
-          )}
-        </div>
+  return (
+    <div
+      className={classNames(styles.root, {
+        [styles.even]: month % 2 === 0,
+        [styles.odd]: month % 2 === 1,
+      })}
+      style={{ ...style, lineHeight: `${rowHeight}px` }}
+    >
+      <div className={styles.rows}>
+        {renderRows()}
+        {showOverlay && (
+          <label
+            className={classNames(styles.label, {
+              [styles.partialFirstRow]: rows[0].length !== 7,
+            })}
+            style={{ backgroundColor: theme.overlayColor }}
+          >
+            <span>
+              {format(monthDate, dateFormat, { locale: locale.locale })}
+            </span>
+          </label>
+        )}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default memo(Month);
