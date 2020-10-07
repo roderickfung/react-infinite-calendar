@@ -25,7 +25,6 @@ const Today = ({ todayLabel, show, theme, scrollToDate }) => {
         color: theme.floatingNav.color,
       }}
       onClick={scrollToToday}
-      ref="node"
     >
       {todayLabel}
       <svg
