@@ -49,7 +49,7 @@ export const enhanceDay = withPropsOnChange(
 );
 
 // Enhancer to handle selecting and displaying multiple dates
-export const withRange = Calendar => {
+export const withRange = (Calendar) => {
   const CalendarWithRef = ({ forwardedRef, ...props }) => (
     <Calendar {...props} ref={forwardedRef} />
   );
@@ -81,19 +81,19 @@ export const withRange = Calendar => {
           Day: {
             hoveredDate: hoveredDate,
             isWeeklySelection: Boolean(props.isWeeklySelection),
-            onClick: date => handleSelect(date, { selected, ...props }),
+            onClick: (date) => handleSelect(date, { selected, ...props }),
             onMouseEnter: setHoveredDate,
             onMouseLeave: () => setHoveredDate(undefined),
             handlers: {
               onMouseOver:
                 !isTouchDevice && props.selectionStart
-                  ? e => handleMouseOver(e, { selected, ...props })
+                  ? (e) => handleMouseOver(e, { selected, ...props })
                   : null,
             },
           },
           Years: {
             selected: selected && selected[displayKey],
-            onSelect: date =>
+            onSelect: (date) =>
               handleYearSelect(date, { displayKey, selected, ...props }),
           },
           Header: {

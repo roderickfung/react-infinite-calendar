@@ -18,6 +18,7 @@ const umdOutputOptions = {
     'react-dom': 'reactDom',
     'react-transition-group': 'reactTransitionGroup',
   },
+  sourcemap: true
 };
 
 const plugins = [
@@ -61,7 +62,7 @@ export default [
         includeDependencies: true,
       }),
       postcss({
-        extract: './styles.css',
+        extract: 'styles.css',
         modules: {
           generateScopedName: 'Cal__[name]__[local]',
         },
@@ -81,7 +82,6 @@ export default [
       },
       {
         file: `${pkg['umd:main']}/${pkg.name}.min.js`,
-        sourcemap: true,
         ...umdOutputOptions,
       },
     ],
@@ -89,18 +89,7 @@ export default [
     plugins: [
       ...plugins,
       commonjs({
-        namedExports: {
-          'prop-types': [
-            'array',
-            'arrayOf',
-            'func',
-            'number',
-            'object',
-            'oneOf',
-            'oneOfType',
-            'string',
-          ],
-        },
+        sourceMap: true
       }),
       postcss({
         modules: {
@@ -109,8 +98,7 @@ export default [
         use: ['sass'],
       }),
       terser({
-        include: [/^.+\.min\.js$/],
-        sourcemap: true,
+        
       }),
     ],
   },

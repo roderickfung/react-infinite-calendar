@@ -5,7 +5,7 @@ import enhanceHeader from '../Header/withMultipleDates';
 import { format, parse } from 'date-fns';
 
 // Enhance Day component to display selected state based on an array of selected dates
-export const enhanceDay = withPropsOnChange(['selected'], props => ({
+export const enhanceDay = withPropsOnChange(['selected'], (props) => ({
   isSelected: props.selected.indexOf(props.date) !== -1,
 }));
 
@@ -28,7 +28,7 @@ export const withMultipleDates = compose(
     ({ displayDate, onSelect, setDisplayDate, scrollToDate, ...props }) => ({
       passThrough: {
         Day: {
-          onClick: date => handleSelect(date, { onSelect, setDisplayDate }),
+          onClick: (date) => handleSelect(date, { onSelect, setDisplayDate }),
         },
         Header: {
           setDisplayDate,
@@ -40,8 +40,8 @@ export const withMultipleDates = compose(
         },
       },
       selected: props.selected
-        .filter(date => sanitizeDate(date, props))
-        .map(date => format(date, 'YYYY-MM-DD')),
+        .filter((date) => sanitizeDate(date, props))
+        .map((date) => format(date, 'YYYY-MM-DD')),
     })
   )
 );
@@ -60,7 +60,7 @@ function getInitialDate({ selected }) {
 }
 
 export function defaultMultipleDateInterpolation(date, selected) {
-  const selectedMap = selected.map(date => format(date, 'YYYY-MM-DD'));
+  const selectedMap = selected.map((date) => format(date, 'YYYY-MM-DD'));
   const index = selectedMap.indexOf(format(date, 'YYYY-MM-DD'));
 
   return index === -1

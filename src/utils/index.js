@@ -1,4 +1,4 @@
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import getScrollbarSize from 'dom-helpers/scrollbarSize';
 import {
   endOfDay,
   format,
@@ -146,7 +146,7 @@ export function sanitizeDate(
   // Selected date should not be disabled or outside the selectable range
   if (
     !date ||
-    disabledDates.some(disabledDate => isSameDay(disabledDate, date)) ||
+    disabledDates.some((disabledDate) => isSameDay(disabledDate, date)) ||
     (disabledDays && disabledDays.indexOf(getDay(date)) !== -1) ||
     (minDate && isBefore(date, startOfDay(minDate))) ||
     (maxDate && isAfter(date, endOfDay(maxDate)))
@@ -171,7 +171,7 @@ export function getMonthsForYear(year, day = 1) {
   });
 }
 
-export const withImmutableProps = props =>
+export const withImmutableProps = (props) =>
   withPropsOnChange(() => false, props);
 
 export function debounce(callback, wait) {
@@ -180,7 +180,7 @@ export function debounce(callback, wait) {
 
   const later = () => callback.apply(this, callbackArgs);
 
-  return function() {
+  return function () {
     callbackArgs = arguments;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
