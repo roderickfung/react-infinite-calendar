@@ -5,7 +5,6 @@ import { parse, format, startOfWeek, endOfWeek } from 'date-fns';
 import styles from './Header.scss';
 import animation from './Animation.scss';
 
-
 export default function defaultSelectionRenderer(
   value,
   {
@@ -32,7 +31,7 @@ export default function defaultSelectionRenderer(
   const values = date && [
     {
       active: display === 'years',
-      handleClick: e => {
+      handleClick: (e) => {
         onYearClick(date, e, key);
         setDisplay('years');
       },
@@ -78,7 +77,8 @@ export default function defaultSelectionRenderer(
                 classNames={animation}
                 timeout={{ exit: 250, enter: 250 }}
                 enter={shouldAnimate}
-                leave={shouldAnimate}>
+                leave={shouldAnimate}
+              >
                 <span
                   key={`${item}-${value}`}
                   className={styles.date}

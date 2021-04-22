@@ -19,7 +19,7 @@ export { withMonthRange } from './Calendar/withMonthRange';
 export default class DefaultCalendar extends Component {
   static defaultProps = {
     Component: withDateSelection(Calendar),
-    interpolateSelection: selected => selected,
+    interpolateSelection: (selected) => selected,
   };
   state = {
     selected:
@@ -27,7 +27,7 @@ export default class DefaultCalendar extends Component {
         ? this.props.selected
         : new Date(),
   };
-  _getRef = ref => {
+  _getRef = (ref) => {
     this.calendar = ref;
   };
   UNSAFE_componentWillReceiveProps({ selected }) {
@@ -35,7 +35,7 @@ export default class DefaultCalendar extends Component {
       this.setState({ selected });
     }
   }
-  handleSelect = selected => {
+  handleSelect = (selected) => {
     const { onSelect, interpolateSelection } = this.props;
 
     if (typeof onSelect === 'function') {
@@ -46,7 +46,7 @@ export default class DefaultCalendar extends Component {
       selected: interpolateSelection(selected, this.state.selected),
     });
   };
-  scrollToDate = date => {
+  scrollToDate = (date) => {
     this.calendar && this.calendar.scrollToDate(date, -40);
   };
   render() {

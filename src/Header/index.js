@@ -5,7 +5,7 @@ import defaultSelectionRenderer from './defaultSelectionRenderer';
 import classNames from 'classnames';
 import styles from './Header.scss';
 
-const Header = props => {
+const Header = (props) => {
   const {
     layout,
     locale: { blank },

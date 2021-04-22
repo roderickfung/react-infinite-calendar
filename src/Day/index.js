@@ -12,7 +12,7 @@ import {
 } from 'date-fns';
 import styles from './Day.scss';
 
-const padZero = n => (n < 10 ? `0${n}` : String(n));
+const padZero = (n) => (n < 10 ? `0${n}` : String(n));
 
 export default class Day extends PureComponent {
   handleClick = () => {

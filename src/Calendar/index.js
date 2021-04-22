@@ -175,7 +175,7 @@ export default class Calendar extends Component {
   getDisabledDates(disabledDates) {
     return (
       disabledDates &&
-      disabledDates.map(date => format(parse(date), 'YYYY-MM-DD'))
+      disabledDates.map((date) => format(parse(date), 'YYYY-MM-DD'))
     );
   }
   _displayOptions = {};
@@ -197,10 +197,10 @@ export default class Calendar extends Component {
   getCurrentOffset = () => {
     return this.scrollTop;
   };
-  getDateOffset = date => {
+  getDateOffset = (date) => {
     return this._MonthList && this._MonthList.getDateOffset(date);
   };
-  scrollTo = offset => {
+  scrollTo = (offset) => {
     return this._MonthList && this._MonthList.scrollTo(offset);
   };
   scrollToDate = (date = new Date(), offset, shouldAnimate) => {
@@ -267,7 +267,7 @@ export default class Calendar extends Component {
         currentMonth: this._MonthList.currentMonth,
       });
   };
-  updateTodayHelperPosition = scrollSpeed => {
+  updateTodayHelperPosition = (scrollSpeed) => {
     const today = this.today;
     const scrollTop = this.scrollTop;
     const { showToday } = this.state;
@@ -306,7 +306,7 @@ export default class Calendar extends Component {
       this.setState({ showToday: newState });
     }
   };
-  setDisplay = display => {
+  setDisplay = (display) => {
     this.setState({ display });
   };
   render() {
@@ -361,7 +361,7 @@ export default class Calendar extends Component {
         })}
         style={{ color: theme.textColor.default, width }}
         aria-label="Calendar"
-        ref={node => {
+        ref={(node) => {
           this.node = node;
         }}
         {...passThrough.rootNode}
@@ -403,7 +403,7 @@ export default class Calendar extends Component {
               />
             )}
             <MonthList
-              ref={instance => {
+              ref={(instance) => {
                 this._MonthList = instance;
               }}
               DayComponent={DayComponent}

@@ -37,7 +37,7 @@ export default class MonthList extends Component {
     scrollOffset: this.getDateOffset(this.props.scrollDate),
   };
   cache = {};
-  memoize = function(param) {
+  memoize = function (param) {
     if (!this.cache[param]) {
       const {
         locale: { weekStartsOn },
@@ -51,11 +51,11 @@ export default class MonthList extends Component {
   scrollTop = 0;
   currentMonth;
 
-  _getRef = instance => {
+  _getRef = (instance) => {
     this.VirtualList = instance;
   };
 
-  getMonthHeight = index => {
+  getMonthHeight = (index) => {
     if (!this.monthHeights[index]) {
       let {
         locale: { weekStartsOn },
