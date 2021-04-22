@@ -82,7 +82,10 @@
     "style-loader": "^2.0.0",
     "webpack": "^5.35.0"
   },
-  "repository": "bneigher/react-infinite-calendar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bneigher/react-infinite-calendar.git"
+  },
   "license": "MIT",
   "keywords": [
     "react",
@@ -101,5 +104,14 @@
     "picker",
     "material",
     "flat"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/bneigher/react-infinite-calendar/issues"
+  },
+  "homepage": "https://github.com/bneigher/react-infinite-calendar#readme",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "author": "Ben Neigher"
 }
