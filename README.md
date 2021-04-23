@@ -1,15 +1,15 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/appannie/react-infinite-calendar/master/.github/logo.png" width="180"/>
+<img src="https://raw.githubusercontent.com/bneigher/react-infinite-calendar/master/.github/logo.png" width="180"/>
 </div>
 
 # React Infinite Calendar
 
-[![npm version](https://img.shields.io/npm/v/@appannie/react-infinite-calendar.svg)](https://www.npmjs.com/package/@appannie/react-infinite-calendar)
-[![downloads](https://img.shields.io/npm/dm/@appannie/react-infinite-calendar.svg)](https://www.npmjs.com/package/@appannie/react-infinite-calendar)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/appannie/react-infinite-calendar/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@bneigher/react-infinite-calendar.svg)](https://www.npmjs.com/package/@bneigher/react-infinite-calendar)
+[![downloads](https://img.shields.io/npm/dm/@bneigher/react-infinite-calendar.svg)](https://www.npmjs.com/package/@bneigher/react-infinite-calendar)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/bneigher/react-infinite-calendar/blob/master/LICENSE)
 [![Gitter](https://badges.gitter.im/clauderic/react-infinite-calendar.svg)](https://gitter.im/clauderic/react-infinite-calendar)
 
-### Examples available here: <a href="#">http://appannie.github.io/react-infinite-calendar/</a>
+### Examples available here: <a href="#">http://bneigher.github.io/react-infinite-calendar/</a>
 
 ## Features
 
@@ -24,7 +24,7 @@
 - **Mobile-friendly** – Silky smooth scrolling on mobile
 
 <div style="padding:30px">
-<img src="https://raw.githubusercontent.com/appannie/react-infinite-calendar/master/.github/preview.gif" width="300" />
+<img src="https://raw.githubusercontent.com/bneigher/react-infinite-calendar/master/.github/preview.gif" width="300" />
 </div>
 
 ## Getting Started
@@ -32,15 +32,15 @@
 Using [npm](https://www.npmjs.com/):
 
 ```
-npm install @appannie/react-infinite-calendar react-addons-css-transition-group --save
-yarn add @appannie/react-infinite-calendar react-addons-css-transition-group
+npm install @bneigher/react-infinite-calendar react-addons-css-transition-group --save
+yarn add @bneigher/react-infinite-calendar react-addons-css-transition-group
 ```
 
 ES6, CommonJS, and UMD builds are available with each distribution. For example:
 
 ```js
-import InfiniteCalendar from '@appannie/react-infinite-calendar';
-import '@appannie/react-infinite-calendar/styles.css'; // Make sure to import the default stylesheet
+import InfiniteCalendar from '@bneigher/react-infinite-calendar';
+import '@bneigher/react-infinite-calendar/styles.css'; // Make sure to import the default stylesheet
 ```
 
 You can also use a global-friendly UMD build:
@@ -61,8 +61,8 @@ You can also use a global-friendly UMD build:
 ```js
 import React from 'react';
 import { render } from 'react-dom';
-import InfiniteCalendar from '@appannie/react-infinite-calendar';
-import '@appannie/react-infinite-calendar/styles.css'; // only needs to be imported once
+import InfiniteCalendar from '@bneigher/react-infinite-calendar';
+import '@bneigher/react-infinite-calendar/styles.css'; // only needs to be imported once
 
 // Render the Calendar
 var today = new Date();
@@ -84,7 +84,7 @@ render(
 );
 ```
 
-For more usage examples, see [http://appannie.github.io/react-infinite-calendar/](http://appannie.github.io/react-infinite-calendar/) or check out some [code examples](https://github.com/appannie/react-infinite-calendar/tree/master/examples).
+For more usage examples, see [http://bneigher.github.io/react-infinite-calendar/](http://bneigher.github.io/react-infinite-calendar/) or check out some [code examples](https://github.com/bneigher/react-infinite-calendar/tree/master/examples).
 
 ### Prop Types
 
@@ -100,9 +100,9 @@ For more usage examples, see [http://appannie.github.io/react-infinite-calendar/
 | disabledDays      | Array<Number>   |                                                                                                                                            | Array of days of the week that should be disabled. For example, to disable Monday and Sunday: `[0, 6]`                                                                                                                           |
 | disabledDates     | Array<Date>     |                                                                                                                                            | Array of dates that should be disabled. For example: `[new Date(2017, 1, 8), new Date(), new Date(2017, 5, 17)]`                                                                                                                 |
 | display           | String          | `'days'`                                                                                                                                   | Whether to display the `years` or `days` view.                                                                                                                                                                                   |
-| displayOptions    | Object          | See&nbsp;[default&nbsp;displayOptions](https://github.com/appannie/react-infinite-calendar/blob/master/src/utils/defaultDisplayOptions.js) | See [display options](#display-options) section for more details.                                                                                                                                                                |
-| locale            | Object          | See&nbsp;[default&nbsp;locale](https://github.com/appannie/react-infinite-calendar/blob/master/src/utils/defaultLocale.js)                 | By default, React Infinite Calendar comes with the `English` locale. You can use this to change the language, or change the first day of the week. See [date-fns documentation](https://date-fns.org/docs/I18n) for more details |
-| theme             | Object          | See&nbsp;[default&nbsp;theme](https://github.com/appannie/react-infinite-calendar/blob/master/src/utils/defaultTheme.js)                   | Basic customization of the colors                                                                                                                                                                                                |
+| displayOptions    | Object          | See&nbsp;[default&nbsp;displayOptions](https://github.com/bneigher/react-infinite-calendar/blob/master/src/utils/defaultDisplayOptions.js) | See [display options](#display-options) section for more details.                                                                                                                                                                |
+| locale            | Object          | See&nbsp;[default&nbsp;locale](https://github.com/bneigher/react-infinite-calendar/blob/master/src/utils/defaultLocale.js)                 | By default, React Infinite Calendar comes with the `English` locale. You can use this to change the language, or change the first day of the week. See [date-fns documentation](https://date-fns.org/docs/I18n) for more details |
+| theme             | Object          | See&nbsp;[default&nbsp;theme](https://github.com/bneigher/react-infinite-calendar/blob/master/src/utils/defaultTheme.js)                   | Basic customization of the colors                                                                                                                                                                                                |
 | className         | String          |                                                                                                                                            | Optional CSS class name to append to the root `InfiniteCalendar` element.                                                                                                                                                        |
 | onSelect          | Function        |                                                                                                                                            | Callback invoked after beforeSelect() returns true, but before the state of the calendar updates                                                                                                                                 |
 | onScroll          | Function        |                                                                                                                                            | Callback invoked when the scroll offset changes. `function (scrollTop: number) {}`                                                                                                                                               |
@@ -145,11 +145,11 @@ React Infinite Calendar has very few dependencies. It relies on [`react-tiny-vir
 
 ## Reporting Issues
 
-If you find an [issue](https://github.com/appannie/react-infinite-calendar/issues), please report it along with any relevant details to reproduce it. The easiest way to do so is to fork this [jsfiddle](https://jsfiddle.net/clauderic/4rhn03do/).
+If you find an [issue](https://github.com/bneigher/react-infinite-calendar/issues), please report it along with any relevant details to reproduce it. The easiest way to do so is to fork this [jsfiddle](https://jsfiddle.net/clauderic/4rhn03do/).
 
 ## Contributions
 
-Yes please! Feature requests / pull requests are welcome. [Learn how to contribute](https://github.com/appannie/react-infinite-calendar/blob/master/CONTRIBUTING.md)
+Yes please! Feature requests / pull requests are welcome. [Learn how to contribute](https://github.com/bneigher/react-infinite-calendar/blob/master/CONTRIBUTING.md)
 
 Have a suggestion or just want to say hello? Come chat on [Gitter](https://gitter.im/clauderic/react-infinite-calendar)!
 
