@@ -1,4 +1,3 @@
-import path from 'path'
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';

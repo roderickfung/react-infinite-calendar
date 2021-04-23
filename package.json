@@ -14,7 +14,7 @@
   "scripts": {
     "build": "NODE_ENV=production BABEL_ENV=production rollup -c",
     "build:watch": "NODE_ENV=production rollup -c -w",
-    "prepare": "husky install",
+    "prepare": "husky install && yarn build",
     "storybook": "start-storybook -p 6006",
     "deploy-storybook": "storybook-to-ghpages",
     "lint": "esw --ext src/**/*.js src/index.js --color",
