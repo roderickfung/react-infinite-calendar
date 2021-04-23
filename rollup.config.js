@@ -4,9 +4,9 @@ import url from '@rollup/plugin-url';
 import babel from 'rollup-plugin-babel';
 import peer from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
+import scss from 'rollup-plugin-scss'
 import del from 'rollup-plugin-delete';
 import { terser } from 'rollup-plugin-terser';
-
 import pkg from './package.json';
 
 const umdOutputOptions = {
@@ -61,8 +61,14 @@ export default [
       peer({
         includeDependencies: true,
       }),
+      scss({
+        output: 'styles.css',
+      }),
       postcss({
-        extract: 'styles.css',
+        extract: false,
+        writeDefinitions: true,
+        modules: true,
+        namedExports: true,
         modules: {
           generateScopedName: 'Cal__[name]__[local]',
         },
@@ -71,6 +77,7 @@ export default [
       del({
         targets: pkg.files,
       }),
+      
     ],
   },
   {
@@ -91,7 +98,14 @@ export default [
       commonjs({
         sourceMap: true
       }),
+      scss({
+        output: 'styles.css',
+      }),
       postcss({
+        extract: false,
+        writeDefinitions: true,
+        modules: true,
+        namedExports: true,
         modules: {
           generateScopedName: 'Cal__[name]__[local]',
         },

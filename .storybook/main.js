@@ -30,12 +30,12 @@ module.exports = {
               }
             },
           },
-          // {
-          //   loader: 'postcss-loader',
-          //   options: {
-          //     postcssOptions
-          //   },
-          // },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions
+            },
+          },
           {
             loader: "sass-loader",
             options: {

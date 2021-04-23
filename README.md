@@ -40,13 +40,12 @@ ES6, CommonJS, and UMD builds are available with each distribution. For example:
 
 ```js
 import InfiniteCalendar from '@bneigher/react-infinite-calendar';
-import '@bneigher/react-infinite-calendar/styles.css'; // Make sure to import the default stylesheet
 ```
 
 You can also use a global-friendly UMD build:
 
 ```html
-<link rel="stylesheet" href="react-infinite-calendar/styles.css" />
+<link rel="stylesheet" href="@bneigher/react-infinite-calendar/styles.css" />
 <script src="react-infinite-calendar/umd/react-infinite-calendar.js"></script>
 <script>
   var InfiniteCalendar = window.InfiniteCalendar.default;
@@ -62,7 +61,6 @@ You can also use a global-friendly UMD build:
 import React from 'react';
 import { render } from 'react-dom';
 import InfiniteCalendar from '@bneigher/react-infinite-calendar';
-import '@bneigher/react-infinite-calendar/styles.css'; // only needs to be imported once
 
 // Render the Calendar
 var today = new Date();
