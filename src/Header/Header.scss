@@ -99,7 +99,8 @@
       }
 
       &:before {
-        color: rgba(var(--text), 0.15);
+        color: var(--text);
+        opacity: 0.15;
         transform: translateX(1px);
       }
     }

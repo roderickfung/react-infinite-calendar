@@ -31,37 +31,42 @@ $dark-month: #dc8746;
 $dark-primary_75: #628eda;
 $dark-secondary: #f7c7d7;
 
-body {
-  --text: #fff;
+:global {
+  body {
+    --text: #fff;
 
-  --background: #{$background};
-  --primary: #{$primary};
-  --primary_5: #{$primary_5};
-  --day-selection: #{$day-selection};
-  --primary_15: #{$primary_15};
-  --primary_20: #{$primary_20};
-  --primary_25: #{$primary_25};
-  --primary_35: #{$primary_35};
-  --primary_50: #{$primary_50};
-  --month: #{$month};
-  --primary_75: #{$primary_75};
-  --secondary: #{$secondary};
+    --background: #{$background};
+    --primary: #{$primary};
+    --primary_5: #{$primary_5};
+    --day-selection: #{$day-selection};
+    --primary_15: #{$primary_15};
+    --primary_20: #{$primary_20};
+    --primary_25: #{$primary_25};
+    --primary_35: #{$primary_35};
+    --primary_50: #{$primary_50};
+    --month: #{$month};
+    --primary_75: #{$primary_75};
+    --secondary: #{$secondary};
+  }
+
+  body.dark-mode {
+    --text: #fff;
+
+    --background: #{$dark-background};
+    --primary: #{$dark-primary};
+    --primary_5: #{$dark-primary_5};
+    --day-selection: #{$dark-day-selection};
+    --primary_15: #{$dark-primary_15};
+    --primary_20: #{$dark-primary_20};
+    --primary_25: #{$dark-primary_25};
+    --primary_35: #{$dark-primary_35};
+    --primary_50: #{$dark-primary_50};
+    --month: #{$dark-month};
+    --primary_75: #{$dark-primary_75};
+    --secondary: #{$dark-secondary};
+  }
 }
 
-body.dark-mode {
-  --background: #{$dark-background};
-  --primary: #{$dark-primary};
-  --primary_5: #{$dark-primary_5};
-  --day-selection: #{$dark-day-selection};
-  --primary_15: #{$dark-primary_15};
-  --primary_20: #{$dark-primary_20};
-  --primary_25: #{$dark-primary_25};
-  --primary_35: #{$dark-primary_35};
-  --primary_50: #{$dark-primary_50};
-  --month: #{$dark-month};
-  --primary_75: #{$dark-primary_75};
-  --secondary: #{$dark-secondary};
-}
 
 // Importable in js
 :export {
