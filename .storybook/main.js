@@ -1,5 +1,4 @@
 const path = require('path');
-const postcssOptions = require('../postcss.config')
 
 module.exports = {
   addons: ['@storybook/addon-postcss'],
@@ -33,7 +32,14 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              postcssOptions
+              postcssOptions: {
+                plugins: [
+                  require('postcss-flexbugs-fixes'),
+                  require('autoprefixer')({
+                    flexbox: 'no-2009',
+                  }),
+                ],
+              }
             },
           },
           {

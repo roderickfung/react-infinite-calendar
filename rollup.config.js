@@ -67,11 +67,7 @@ export default [
       postcss({
         extract: false,
         writeDefinitions: true,
-        modules: true,
         namedExports: true,
-        modules: {
-          generateScopedName: 'Cal__[name]__[local]',
-        },
         use: ['sass'],
       }),
       del({
@@ -104,11 +100,7 @@ export default [
       postcss({
         extract: false,
         writeDefinitions: true,
-        modules: true,
         namedExports: true,
-        modules: {
-          generateScopedName: 'Cal__[name]__[local]',
-        },
         use: ['sass'],
       }),
       terser({

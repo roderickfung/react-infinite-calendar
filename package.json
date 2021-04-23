@@ -1,9 +1,9 @@
 {
-  "name": "@bneigher/react-infinite-calendar",
-  "version": "4.0.2",
+  "name": "@appannie/react-infinite-calendar",
+  "version": "3.3.6",
   "description": "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
-  "main": "lib",
-  "module": "es",
+  "main": "lib/src",
+  "module": "es/src",
   "umd:main": "umd",
   "files": [
     "es",
@@ -69,6 +69,8 @@
     "eslint-watch": "^7.0.0",
     "husky": "^6.0.0",
     "node-sass": "^5.0.0",
+    "postcss": "^8.2.12",
+    "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -83,10 +85,7 @@
     "style-loader": "^2.0.0",
     "webpack": "^5.35.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bneigher/react-infinite-calendar.git"
-  },
+  "repository": "appannie/react-infinite-calendar",
   "license": "MIT",
   "keywords": [
     "react",
@@ -105,14 +104,5 @@
     "picker",
     "material",
     "flat"
-  ],
-  "bugs": {
-    "url": "https://github.com/bneigher/react-infinite-calendar/issues"
-  },
-  "homepage": "https://github.com/bneigher/react-infinite-calendar#readme",
-  "directories": {
-    "example": "examples",
-    "lib": "lib"
-  },
-  "author": "Ben Neigher"
+  ]
 }
