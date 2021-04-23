@@ -12,5 +12,5 @@ export default {
     default: '#0f2346',
   },
   todayColor: '#c3c8d1',
-  weekdayColor: '#fff',
+  floatingWeekdayColor: '#fff',
 };

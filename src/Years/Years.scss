@@ -12,8 +12,8 @@ $cellSize: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to bottom, rgba(15, 30, 70, 0.12) 0, #fff 3px);
-  background-color: #fff;
+  background: linear-gradient(to bottom, rgba(var(--primary), 0.12) 0, var(--background) 3px);
+  background-color: var(--background);
 }
 
 .list {
@@ -40,7 +40,7 @@ $cellSize: 40px;
   box-sizing: border-box;
 
   &.withMonths {
-    border-bottom: 1px solid $blue_15;
+    border-bottom: 1px solid var(--primary_15);
 
     label {
       height: $cellSize * 2;
@@ -54,7 +54,7 @@ $cellSize: 40px;
 
     span {
       flex-shrink: 0;
-      color: $blue;
+      color: var(--primary);
     }
   }
 
@@ -78,7 +78,7 @@ $cellSize: 40px;
       border-radius: 50%;
       box-sizing: border-box;
 
-      color: $blue;
+      color: var(--primary);
       font-weight: normal;
       text-transform: capitalize;
 
@@ -88,7 +88,7 @@ $cellSize: 40px;
       &.selected {
         position: relative;
         z-index: 1;
-        color: #fff;
+        color: var(--background);
         border: 0;
 
         .selection {
@@ -99,7 +99,7 @@ $cellSize: 40px;
       }
       &.disabled {
         cursor: not-allowed;
-        color: $blue_25;
+        color: var(--primary_25);
 
         &:hover {
           background-color: inherit;
@@ -107,7 +107,7 @@ $cellSize: 40px;
       }
 
       &:hover {
-        background-color: $blue_10;
+        background-color: var(--day-selection);
       }
     }
   }
@@ -115,7 +115,7 @@ $cellSize: 40px;
   &:hover,
   &.active {
     label > span {
-      color: $pink;
+      color: var(--secondary);
     }
   }
   &:hover,
@@ -165,25 +165,25 @@ $cellSize: 40px;
       width: 50%;
       height: $cellSize;
       margin-top: -0.5 * $cellSize;
-      background-color: $blue_25;
+      background-color: var(--primary_25);
     }
 
     .selection {
       font-weight: bold;
-      color: #fff;
-      background-color: $blue;
+      color: var(--background);
+      background-color: var(--primary);
       box-sizing: border-box;
     }
   }
 
   &.disabled {
-    background-color: $blue_25 !important;
+    background-color: var(--primary_25) !important;
     .selection.selection {
-      background-color: $blue_25 !important;
-      color: #fff;
+      background-color: var(--primary_25) !important;
+      color: var(--background);
     }
     &:after {
-      background-color: $blue_25 !important;
+      background-color: var(--primary_25) !important;
     }
   }
 
@@ -221,7 +221,7 @@ $cellSize: 40px;
 
   &.betweenRange {
     border-radius: 0;
-    background-color: $blue_25 !important;
+    background-color: var(--primary_25) !important;
     .selection {
       left: 0;
       right: 0;
@@ -230,7 +230,7 @@ $cellSize: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: $blue;
+      color: var(--primary);
     }
   }
   &:nth-child(6n + 1).betweenRange {

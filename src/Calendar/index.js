@@ -110,7 +110,7 @@ export default class Calendar extends Component {
         default: PropTypes.string,
       }),
       todayColor: PropTypes.string,
-      weekdayColor: PropTypes.string,
+      floatingWeekdayColor: PropTypes.string,
     }),
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     YearsComponent: PropTypes.func,

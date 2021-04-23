@@ -24,7 +24,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: $blue_10;
+      background-color: var(--day-selection);
       z-index: -1;
     }
 
@@ -34,7 +34,7 @@
       background-color: transparent;
       &:before {
         @include circle($rowHeight);
-        background-color: $blue_10;
+        background-color: var(--day-selection);
         z-index: -1;
       }
       &:after {
@@ -58,7 +58,7 @@
     &.startOfOddMonth:before,
     &.endOfEvenMonth:before,
     &.endOfOddMonth:before {
-      background-color: $blue_10 !important;
+      background-color: var(--day-selection) !important;
     }
   }
 
@@ -72,7 +72,7 @@
       &:before {
         @include circle($rowHeight);
 
-        background-color: $blue_10;
+        background-color: var(--day-selection);
         z-index: -1;
       }
     }
@@ -92,11 +92,11 @@
     z-index: 2;
 
     > span {
-      color: $blue;
+      color: var(--primary);
     }
 
     &.disabled > span {
-      color: $blue_20;
+      color: var(--primary_20);
     }
 
     &:before {
@@ -106,7 +106,7 @@
     }
 
     &.disabled:before {
-      box-shadow: inset 0 0 0 1px $blue_25;
+      box-shadow: inset 0 0 0 1px var(--primary_25);
     }
   }
 
@@ -128,7 +128,7 @@
       z-index: 2;
 
       .month {
-        color: #fff;
+        color: var(--background);
         top: 7px;
       }
       .day {
@@ -140,7 +140,7 @@
     }
   }
   &.disabled {
-    color: $blue_20;
+    color: var(--primary_20);
     cursor: not-allowed;
   }
 }
@@ -157,12 +157,12 @@
 }
 
 .month {
-  color: $blue_65;
+  color: var(--month);
   top: 2px;
 }
 
 .year {
-  color: $blue_65;
+  color: var(--month);
   bottom: 3px;
 }
 
@@ -182,10 +182,10 @@
       width: 50%;
       height: $rowHeight;
       transform: translateY(-50%);
-      background-color: $blue_25;
+      background-color: var(--primary_25);
 
       .edge & {
-        background-color: $blue;
+        background-color: var(--primary);
       }
     }
   }
@@ -199,11 +199,11 @@
 
   &.disabled {
     .selection.selection {
-      background-color: $blue_25 !important;
+      background-color: var(--primary_25) !important;
 
       .day,
       .month {
-        color: #fff;
+        color: var(--background);
         font-weight: normal;
       }
     }
@@ -251,8 +251,8 @@
       justify-content: center;
       align-items: center;
       border-radius: 0;
-      color: $blue !important;
-      background-color: $blue_25 !important;
+      color: var(--primary) !important;
+      background-color: var(--primary_25) !important;
     }
 
     &.startOfWeek,
@@ -272,7 +272,7 @@
         width: 50%;
         height: $rowHeight;
         transform: translateY(-50%);
-        background-color: $blue_25;
+        background-color: var(--primary_25);
       }
     }
 
@@ -310,8 +310,8 @@
 
   &.selected .selection {
     .edge & {
-      color: #fff !important;
-      background-color: $blue !important;
+      color: var(--background) !important;
+      background-color: var(--primary) !important;
     }
   }
 }
@@ -332,36 +332,36 @@
 }
 
 .startOfEvenMonth {
-  background-color: $blue_5 !important;
+  background-color: var(--primary_5) !important;
   border-radius: 0;
 
   &:before {
-    background-color: #fff;
+    background-color: var(--background);
   }
 
   &:hover {
-    background-color: $blue_5 !important;
+    background-color: var(--primary_5) !important;
     border-radius: 0 50% 50% 50%;
   }
 
   &.selected {
-    background-color: #fff !important;
+    background-color: var(--background) !important;
   }
 }
 
 .startOfOddMonth {
-  background-color: #fff !important;
+  background-color: var(--background) !important;
 
   &.enabled {
-    background-color: $blue_5 !important;
+    background-color: var(--primary_5) !important;
   }
 
   &:before {
-    background-color: $blue_5;
+    background-color: var(--primary_5);
   }
 
   &:hover {
-    background-color: $blue_5 !important;
+    background-color: var(--primary_5) !important;
     border-radius: 50% 0 0 0;
   }
 }
@@ -382,38 +382,38 @@
 }
 
 .endOfOddMonth {
-  background-color: $blue_5 !important;
+  background-color: var(--primary_5) !important;
   border-radius: 0;
 
   &:before {
-    background-color: #fff;
+    background-color: var(--background);
   }
 
   &:hover {
-    background-color: $blue_5 !important;
+    background-color: var(--primary_5) !important;
     border-radius: 50% 50% 0 50%;
   }
 
   &.selected {
-    background-color: $blue_5 !important;
+    background-color: var(--primary_5) !important;
     border-radius: 50% 50% 0 50%;
   }
 }
 
 .endOfEvenMonth {
-  background-color: #fff !important;
+  background-color: var(--background) !important;
   border-radius: 0 0 50% 0;
 
   &.enabled {
-    background-color: $blue_5 !important;
+    background-color: var(--primary_5) !important;
   }
 
   &:before {
-    background-color: $blue_5;
+    background-color: var(--primary_5);
   }
 
   &:hover {
-    background-color: $blue_5 !important;
+    background-color: var(--primary_5) !important;
     border-radius: 0 0 50% 0;
   }
 }
