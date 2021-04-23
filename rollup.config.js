@@ -4,7 +4,6 @@ import url from '@rollup/plugin-url';
 import babel from 'rollup-plugin-babel';
 import peer from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-import scss from 'rollup-plugin-scss'
 import del from 'rollup-plugin-delete';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
@@ -61,14 +60,13 @@ export default [
       peer({
         includeDependencies: true,
       }),
-      scss({
-        output: 'styles.css',
-      }),
       postcss({
-        extract: false,
-        writeDefinitions: true,
-        namedExports: true,
-        use: ['sass'],
+        minimize: true,
+        modules: true,
+        use: {
+          sass: true,
+        }, 
+        extract: true
       }),
       del({
         targets: pkg.files,
@@ -93,9 +91,6 @@ export default [
       ...plugins,
       commonjs({
         sourceMap: true
-      }),
-      scss({
-        output: 'styles.css',
       }),
       postcss({
         extract: false,
