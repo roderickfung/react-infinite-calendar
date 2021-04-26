@@ -2,101 +2,14 @@
 $rowHeight: 40px;
 $borderRadius: 3px;
 
-$background: '#FFF';
-$dark-background: '#424242';
-
-// Light
-$primary: #0f2346;
-$primary_5: #f3f4f6;
-$day-selection: #e7e8ec;
-$primary_15: #dbdee4;
-$primary_20: #cfd3da;
-$primary_25: #c3c8d1;
-$primary_35: #abb2c0;
-$primary_50: #8790a2;
-$month: #647188;
-$primary_75: #4b5b76;
-$secondary: #fd1f6d;
-
-// Dark
-$dark-primary: #d3c09f;
-$dark-primary_5: #525252;
-$dark-day-selection: #e48124;
-$dark-primary_15: #5c6577;
-$dark-primary_20: #4a638d;
-$dark-primary_25: #0b0c0f;
-$dark-primary_35: #315cb3;
-$dark-primary_50: #234996;
-$dark-month: #dc8746;
-$dark-primary_75: #628eda;
-$dark-secondary: #f7c7d7;
-
-:global {
-  body {
-    --text: #fff;
-
-    --background: #{$background};
-    --primary: #{$primary};
-    --primary_5: #{$primary_5};
-    --day-selection: #{$day-selection};
-    --primary_15: #{$primary_15};
-    --primary_20: #{$primary_20};
-    --primary_25: #{$primary_25};
-    --primary_35: #{$primary_35};
-    --primary_50: #{$primary_50};
-    --month: #{$month};
-    --primary_75: #{$primary_75};
-    --secondary: #{$secondary};
-  }
-
-  body.dark-mode {
-    --text: #fff;
-
-    --background: #{$dark-background};
-    --primary: #{$dark-primary};
-    --primary_5: #{$dark-primary_5};
-    --day-selection: #{$dark-day-selection};
-    --primary_15: #{$dark-primary_15};
-    --primary_20: #{$dark-primary_20};
-    --primary_25: #{$dark-primary_25};
-    --primary_35: #{$dark-primary_35};
-    --primary_50: #{$dark-primary_50};
-    --month: #{$dark-month};
-    --primary_75: #{$dark-primary_75};
-    --secondary: #{$dark-secondary};
-  }
-}
-
-
-// Importable in js
-:export {
-  rowHeight: $rowHeight;
-  borderRadius: $borderRadius;
-
-  background: $background;
-  dark-background: $dark-background;
-
-  primary: $primary;
-  primary_5: $primary_5;
-  day-selection: $day-selection;
-  primary_15: $primary_15;
-  primary_20: $primary_20;
-  primary_25: $primary_25;
-  primary_35: $primary_35;
-  primary_50: $primary_50;
-  month: $month;
-  primary_75: $primary_75;
-  secondary: $secondary;  
-
-  primary: $dark-primary;
-  primary_5: $dark-primary_5;
-  day-selection: $dark-day-selection;
-  primary_15: $dark-primary_15;
-  primary_20: $dark-primary_20;
-  primary_25: $dark-primary_25;
-  primary_35: $dark-primary_35;
-  primary_50: $dark-primary_50;
-  month: $dark-month;
-  primary_75: $dark-primary_75;
-  secondary: $dark-secondary;  
-}
+$blue: #0f2346;
+$blue_5: #f3f4f6;
+$blue_10: #e7e8ec;
+$blue_15: #dbdee4;
+$blue_20: #cfd3da;
+$blue_25: #c3c8d1;
+$blue_35: #abb2c0;
+$blue_50: #8790a2;
+$blue_65: #647188;
+$blue_75: #4b5b76;
+$pink: #fd1f6d;

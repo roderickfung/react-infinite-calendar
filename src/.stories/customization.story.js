@@ -31,18 +31,17 @@ storiesOf('Customization', module)
   <InfiniteCalendar
     theme={{
       floatingNav: {
-        background: 'red',
+        background: 'rgba(105, 74, 228, 0.91)',
         chevron: '#FFA726',
         color: '#FFF',
       },
-      headerColor: '#222222',
-      selectionColor: 'orange',
+      headerColor: 'rgb(127, 95, 251)',
+      selectionColor: 'rgb(146, 118, 255)',
       textColor: {
         active: '#FFF',
-        default: '#FFF',
+        default: '#333',
       },
-      todayColor: 'orange',
-      floatingWeekdayColor: '#333333',
+      weekdayColor: 'rgb(146, 118, 255)',
     }}
   />
 ))

@@ -76,8 +76,8 @@ export default function defaultSelectionRenderer(
               <CSSTransition
                 classNames={animation}
                 timeout={{ exit: 250, enter: 250 }}
-                enter={`${shouldAnimate}`}
-                exit={`${shouldAnimate}`}
+                enter={shouldAnimate}
+                leave={shouldAnimate}
               >
                 <span
                   key={`${item}-${value}`}
