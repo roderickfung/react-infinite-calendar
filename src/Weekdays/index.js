@@ -13,7 +13,7 @@ const Weekdays = ({ weekdays, weekStartsOn, theme }) => {
     <ul
       className={styles.root}
       style={{
-        backgroundColor: theme.floatingWeekdayColor,
+        backgroundColor: theme.weekdayColor,
         color: theme.textColor.active,
         paddingRight: scrollbarSize,
       }}

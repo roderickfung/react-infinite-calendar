@@ -36,7 +36,7 @@
   &.blank {
     height: 58px;
     line-height: 58px;
-    color: rgba(var(--background),0.5);
+    color: rgba(255,255,255,0.5);
     font-size: 18px;
     cursor: default;
   }
@@ -46,11 +46,11 @@
   position: relative;
   display: block;
   overflow: hidden;
-  color: rgba(var(--background),0.5);
+  color: rgba(255,255,255,0.5);
   transition: color 0.3s ease;
 
   &.active {
-    color: var(--text);
+    color: rgb(255,255,255);
   }
   &.day {
     height: 38px;
@@ -99,8 +99,7 @@
       }
 
       &:before {
-        color: var(--text);
-        opacity: 0.15;
+        color: rgba(255,255,255, 0.15);
         transform: translateX(1px);
       }
     }

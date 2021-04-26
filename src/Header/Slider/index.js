@@ -47,6 +47,7 @@ export default class Slider extends PureComponent {
   };
   render() {
     const { children, index } = this.props;
+
     return (
       <div className={styles.root}>
         {index !== 0 && (
@@ -55,7 +56,6 @@ export default class Slider extends PureComponent {
         <TransitionGroup>
           {Children.map(children, (child, i) => (
             <CSSTransition
-              key={i}
               timeout={{ exit: 300, enter: 300 }}
               component="div"
               style={{
@@ -64,6 +64,7 @@ export default class Slider extends PureComponent {
               classNames={classNames(transition, styles.wrapper)}
             >
               <div
+                key={i}
                 className={styles.slide}
                 style={{ transform: `translateX(${100 * i}%)` }}
               >

@@ -6,7 +6,7 @@
   &.even {
     .row {
       li {
-        background-color: var(--background);
+        background-color: #fff;
       }
     }
   }
@@ -14,7 +14,7 @@
   &.odd {
     .row {
       li {
-        background-color: var(--primary_5);
+        background-color: $blue_5;
       }
     }
   }
@@ -55,7 +55,7 @@
   z-index: 3;
   pointer-events: none;
 
-  background-color: rgba(var(--background), 0.85);
+  background-color: rgba(255, 255, 255, 0.85);
 
   opacity: 0;
   transition: opacity 0.3s ease;
