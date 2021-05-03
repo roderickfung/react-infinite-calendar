@@ -16,13 +16,13 @@ export default withImmutableProps(({ setDisplayDate }) => ({
     return (
       <Slider
         index={index !== -1 ? index : dates.length - 1}
-        onChange={index =>
+        onChange={(index) =>
           setDisplayDate(dates[index], () =>
             setTimeout(() => scrollToDate(dates[index], 0, true), 50)
           )
         }
       >
-        {dates.map(value =>
+        {dates.map((value) =>
           defaultSelectionRenderer(value, {
             ...props,
             key: index,

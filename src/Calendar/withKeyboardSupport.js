@@ -2,7 +2,7 @@ import { compose, withHandlers, withProps, withState } from 'recompose';
 import { addDays, format, isAfter, isBefore } from 'date-fns';
 import { keyCodes, withImmutableProps } from '../utils';
 
-const enhanceDay = withProps(props => ({
+const enhanceDay = withProps((props) => ({
   isHighlighted: props.highlightedDate === props.date,
 }));
 
@@ -12,7 +12,7 @@ export const withKeyboardSupport = compose(
     DayComponent: enhanceDay(DayComponent),
   })),
   withHandlers({
-    onKeyDown: props => e => handleKeyDown(e, props),
+    onKeyDown: (props) => (e) => handleKeyDown(e, props),
   }),
   withProps(({ highlightedDate, onKeyDown, passThrough, setHighlight }) => ({
     passThrough: {
@@ -20,7 +20,7 @@ export const withKeyboardSupport = compose(
       Day: {
         ...passThrough.Day,
         highlightedDate: format(highlightedDate, 'YYYY-MM-DD'),
-        onClick: date => {
+        onClick: (date) => {
           setHighlight(null);
           passThrough.Day.onClick(date);
         },

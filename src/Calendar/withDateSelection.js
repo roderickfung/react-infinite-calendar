@@ -54,7 +54,7 @@ export const withDateSelection = compose(
   withState(
     'scrollDate',
     'setScrollDate',
-    props => props.selected || new Date()
+    (props) => props.selected || new Date()
   ),
   withProps(
     ({ onSelect, setScrollDate, hoveredDate, setHoveredDate, ...props }) => {
@@ -70,7 +70,7 @@ export const withDateSelection = compose(
             onMouseLeave: () => setHoveredDate(undefined),
           },
           Years: {
-            onSelect: year =>
+            onSelect: (year) =>
               handleYearSelect(year, { onSelect, selected, setScrollDate }),
           },
         },

@@ -19,7 +19,7 @@ const Weekdays = ({ weekdays, weekStartsOn, theme }) => {
       }}
       aria-hidden={true}
     >
-      {orderedWeekdays.map(val => (
+      {orderedWeekdays.map((val) => (
         <li key={`Weekday-${val}`} className={styles.day}>
           {val}
         </li>

@@ -5,8 +5,8 @@ import babel from 'rollup-plugin-babel';
 import peer from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import del from 'rollup-plugin-delete';
+import copy from 'rollup-plugin-cpy'
 import { terser } from 'rollup-plugin-terser';
-
 import pkg from './package.json';
 
 const umdOutputOptions = {
@@ -18,6 +18,7 @@ const umdOutputOptions = {
     'react-dom': 'reactDom',
     'react-transition-group': 'reactTransitionGroup',
   },
+  sourcemap: true
 };
 
 const plugins = [
@@ -61,16 +62,23 @@ export default [
         includeDependencies: true,
       }),
       postcss({
-        extract: './styles.css',
-        modules: {
-          generateScopedName: 'Cal__[name]__[local]',
-        },
-        use: ['sass'],
+        modules: true,
+        use: {
+          sass: true,
+        }, 
+        extract: 'styles.css'
       }),
       del({
         targets: pkg.files,
       }),
-    ],
+      copy({
+        files: ['lib/styles.css'],
+        dest: './',
+        options: {
+          verbose: true
+        }
+      })
+    ]
   },
   {
     input: 'src/index.js',
@@ -81,7 +89,6 @@ export default [
       },
       {
         file: `${pkg['umd:main']}/${pkg.name}.min.js`,
-        sourcemap: true,
         ...umdOutputOptions,
       },
     ],
@@ -89,29 +96,16 @@ export default [
     plugins: [
       ...plugins,
       commonjs({
-        namedExports: {
-          'prop-types': [
-            'array',
-            'arrayOf',
-            'func',
-            'number',
-            'object',
-            'oneOf',
-            'oneOfType',
-            'string',
-          ],
-        },
+        sourceMap: true
       }),
       postcss({
-        modules: {
-          generateScopedName: 'Cal__[name]__[local]',
-        },
-        use: ['sass'],
+        modules: true,
+        use: {
+          sass: true,
+        }, 
+        extract: true
       }),
-      terser({
-        include: [/^.+\.min\.js$/],
-        sourcemap: true,
-      }),
-    ],
-  },
+      terser({})
+    ]
+  }
 ];

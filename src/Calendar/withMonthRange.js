@@ -18,11 +18,11 @@ export const withMonthRange = compose(
     passThrough: {
       ...passThrough,
       Years: {
-        onSelect: date => handleSelect(date, { selected, ...props }),
+        onSelect: (date) => handleSelect(date, { selected, ...props }),
         handlers: {
           onMouseOver:
             !isTouchDevice && props.selectionStart
-              ? e => handleMouseOver(e, { selected, ...props })
+              ? (e) => handleMouseOver(e, { selected, ...props })
               : null,
         },
       },

@@ -36,7 +36,7 @@ const allowToSwitchYear = ({ selected, year, min, minDate, max, maxDate }) => {
   });
 };
 
-const getSelected = selected => {
+const getSelected = (selected) => {
   if (isRange(selected)) {
     return {
       start: startOfMonth(selected.start),
@@ -76,7 +76,7 @@ const Years = ({
 
   const handleClick = useCallback(
     (date, e) => {
-      onSelect(date, e, date => scrollToDate(date));
+      onSelect(date, e, (date) => scrollToDate(date));
       if (hideOnSelect) {
         window.requestAnimationFrame(() => setDisplay('days'));
       }
@@ -85,7 +85,7 @@ const Years = ({
   );
 
   const renderMonths = useCallback(
-    year => {
+    (year) => {
       const months = getMonthsForYear(
         year,
         getSelected(selected).start.getDate()
@@ -123,7 +123,7 @@ const Years = ({
             return (
               <li
                 key={index}
-                onClick={e => {
+                onClick={(e) => {
                   e.stopPropagation();
 
                   if (!isDisabled) {
@@ -209,7 +209,7 @@ const Years = ({
         height={containerHeight}
         itemCount={yearsSliced.length}
         estimatedItemSize={rowHeight}
-        itemSize={index => heights[index]}
+        itemSize={(index) => heights[index]}
         scrollOffset={scrollOffset}
         renderItem={({ index, style }) => {
           const year = yearsSliced[index];
@@ -233,7 +233,7 @@ const Years = ({
                 [styles.first]: index === 0,
                 [styles.last]: index === yearsSliced.length - 1,
               })}
-              onClick={e =>
+              onClick={(e) =>
                 shouldAllowToSwitchYear && handleClick(new Date(year, 0, 1), e)
               }
               title={shouldAllowToSwitchYear ? `Set year to ${year}` : ''}

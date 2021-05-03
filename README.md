@@ -32,8 +32,8 @@
 Using [npm](https://www.npmjs.com/):
 
 ```
-npm install @appannie/react-infinite-calendar react-addons-css-transition-group --save
-yarn add @appannie/react-infinite-calendar react-addons-css-transition-group
+npm install @appannie/react-infinite-calendar --save react-transition-group
+yarn add @appannie/react-infinite-calendar react-transition-group
 ```
 
 ES6, CommonJS, and UMD builds are available with each distribution. For example:
