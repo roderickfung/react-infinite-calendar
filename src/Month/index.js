@@ -15,6 +15,20 @@ import {
 import styles from './Month.scss';
 import dayStyles from '../Day/Day.scss';
 
+const Row = React.memo(({ isPartialRow, label, edge, height, days }) => (
+  <ul
+    className={classNames(styles.row, {
+      [styles.partial]: isPartialRow,
+      [dayStyles.edge]: edge,
+    })}
+    style={{ height: height }}
+    role="row"
+    aria-label={label}
+  >
+    {days}
+  </ul>
+));
+
 const Month = ({
   locale,
   showOverlay,
@@ -117,18 +131,14 @@ const Month = ({
         dow += 1;
       }
       monthRows[i] = (
-        <ul
+        <Row
+          isPartialRow={row.length !== 7}
           key={`Row-${i}`}
-          className={classNames(styles.row, {
-            [styles.partial]: row.length !== 7,
-            [dayStyles.edge]: edgeRows[i],
-          })}
-          style={{ height: rowHeight }}
-          role="row"
-          aria-label={`Week ${i + 1}`}
-        >
-          {days}
-        </ul>
+          label={`Week ${i + 1}`}
+          edge={edgeRows[i]}
+          height={rowHeight}
+          days={days}
+        />
       );
     }
 
