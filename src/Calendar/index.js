@@ -54,6 +54,7 @@ export default class Calendar extends Component {
     this.state = {
       display: props.display,
     };
+    this._MonthList = React.createRef();
   }
   static propTypes = {
     autoFocus: PropTypes.bool,
@@ -197,17 +198,17 @@ export default class Calendar extends Component {
     return this.scrollTop;
   };
   getDateOffset = (date) => {
-    return this._MonthList && this._MonthList.getDateOffset(date);
+    return this._MonthList && this._MonthList.current.getDateOffset(date);
   };
   scrollTo = (offset) => {
-    return this._MonthList && this._MonthList.scrollTo(offset);
+    return this._MonthList && this._MonthList.current.scrollTo(offset);
   };
   scrollToDate = (date = new Date(), offset, shouldAnimate) => {
     const { display } = this.props;
 
     return (
       this._MonthList &&
-      this._MonthList.scrollToDate(
+      this._MonthList.current.scrollToDate(
         date,
         offset,
         shouldAnimate && display === 'days',
@@ -263,7 +264,7 @@ export default class Calendar extends Component {
   updateCurrentMonth = () => {
     this._MonthList &&
       this.setState({
-        currentMonth: this._MonthList.currentMonth,
+        currentMonth: this._MonthList.current.currentMonth,
       });
   };
   updateTodayHelperPosition = (scrollSpeed) => {
@@ -402,9 +403,7 @@ export default class Calendar extends Component {
               />
             )}
             <MonthList
-              ref={(instance) => {
-                this._MonthList = instance;
-              }}
+              ref={this._MonthList}
               DayComponent={DayComponent}
               disabledDates={disabledDates}
               disabledDays={disabledDays}
