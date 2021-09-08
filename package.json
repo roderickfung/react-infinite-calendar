@@ -104,5 +104,8 @@
     "picker",
     "material",
     "flat"
-  ]
+  ],
+  "volta": {
+    "node": "14.17.6"
+  }
 }
