@@ -1,4 +1,4 @@
-export default {
+const displayOptions = {
   hideYearsOnSelect: true,
   layout: 'portrait',
   overscanMonthCount: 2,
@@ -11,3 +11,5 @@ export default {
   showWeekdays: true,
   todayHelperRowOffset: 4,
 };
+
+export default displayOptions;

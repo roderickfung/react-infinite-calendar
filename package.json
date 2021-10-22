@@ -33,7 +33,8 @@
     "prop-types": "^15.7.2",
     "react-tiny-virtual-list": "^2.2.0",
     "react-transition-group": "^4.4.1",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "styled-components": "^5.3.3"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.2",
@@ -68,7 +69,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-watch": "^7.0.0",
     "husky": "^6.0.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.1",
     "postcss": "^8.2.12",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
@@ -106,6 +107,7 @@
     "flat"
   ],
   "volta": {
-    "node": "14.17.6"
+    "node": "14.17.6",
+    "yarn": "1.22.17"
   }
 }

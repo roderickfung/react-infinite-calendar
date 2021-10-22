@@ -1,0 +1,267 @@
+@import '../variables';
+@import '../Calendar/Range/Range';
+
+$cellSize: 40px;
+
+.root {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, rgba(15, 30, 70, 0.12) 0, #fff 3px);
+  background-color: #fff;
+
+  > * {
+    box-sizing: border-box;
+  }
+}
+
+.list {
+  box-sizing: border-box;
+
+  &.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.year {
+  display: flex;
+  padding: 0 20px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
+
+  &.withQuarters {
+    border-bottom: 1px solid $blue_15;
+
+    & > label {
+      box-sizing: border-box;
+      padding: 5px 0px;
+      height: 100%;
+      line-height: $cellSize;
+    }
+  }
+
+  label:not(.label) {
+    flex-basis: 42%;
+
+    &.currentYear {
+      & > span {
+        color: $pink;
+      }
+    }
+
+    :hover > span {
+      color: $pink;
+    }
+
+    span {
+      flex-shrink: 0;
+      color: $blue;
+    }
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-around;
+    width: 200px;
+    height: 100%;
+
+    > label {
+      padding: 18px;
+      &.selected {
+        & > span {
+          color: $pink;
+        }
+      }
+    }
+
+    div {
+      &:not(:last-child) {
+        border-bottom: 1px solid $blue_25;
+      }
+
+      ol {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 5px 0px;
+        padding: 0;
+        min-width: 5 * $cellSize;
+        font-size: 12px;
+        border-radius: 20px;
+
+        &.currentQuarter {
+          border: 1px solid $blue_25;
+        }
+
+        & > label {
+          width: 10px;
+        }
+
+        &.disabled {
+          cursor: not-allowed;
+
+          & > li {
+            color: $blue_25;
+          }
+
+          &:hover {
+            background-color: inherit;
+          }
+        }
+
+        &:hover {
+          background-color: $blue_10;
+        }
+
+        &.selected {
+          background: $blue;
+          color: #fff;
+          & > li {
+            color: #fff;
+          }
+        }
+
+        li {
+          margin: 0 10px;
+          display: flex;
+          width: $cellSize;
+          height: $cellSize;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: center;
+          list-style: none;
+          border-radius: 50%;
+          box-sizing: border-box;
+
+          color: $blue;
+          font-weight: normal;
+          text-transform: capitalize;
+        }
+      }
+
+      &:hover,
+      &.active {
+        position: relative;
+      }
+
+      &.active {
+        font-size: 32px;
+      }
+
+      // Spacing
+      $spacing: 0;
+      &.first {
+        padding-top: $spacing;
+      }
+      &.last {
+        padding-bottom: $spacing;
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+/*
+ * Range selection styles
+ */
+.range.selected {
+  &.start,
+  &.end {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 50%;
+      height: $cellSize;
+      margin-top: -0.5 * $cellSize;
+      background-color: $blue_25;
+    }
+
+    .selection {
+      font-weight: bold;
+      color: #fff;
+      background-color: $blue;
+      box-sizing: border-box;
+    }
+  }
+
+  &.disabled {
+    background-color: $blue_25 !important;
+    .selection.selection {
+      background-color: $blue_25 !important;
+      color: #fff;
+    }
+    &:after {
+      background-color: $blue_25 !important;
+    }
+  }
+
+  &.start {
+    .selection {
+      border-radius: 20px;
+    }
+
+    &:after {
+      right: 0;
+    }
+
+    &.end:after {
+      display: none;
+    }
+  }
+
+  &.end {
+    &:after {
+      left: 0;
+    }
+
+    .selection {
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+    }
+  }
+  &:nth-child(6n).start:after {
+    display: none;
+  }
+  &:nth-child(6n + 1).end:after {
+    display: none;
+  }
+
+  &.betweenRange {
+    border-radius: 0;
+    background-color: $blue_25 !important;
+    .selection {
+      left: 0;
+      right: 0;
+      width: 100%;
+      margin-left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $blue;
+    }
+  }
+  &:nth-child(6n + 1).betweenRange {
+    border-radius: 20px;
+  }
+  &:nth-child(6n).betweenRange {
+    border-radius: 20px;
+  }
+}
