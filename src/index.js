@@ -12,6 +12,7 @@ export {
 export { withRange } from './Calendar/withRange';
 export { EVENT_TYPE } from './Calendar/Range';
 export { withMonthRange } from './Calendar/withMonthRange';
+export { withQuarterRange } from './Calendar/withQuarterRange';
 /*
  * By default, Calendar is a controlled component.
  * Export a sensible default for minimal setup
@@ -27,6 +28,7 @@ export default class DefaultCalendar extends Component {
         ? this.props.selected
         : new Date(),
   };
+
   _getRef = (ref) => {
     this.calendar = ref;
   };

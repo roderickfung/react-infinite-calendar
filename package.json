@@ -34,7 +34,8 @@
     "prop-types": "^15.7.2",
     "react-tiny-virtual-list": "^2.2.0",
     "react-transition-group": "^4.4.1",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "styled-components": "^5.3.3"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.2",

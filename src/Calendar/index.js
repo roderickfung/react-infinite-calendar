@@ -17,6 +17,7 @@ import CurrentMonth from '../CurrentMonth';
 import Header from '../Header';
 import MonthList from '../MonthList';
 import Weekdays from '../Weekdays';
+import Quarters from '../Quarters';
 import Years from '../Years';
 import Day from '../Day';
 import { parse, format, startOfDay } from 'date-fns';
@@ -30,6 +31,7 @@ export const withDefaultProps = defaultProps({
   HeaderComponent: Header,
   height: 500,
   isWeeklySelection: false,
+  isQuarterlySelection: false,
   keyboardSupport: true,
   max: new Date(2050, 11, 31),
   maxDate: new Date(2050, 11, 31),
@@ -44,25 +46,26 @@ export const withDefaultProps = defaultProps({
   tabIndex: 1,
   width: 400,
   YearsComponent: Years,
+  QuartersComponent: Quarters,
+  fiscalYearStart: 1,
 });
 
 export default class Calendar extends Component {
   constructor(props) {
     super(...arguments);
     this.updateYears(props);
-
     this.state = {
       display: props.display,
     };
+
     this._MonthList = React.createRef();
   }
   static propTypes = {
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
-    DayComponent: PropTypes.func,
     disabledDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
     disabledDays: PropTypes.arrayOf(PropTypes.number),
-    display: PropTypes.oneOf(['years', 'days']),
+    display: PropTypes.oneOf(['years', 'quarters', 'days']),
     displayOptions: PropTypes.shape({
       hideYearsOnSelect: PropTypes.bool,
       layout: PropTypes.oneOf(['portrait', 'landscape']),
@@ -78,6 +81,7 @@ export default class Calendar extends Component {
     }),
     height: PropTypes.number,
     isWeeklySelection: PropTypes.bool,
+    isQuarterlySelection: PropTypes.bool,
     keyboardSupport: PropTypes.bool,
     locale: PropTypes.shape({
       blank: PropTypes.string,
@@ -114,8 +118,12 @@ export default class Calendar extends Component {
       weekdayColor: PropTypes.string,
     }),
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    DayComponent: PropTypes.func,
     YearsComponent: PropTypes.func,
+    QuartersComponent: PropTypes.func,
+    fiscalYearStart: PropTypes.number,
   };
+
   componentDidMount() {
     const { autoFocus } = this.props;
     const { showCurrentMonth } = this.getDisplayOptions();
@@ -128,6 +136,7 @@ export default class Calendar extends Component {
       this.updateCurrentMonth();
     }
   }
+
   UNSAFE_componentWillUpdate(nextProps) {
     let { min, minDate, max, maxDate } = this.props;
 
@@ -144,6 +153,7 @@ export default class Calendar extends Component {
       this.setState({ display: nextProps.display });
     }
   }
+
   updateYears(props = this.props) {
     this._min = parse(props.min);
     this._max = parse(props.max);
@@ -172,6 +182,7 @@ export default class Calendar extends Component {
 
     this.months = months;
   }
+
   getDisabledDates(disabledDates) {
     return (
       disabledDates &&
@@ -179,6 +190,7 @@ export default class Calendar extends Component {
     );
   }
   _displayOptions = {};
+
   getDisplayOptions(displayOptions = this.props.displayOptions) {
     return Object.assign(
       this._displayOptions,
@@ -267,6 +279,7 @@ export default class Calendar extends Component {
         currentMonth: this._MonthList.current.currentMonth,
       });
   };
+
   updateTodayHelperPosition = (scrollSpeed) => {
     const today = this.today;
     const scrollTop = this.scrollTop;
@@ -306,9 +319,11 @@ export default class Calendar extends Component {
       this.setState({ showToday: newState });
     }
   };
+
   setDisplay = (display) => {
     this.setState({ display });
   };
+
   render() {
     let {
       className,
@@ -325,11 +340,14 @@ export default class Calendar extends Component {
       tabIndex,
       width,
       YearsComponent,
+      QuartersComponent,
       minDate,
       maxDate,
       min,
       max,
+      fiscalYearStart,
     } = this.props;
+
     const {
       hideYearsOnSelect,
       layout,
@@ -427,6 +445,30 @@ export default class Calendar extends Component {
               initialScrollDate={initialScrollDate}
             />
           </div>
+          {display === 'quarters' && (
+            <QuartersComponent
+              height={height}
+              hideOnSelect={false}
+              locale={locale}
+              max={this._max}
+              maxDate={this._maxDate}
+              min={this._min}
+              minDate={this._minDate}
+              scrollToDate={this.scrollToDate}
+              selected={validSelection}
+              setDisplay={this.setDisplay}
+              showMonths={showMonthsForYears}
+              theme={theme}
+              today={today}
+              width={width}
+              years={range(
+                this._min.getFullYear(),
+                this._max.getFullYear() + 1
+              )}
+              fiscalYearStart={fiscalYearStart}
+              {...passThrough.Quarters}
+            />
+          )}
           {display === 'years' && (
             <YearsComponent
               height={height}
