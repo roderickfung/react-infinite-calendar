@@ -46,8 +46,9 @@ const enhanceYear = withPropsOnChange(['selected'], ({ selected }) => ({
 // Enhancer to handle selecting and displaying a single date
 export const withDateSelection = compose(
   withDefaultProps,
-  withImmutableProps(({ DayComponent, YearsComponent }) => ({
+  withImmutableProps(({ DayComponent, QuartersComponent, YearsComponent }) => ({
     DayComponent: enhanceDay(DayComponent),
+    QuartersComponent: enhanceYear(QuartersComponent),
     YearsComponent: enhanceYear(YearsComponent),
   })),
   withState('hoveredDate', 'setHoveredDate'),
@@ -57,7 +58,14 @@ export const withDateSelection = compose(
     (props) => props.selected || new Date()
   ),
   withProps(
-    ({ onSelect, setScrollDate, hoveredDate, setHoveredDate, ...props }) => {
+    ({
+      onSelect,
+      setScrollDate,
+      hoveredDate,
+      setHoveredDate,
+      fiscalStart,
+      ...props
+    }) => {
       const selected = sanitizeDate(props.selected, props);
 
       return {
@@ -69,6 +77,17 @@ export const withDateSelection = compose(
             onMouseEnter: setHoveredDate,
             onMouseLeave: () => setHoveredDate(undefined),
           },
+          Quarters: {
+            fiscalStart: fiscalStart,
+            onSelect: (month) => {
+              console.log('SELECTED QUARTER MONTH', month);
+              return handleYearSelect(month, {
+                onSelect,
+                selected,
+                setScrollDate,
+              });
+            },
+          },
           Years: {
             onSelect: (year) =>
               handleYearSelect(year, { onSelect, selected, setScrollDate }),
@@ -79,6 +98,8 @@ export const withDateSelection = compose(
     }
   )
 );
+
+// function handleQuarterSelect(date, { })
 
 function handleYearSelect(date, { setScrollDate, onSelect }) {
   const newDate = parse(date);
