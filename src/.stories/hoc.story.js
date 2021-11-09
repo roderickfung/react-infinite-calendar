@@ -118,6 +118,7 @@ storiesOf('Higher Order Components', module)
   .add('Quarterly Selection', () => (
     <InfiniteCalendar
       isQuarterlySelection
+      selected={subMonths(new Date(), 3)}
       fiscalYearStart={5}
       display={'quarters'}
       displayOptions={{

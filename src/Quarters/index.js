@@ -25,7 +25,7 @@ const parseWithinRange = ({ months, selected }) => {
 };
 
 const isSameQuarter = (months, today) =>
-  isAfter(today, months[0]) && isBefore(today, months[2]);
+  months.some((month) => isSameMonth(month, today));
 
 const isDateDisabled = ({ date, min, minDate, max, maxDate }) =>
   isBefore(date, startOfMonth(min)) ||
@@ -54,11 +54,7 @@ const getSelected = (selected) => {
       end: endOfMonth(selected.end),
     };
   }
-  // remove time
-  // return {
-  //   start: startOfMonth(parse(format(selected, 'YYYY-MM-DD'))),
-  //   end: endOfMonth(addMonths(parse(format(selected, 'YYYY-MM-DD')), 2)),
-  // };
+
   return {
     start: parse(format(selected, 'YYYY-MM-DD')),
     end: parse(format(selected, 'YYYY-MM-DD')),
@@ -180,7 +176,7 @@ const Quarters = (props) => {
               );
 
               return (
-                <div key={`${getMonth(months[0])} - $P`}>
+                <div key={`${getMonth(months[0])}`}>
                   <ol
                     className={classNames(styles.month, {
                       [styles.selected]: isSelected,
