@@ -92,6 +92,10 @@ $cellSize: 40px;
         font-size: 12px;
         border-radius: 20px;
 
+        &.currentQuarter {
+          border: 1px solid $blue_25;
+        }
+
         & > label {
           width: 10px;
         }
@@ -135,19 +139,6 @@ $cellSize: 40px;
           color: $blue;
           font-weight: normal;
           text-transform: capitalize;
-
-          // &.selected {
-          //   position: relative;
-          //   z-index: 1;
-          //   color: #fff;
-          //   border: 0;
-
-          //   .selection {
-          //     @include circle($cellSize);
-          //     line-height: $cellSize;
-          //     z-index: 2;
-          //   }
-          // }
         }
       }
 
@@ -210,8 +201,7 @@ $cellSize: 40px;
 
   &.start {
     .selection {
-      border-top-left-radius: 50%;
-      border-bottom-left-radius: 50%;
+      border-radius: 20px;
     }
 
     &:after {
@@ -255,11 +245,9 @@ $cellSize: 40px;
     }
   }
   &:nth-child(6n + 1).betweenRange {
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
+    border-radius: 20px;
   }
   &:nth-child(6n).betweenRange {
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
+    border-radius: 20px;
   }
 }

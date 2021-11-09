@@ -18,10 +18,11 @@ import styles from './Quarters.scss';
 
 const SPACING = 0;
 
-// const getQuarter = (date, fiscalYearStart) => {
-//   const fiscalDate = new Date(getYear(date), fiscalYearStart, 1);
-
-// };
+const parseWithinRange = ({ months, selected }) => {
+  return months.some((month) =>
+    isWithinRange(month, getSelected(selected).start, getSelected(selected).end)
+  );
+};
 
 const isSameQuarter = (months, today) => {
   return isAfter(today, months[0]) && isBefore(today, months[2]);
@@ -127,8 +128,11 @@ const Quarters = (props) => {
                 )
               );
 
-              const isStart = isSameQuarter(months, selected.start);
-              const isEnd = isSameQuarter(months, selected.end);
+              const isStart = isSameQuarter(
+                months,
+                getSelected(selected).start
+              );
+              const isEnd = isSameQuarter(months, getSelected(selected).end);
 
               const style = Object.assign(
                 {},
@@ -151,17 +155,16 @@ const Quarters = (props) => {
                       [styles.selected]: isSelected,
                       [styles.currentQuarter]: isCurrentQuarter,
                       [styles.disabled]: isDisabled,
-                      [styles.range]: !(isStart && isEnd),
+                      [styles.range]: isRange(selected) && !(isStart && isEnd),
                       [styles.start]: isStart,
+                      [styles.end]: isEnd,
                       [styles.betweenRange]:
-                        isWithinRange(
-                          months[0],
-                          selected.start,
-                          selected.end
-                        ) &&
+                        parseWithinRange({
+                          months,
+                          selected,
+                        }) &&
                         !isStart &&
                         !isEnd,
-                      [styles.end]: isEnd,
                     })}
                     style={style}
                     onClick={(e) => {
@@ -299,7 +302,7 @@ const Quarters = (props) => {
               }
             >
               <label
-                class={classNames({
+                className={classNames({
                   [styles.currentYear]: currentYear === year,
                 })}
               >

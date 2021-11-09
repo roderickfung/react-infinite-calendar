@@ -1,4 +1,4 @@
-import { min, max, startOfMonth, endOfMonth } from 'date-fns';
+import { min, max, startOfMonth, endOfMonth, addMonths } from 'date-fns';
 import { compose, withProps, withState } from 'recompose';
 import { withDefaultProps } from './';
 import { withImmutableProps } from '../utils';
@@ -20,7 +20,16 @@ export const withQuarterRange = compose(
       ...passThrough,
       Quarters: {
         hoveredDate: hoveredDate,
-        onSelect: (date) => handleSelect(date, { selected, ...props }),
+        onSelect: (date) => {
+          if (props.selectionStart) {
+            return handleSelect(endOfMonth(addMonths(date, 2)), {
+              selected,
+              ...props,
+            });
+          }
+
+          return handleSelect(date, { selected, ...props });
+        },
       },
       Years: {
         onSelect: (date) => handleSelect(date, { selected, ...props }),
