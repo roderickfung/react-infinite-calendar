@@ -106,7 +106,28 @@ const Quarters = (props) => {
     (chunked) => {
       return (
         <>
-          <label>Q1</label>
+          <article className="quarter-label">
+            {chunked.map((months, index) => {
+              const isSelected = months.some((month) =>
+                isWithinRange(
+                  month,
+                  getSelected(selected).start,
+                  getSelected(selected).end
+                )
+              );
+
+              return (
+                <label
+                  key={`Q${index + 1}`}
+                  className={classNames('label', {
+                    [styles.selected]: isSelected,
+                  })}
+                >
+                  <span>{`Q${index + 1}`}</span>
+                </label>
+              );
+            })}
+          </article>
           <article className="quarterly-view">
             {chunked.map((months) => {
               const isDisabled = months.some((month) => {
@@ -312,7 +333,7 @@ const Quarters = (props) => {
               }
             >
               <label
-                className={classNames({
+                className={classNames('year-label', {
                   [styles.currentYear]: currentYear === year,
                 })}
               >

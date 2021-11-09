@@ -48,11 +48,14 @@ $cellSize: 40px;
     border-bottom: 1px solid $blue_15;
 
     & > label {
+      box-sizing: border-box;
+      padding: 5px 0px;
+      height: 100%;
       line-height: $cellSize;
     }
   }
 
-  label {
+  label:not(.label) {
     flex-basis: 42%;
 
     &.currentYear {
@@ -61,7 +64,7 @@ $cellSize: 40px;
       }
     }
 
-    &:hover > span {
+    :hover > span {
       color: $pink;
     }
 
@@ -70,12 +73,23 @@ $cellSize: 40px;
       color: $blue;
     }
   }
+
   article {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: space-around;
     width: 200px;
+    height: 100%;
+
+    > label {
+      padding: 18px;
+      &.selected {
+        & > span {
+          color: $pink;
+        }
+      }
+    }
 
     div {
       &:not(:last-child) {
