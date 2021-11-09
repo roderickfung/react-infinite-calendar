@@ -65,7 +65,7 @@ export default class Calendar extends Component {
     className: PropTypes.string,
     disabledDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
     disabledDays: PropTypes.arrayOf(PropTypes.number),
-    display: PropTypes.oneOf(['years', 'days']),
+    display: PropTypes.oneOf(['years', 'quarters', 'days']),
     displayOptions: PropTypes.shape({
       hideYearsOnSelect: PropTypes.bool,
       layout: PropTypes.oneOf(['portrait', 'landscape']),
