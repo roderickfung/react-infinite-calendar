@@ -30,6 +30,12 @@ export const withQuarterRange = compose(
 
           return handleSelect(date, { selected, ...props });
         },
+        handlers: {
+          onMouseOver:
+            !isTouchDevice && props.selectionStart
+              ? (e) => handleMouseOver(e, { selected, ...props })
+              : null,
+        },
       },
       Years: {
         onSelect: (date) => handleSelect(date, { selected, ...props }),

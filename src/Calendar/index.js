@@ -348,8 +348,6 @@ export default class Calendar extends Component {
       fiscalYearStart,
     } = this.props;
 
-    // console.log('PASSTHROUGH', passThrough);
-
     const {
       hideYearsOnSelect,
       layout,

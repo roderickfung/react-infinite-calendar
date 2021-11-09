@@ -132,7 +132,6 @@ export const withDateSelection = compose(
             fiscalYearStart,
             isQuarterlySelection: Boolean(props.isQuarterlySelection),
             onSelect: (month) => {
-              console.log('SELECTED QUARTER MONTH', month);
               return handleYearSelect(month, {
                 onSelect,
                 selected,

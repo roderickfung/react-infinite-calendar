@@ -9,10 +9,10 @@ import {
   isAfter,
   isBefore,
   isWithinRange,
+  isSameMonth,
   parse,
   getMonth,
   addYears,
-  addMonths,
 } from 'date-fns';
 import styles from './Quarters.scss';
 
@@ -24,9 +24,8 @@ const parseWithinRange = ({ months, selected }) => {
   );
 };
 
-const isSameQuarter = (months, today) => {
-  return isAfter(today, months[0]) && isBefore(today, months[2]);
-};
+const isSameQuarter = (months, today) =>
+  isAfter(today, months[0]) && isBefore(today, months[2]);
 
 const isDateDisabled = ({ date, min, minDate, max, maxDate }) =>
   isBefore(date, startOfMonth(min)) ||
@@ -56,9 +55,13 @@ const getSelected = (selected) => {
     };
   }
   // remove time
+  // return {
+  //   start: startOfMonth(parse(format(selected, 'YYYY-MM-DD'))),
+  //   end: endOfMonth(addMonths(parse(format(selected, 'YYYY-MM-DD')), 2)),
+  // };
   return {
-    start: startOfMonth(parse(format(selected, 'YYYY-MM-DD'))),
-    end: endOfMonth(addMonths(parse(format(selected, 'YYYY-MM-DD')), 2)),
+    start: parse(format(selected, 'YYYY-MM-DD')),
+    end: parse(format(selected, 'YYYY-MM-DD')),
   };
 };
 
@@ -128,11 +131,18 @@ const Quarters = (props) => {
                 )
               );
 
-              const isStart = isSameQuarter(
-                months,
-                getSelected(selected).start
-              );
-              const isEnd = isSameQuarter(months, getSelected(selected).end);
+              const getStart = () =>
+                months.some((month) =>
+                  isSameMonth(month, getSelected(selected).start)
+                );
+
+              const getEnd = () =>
+                months.some((month) =>
+                  isSameMonth(month, getSelected(selected).end)
+                );
+
+              const isStart = getStart();
+              const isEnd = getEnd();
 
               const style = Object.assign(
                 {},
@@ -155,7 +165,7 @@ const Quarters = (props) => {
                       [styles.selected]: isSelected,
                       [styles.currentQuarter]: isCurrentQuarter,
                       [styles.disabled]: isDisabled,
-                      [styles.range]: isRange(selected) && !(isStart && isEnd),
+                      [styles.range]: isRange(selected) && !isStart && !isEnd,
                       [styles.start]: isStart,
                       [styles.end]: isEnd,
                       [styles.betweenRange]:
