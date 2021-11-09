@@ -117,23 +117,24 @@ storiesOf('Higher Order Components', module)
   ))
   .add('Quarterly Selection', () => (
     <InfiniteCalendar
-      fiscalYearStart={5}
       isQuarterlySelection
+      fiscalYearStart={5}
       selected={startOfMonth(new Date())}
       display={'quarters'}
       displayOptions={{
         showHeader: false,
         hideYearsOnSelect: false,
       }}
-      min={subMonths(startOfMonth(new Date()), 24)}
-      max={addMonths(endOfMonth(new Date()), 24)}
-      minDate={subMonths(startOfMonth(new Date()), 3)}
-      maxDate={addMonths(endOfMonth(new Date()), 3)}
+      min={subMonths(startOfMonth(new Date()), 20)}
+      minDate={subMonths(startOfMonth(new Date()), 11)}
+      max={addMonths(endOfMonth(new Date()), 22)}
+      maxDate={addMonths(endOfMonth(new Date()), 11)}
     />
   ))
   .add('Quarter Range Selection', () => (
     <InfiniteCalendar
       isQuarterlySelection
+      fiscalYearStart={5}
       selected={{
         start: subMonths(new Date(), 1),
         end: addMonths(new Date(), 4),
@@ -143,10 +144,10 @@ storiesOf('Higher Order Components', module)
         showHeader: false,
         hideYearsOnSelect: false,
       }}
-      min={subMonths(startOfMonth(new Date()), 9)}
-      max={addMonths(endOfMonth(new Date()), 9)}
-      minDate={subMonths(startOfMonth(new Date()), 18)}
-      maxDate={addMonths(endOfMonth(new Date()), 18)}
+      min={subMonths(startOfMonth(new Date()), 18)}
+      minDate={subMonths(startOfMonth(new Date()), 9)}
+      max={addMonths(endOfMonth(new Date()), 18)}
+      maxDate={addMonths(endOfMonth(new Date()), 9)}
       Component={withQuarterRange(Calendar)}
     />
   ))

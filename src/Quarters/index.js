@@ -217,7 +217,7 @@ const Quarters = (props) => {
     ]
   );
 
-  // const currentYear = today.getFullYear();
+  const currentYear = today.getFullYear();
   const yearsSliced = years.slice(0, years.length);
   const rowHeight = 210;
   const heights = yearsSliced.map((val, index) =>
@@ -304,7 +304,11 @@ const Quarters = (props) => {
                 },
               }}
             >
-              <label>
+              <label
+                class={classNames({
+                  [styles.currentYear]: currentYear === year,
+                })}
+              >
                 <span>{year}</span>
               </label>
               {showQuarters && renderMonths(chunked)}
