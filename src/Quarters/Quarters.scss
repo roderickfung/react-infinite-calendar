@@ -14,6 +14,10 @@ $cellSize: 40px;
   justify-content: center;
   background: linear-gradient(to bottom, rgba(15, 30, 70, 0.12) 0, #fff 3px);
   background-color: #fff;
+
+  > * {
+    box-sizing: border-box;
+  }
 }
 
 .list {
@@ -40,12 +44,8 @@ $cellSize: 40px;
   -webkit-user-select: none;
   box-sizing: border-box;
 
-  &.withMonths {
+  &.withQuarters {
     border-bottom: 1px solid $blue_15;
-
-    & > * {
-      box-sizing: border-box;
-    }
 
     & > label {
       line-height: $cellSize;
@@ -112,10 +112,9 @@ $cellSize: 40px;
           background-color: $blue_10;
         }
 
-        &.currentQuarter {
+        &.selected {
           background: $blue;
           color: #fff;
-
           & > li {
             color: #fff;
           }
@@ -137,18 +136,18 @@ $cellSize: 40px;
           font-weight: normal;
           text-transform: capitalize;
 
-          &.selected {
-            position: relative;
-            z-index: 1;
-            color: #fff;
-            border: 0;
+          // &.selected {
+          //   position: relative;
+          //   z-index: 1;
+          //   color: #fff;
+          //   border: 0;
 
-            .selection {
-              @include circle($cellSize);
-              line-height: $cellSize;
-              z-index: 2;
-            }
-          }
+          //   .selection {
+          //     @include circle($cellSize);
+          //     line-height: $cellSize;
+          //     z-index: 2;
+          //   }
+          // }
         }
       }
 

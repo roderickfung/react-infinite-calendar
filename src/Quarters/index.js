@@ -12,6 +12,7 @@ import {
   parse,
   getMonth,
   addYears,
+  addMonths,
 } from 'date-fns';
 import styles from './Quarters.scss';
 
@@ -55,8 +56,8 @@ const getSelected = (selected) => {
   }
   // remove time
   return {
-    start: parse(format(selected, 'YYYY-MM-DD')),
-    end: parse(format(selected, 'YYYY-MM-DD')),
+    start: startOfMonth(parse(format(selected, 'YYYY-MM-DD'))),
+    end: endOfMonth(addMonths(parse(format(selected, 'YYYY-MM-DD')), 2)),
   };
 };
 
@@ -82,9 +83,6 @@ const Quarters = (props) => {
     fiscalYearStart = 1,
   } = props;
 
-  // console.log('MIN', min, minDate);
-  // console.log('MAX', max, maxDate);
-
   const selectedYearIndex = useMemo(() => {
     const yearsSliced = years.slice(0, years.length);
     return yearsSliced.indexOf(getSelected(selected).start.getFullYear());
@@ -92,7 +90,6 @@ const Quarters = (props) => {
 
   const handleClick = useCallback(
     (date, e) => {
-      // console.log('HANDLE CLICK', date);
       onSelect(date, e, (date) => scrollToDate(date));
       if (hideOnSelect) {
         window.requestAnimationFrame(() => setDisplay('days'));
@@ -122,17 +119,13 @@ const Quarters = (props) => {
 
               const isCurrentQuarter = isSameQuarter(months, today);
 
-              const isSelected = months.some((month) => {
-                return isWithinRange(
+              const isSelected = months.some((month) =>
+                isWithinRange(
                   month,
-                  getSelected(selected[0]),
-                  getSelected(selected[2])
-                );
-              });
-
-              if (isSelected) {
-                console.log('IS SELECTED', isSelected);
-              }
+                  getSelected(selected).start,
+                  getSelected(selected).end
+                )
+              );
 
               const isStart = isSameQuarter(months, selected.start);
               const isEnd = isSameQuarter(months, selected.end);
@@ -144,6 +137,7 @@ const Quarters = (props) => {
                     typeof theme.selectionColor === 'function'
                       ? theme.selectionColor(months[0])
                       : theme.selectionColor,
+                  color: '#FFF',
                 },
                 isCurrentQuarter && {
                   borderColor: theme.todayColor,
@@ -284,14 +278,10 @@ const Quarters = (props) => {
               key={index}
               className={classNames(styles.year, {
                 [styles.active]: showQuarters && isActive,
-                [styles.withMonths]: showQuarters,
+                [styles.withQuarters]: showQuarters,
                 [styles.first]: index === 0,
                 [styles.last]: index === yearsSliced.length - 1,
               })}
-              onClick={(e) =>
-                shouldAllowToSwitchYear &&
-                handleClick(new Date(year, fiscalYearStart - 1, 1), e)
-              }
               title={shouldAllowToSwitchYear ? `Set year to ${year}` : ''}
               data-year={year}
               style={{
@@ -303,6 +293,10 @@ const Quarters = (props) => {
                       : theme.selectionColor,
                 },
               }}
+              onClick={(e) =>
+                shouldAllowToSwitchYear &&
+                handleClick(new Date(year, fiscalYearStart - 1, 1), e)
+              }
             >
               <label
                 class={classNames({
