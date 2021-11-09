@@ -143,10 +143,10 @@ storiesOf('Higher Order Components', module)
         showHeader: false,
         hideYearsOnSelect: false,
       }}
-      min={subMonths(startOfMonth(new Date()), 24)}
-      max={addMonths(endOfMonth(new Date()), 24)}
-      minDate={subMonths(startOfMonth(new Date()), 3)}
-      maxDate={addMonths(endOfMonth(new Date()), 3)}
+      min={subMonths(startOfMonth(new Date()), 9)}
+      max={addMonths(endOfMonth(new Date()), 9)}
+      minDate={subMonths(startOfMonth(new Date()), 18)}
+      maxDate={addMonths(endOfMonth(new Date()), 18)}
       Component={withQuarterRange(Calendar)}
     />
   ))

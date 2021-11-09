@@ -27,8 +27,8 @@ const isSameQuarter = (months, today) => {
 };
 
 const isDateDisabled = ({ date, min, minDate, max, maxDate }) =>
-  isBefore(date, min) ||
-  isBefore(date, minDate) ||
+  isBefore(date, startOfMonth(min)) ||
+  isBefore(date, startOfMonth(minDate)) ||
   isAfter(date, max) ||
   isAfter(date, maxDate);
 
@@ -82,8 +82,8 @@ const Quarters = (props) => {
     fiscalYearStart = 1,
   } = props;
 
-  console.log('MIN', min, minDate);
-  console.log('MAX', max, maxDate);
+  // console.log('MIN', min, minDate);
+  // console.log('MAX', max, maxDate);
 
   const selectedYearIndex = useMemo(() => {
     const yearsSliced = years.slice(0, years.length);
@@ -92,7 +92,7 @@ const Quarters = (props) => {
 
   const handleClick = useCallback(
     (date, e) => {
-      console.log('HANDLE CLICK', date);
+      // console.log('HANDLE CLICK', date);
       onSelect(date, e, (date) => scrollToDate(date));
       if (hideOnSelect) {
         window.requestAnimationFrame(() => setDisplay('days'));
@@ -108,26 +108,29 @@ const Quarters = (props) => {
           <label>Q1</label>
           <article className="quarterly-view">
             {chunked.map((months) => {
-              const isDisabled = months.some((month) =>
-                isDateDisabled({
-                  month,
+              const isDisabled = months.some((month) => {
+                const disabled = isDateDisabled({
+                  date: month,
                   min,
                   minDate,
                   max,
                   maxDate,
-                })
-              );
+                });
+
+                return disabled;
+              });
 
               const isCurrentQuarter = isSameQuarter(months, today);
 
-              const isSelected = isWithinRange(
-                months[1],
-                getSelected(selected[0]),
-                getSelected(selected[2])
-              );
+              const isSelected = months.some((month) => {
+                return isWithinRange(
+                  month,
+                  getSelected(selected[0]),
+                  getSelected(selected[2])
+                );
+              });
 
               if (isSelected) {
-                console.log('SELECTED', selected);
                 console.log('IS SELECTED', isSelected);
               }
 
