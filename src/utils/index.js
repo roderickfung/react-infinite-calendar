@@ -231,4 +231,15 @@ export function getSortedDate(start, end) {
   return isBefore(start, end) ? { start, end } : { start: end, end: start };
 }
 
+export const chunk = (target, size) => {
+  return target.reduce(
+    (memo, value, index) => {
+      if (index % (target.length / size) === 0 && index !== 0) memo.push([]);
+      memo[memo.length - 1].push(value);
+      return memo;
+    },
+    [[]]
+  );
+};
+
 export { default as animate } from './animate';
