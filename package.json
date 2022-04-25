@@ -19,7 +19,8 @@
     "deploy-storybook": "storybook-to-ghpages",
     "lint": "esw --ext src/**/*.js src/index.js --color",
     "lint:fix": "yarn lint --fix",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "husky": {
     "hooks": {
@@ -53,6 +54,7 @@
     "@storybook/react": "^6.2.8",
     "@storybook/storybook-deployer": "^2.8.7",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.2",
     "babel-plugin-css-modules-transform": "^1.6.2",
     "babel-preset-react-app": "^10.0.0",
@@ -68,6 +70,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-watch": "^7.0.0",
     "husky": "^6.0.0",
+    "jest": "^27.5.1",
     "node-sass": "^6.0.1",
     "postcss": "^8.2.12",
     "postcss-loader": "^5.2.0",
@@ -82,6 +85,7 @@
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "sass-loader": "^11.0.1",
+    "source-map-support": "^0.5.21",
     "style-loader": "^2.0.0",
     "webpack": "^5.35.0"
   },

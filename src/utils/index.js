@@ -231,6 +231,7 @@ export function getSortedDate(start, end) {
   return isBefore(start, end) ? { start, end } : { start: end, end: start };
 }
 
+// Chunk function splits the array into %target number of equal sized chunks.
 export const chunk = (target, size) => {
   return target.reduce(
     (memo, value, index) => {
